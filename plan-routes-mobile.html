@@ -442,6 +442,7 @@
 
             body {
                 overflow: auto;
+                height: auto;
             }
 
             header {
@@ -477,6 +478,7 @@
 
             .main-container {
                 flex-direction: column;
+                overflow: visible;
             }
 
             /* Reading area first */
@@ -484,6 +486,12 @@
                 width: 100%;
                 height: auto;
                 border-right: none;
+                overflow: visible;
+            }
+
+            .spot-list {
+                padding: 16px;
+                overflow: visible;
             }
 
             .plan-desc {
@@ -508,9 +516,7 @@
                 min-height: 40px;
             }
 
-            .spot-list {
-                padding: 16px;
-            }
+
 
             .spot-card {
                 padding: 16px;
@@ -552,12 +558,15 @@
 
             .stats-bar {
                 font-size: 14px;
-                padding: 14px 16px 70px; /* leave space for mobile nav */
+                padding: 14px 16px 70px;
+                /* leave space for mobile nav */
             }
 
             /* Map: default hidden on mobile, toggled by nav */
             #map {
                 display: none;
+                flex: none;
+                width: 100%;
                 height: calc(100vh - 160px);
             }
 
