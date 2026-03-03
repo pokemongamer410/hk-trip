@@ -11,8 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Kiwimaru:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
     rel="stylesheet">
-  <!-- 引入 Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons 已移至 body 底部，避免 Safari render-blocking -->
   <style>
     :root {
       /* 旅遊風明亮色系 */
@@ -2053,9 +2052,16 @@
 
   </main>
 
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
   <script>
-    // Init Lucide Icons
-    lucide.createIcons();
+    // Init Lucide Icons (with Safari fallback)
+    try {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.warn('Lucide icons failed to load:', e);
+    }
   </script>
 </body>
 
