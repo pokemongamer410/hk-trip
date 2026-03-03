@@ -266,6 +266,17 @@
             margin-right: 4px;
         }
 
+        .spot-card .spot-zone-label {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 500;
+            background: #818cf810;
+            color: #a5b4fc;
+            margin-left: 2px;
+        }
+
         .spot-tag {
             display: inline-block;
             padding: 1px 6px;
@@ -686,8 +697,8 @@
             "taikwun": { name: "大館 Tai Kwun", searchName: "Tai Kwun Centre for Heritage and Arts Hong Kong", lat: 22.2816, lng: 114.1538, type: "sight", area: "中環", note: "🧑Frunky＋👧Lucy推薦", warn: "👩Angela：不是很大，30-60min 夠" },
             "stonestairs": { name: "石板街", searchName: "Pottinger Street Hong Kong", lat: 22.2825, lng: 114.1540, type: "sight", area: "中環", note: "👧Lucy推薦｜《難哄》取景地" },
             "kamroast": { name: "甘牌燒鵝", searchName: "Kam's Roast Goose Wan Chai Hong Kong", lat: 22.2748, lng: 114.1722, type: "food", area: "灣仔", note: "👩Angela提到｜飯店旁邊！", warn: "✅ 11:30-21:30 每日營業" },
-            "kwankee": { name: "坤記煲仔飯", searchName: "Kwan Kee Claypot Rice Hong Kong", lat: 22.2870, lng: 114.1430, type: "food", area: "西環", note: "👩Angela推薦", warn: "✅ 11:00-14:30 / 17:30-22:30（有中休）" },
-            "happyvalley": { name: "跑馬地馬場 🏇", searchName: "Happy Valley Racecourse Hong Kong", lat: 22.2710, lng: 114.1833, type: "sight", area: "跑馬地", note: "👩Angela強推｜✅ 週三19:15開賽", warn: "⭐ 3/11 週三唯一機會！" },
+            "kwankee": { name: "坤記煲仔飯", searchName: "Kwan Kee Claypot Rice Hong Kong", lat: 22.2870, lng: 114.1430, type: "food", area: "西環", note: "👩Angela推薦", warn: "🚨 17:30 開門！建議 17:00~17:15 到排隊，否則等 40min+ 來不及趕 19:00 跑馬地" },
+            "happyvalley": { name: "跑馬地馬場 🏇", searchName: "Happy Valley Racecourse Hong Kong", lat: 22.2710, lng: 114.1833, type: "sight", area: "跑馬地", note: "👩Angela強推｜✅ 週三19:15開賽", warn: "⭐ 3/11 週三唯一機會！務必 19:00 前抵達" },
             "lankwaifong": { name: "蘭桂坊", searchName: "Lan Kwai Fong Hong Kong", lat: 22.2808, lng: 114.1553, type: "bar", area: "中環", note: "👩Angela＋👧Lucy推薦", warn: "體會夜生活氛圍" },
             "ironfairies": { name: "The Iron Fairies", searchName: "The Iron Fairies Hong Kong", lat: 22.2840, lng: 114.1503, type: "bar", area: "中環", note: "👩Angela 3/2推薦｜live band 推薦店", warn: "🚨 21:30 後才有 live band" },
             "lanfongyuen": { name: "蘭芳園", searchName: "Lan Fong Yuen Hong Kong Central", lat: 22.2819, lng: 114.1550, type: "food", area: "中環", note: "👩Angela＋🧑Frunky推薦｜絲襪奶茶始祖", warn: "✅ 07:30-18:00 (週日公休)" },
@@ -701,7 +712,7 @@
             "siushing": { name: "兆成行（精油）", searchName: "Siu Sing Hang Hong Kong Sheung Wan", lat: 22.2867, lng: 114.1473, type: "shop", area: "上環", note: "👧Lucy推薦｜88號舒淇香", warn: "✅ 打烊17:30｜週日公休" },
             "chanyeejai": { name: "陳意齋", searchName: "Chan Yee Jai Hong Kong", lat: 22.2857, lng: 114.1509, type: "shop", area: "中環", note: "👧Lucy推薦｜杏仁餅", warn: "✅ 10:00-19:30 (週日到18:30)" },
             "palace": { name: "香港故宮文化博物館", searchName: "Hong Kong Palace Museum", lat: 22.3031, lng: 114.1534, type: "sight", area: "西九龍", note: "📋原行程｜需1.5-2hr" },
-            "wongtaisin": { name: "黃大仙祠", searchName: "Wong Tai Sin Temple Hong Kong", lat: 22.3423, lng: 114.1935, type: "sight", area: "黃大仙", note: "📋原行程｜參拜~1hr" },
+            "wongtaisin": { name: "黃大仙祠", searchName: "Wong Tai Sin Temple Hong Kong", lat: 22.3423, lng: 114.1935, type: "sight", area: "黃大仙", note: "📋原行程｜參拜~1hr", warn: "🚨 16:30 關門！建議 15:30 前抵達" },
             "k11": { name: "K11 MUSEA", searchName: "K11 Musea Tsim Sha Tsui Hong Kong", lat: 22.2977, lng: 114.1723, type: "shop", area: "尖沙咀", note: "📋原行程｜購物+藝術" },
             "victoria": { name: "星光大道/維港", searchName: "Victoria Harbour Tsim Sha Tsui", lat: 22.2934, lng: 114.1738, type: "sight", area: "尖沙咀", note: "多方推薦", warn: "👩Angela：黃昏去！2:00會曬死" },
             "kaboom": { name: "KABOOM Rooftop", searchName: "KABOOM Rooftop Tsim Sha Tsui Hong Kong", lat: 22.2952, lng: 114.1718, type: "food", area: "尖沙咀", note: "👧Lucy推薦｜泰式+維港夜景", warn: "🚨 10人必須先訂位！" },
@@ -717,7 +728,8 @@
             "artmuseum": { name: "香港藝術館", searchName: "Hong Kong Museum of Art", lat: 22.2943, lng: 114.1738, type: "sight", area: "尖沙咀", note: "👧Lucy推薦｜落地窗看維港", warn: "🚨 週四公休！3/12是週四不能去！" },
         };
 
-        // ===== 三套方案定義（每天的景點順序）=====
+        // ===== 三套方案定義（以「時段區間」呈現，表示大概幾點在哪個區域）=====
+        // time: 顯示時段範圍（對應 v4 邏輯），zone: 區域標籤
         const plans = {
             a: {
                 name: "⭐ 方案 A：經典全包",
@@ -725,41 +737,41 @@
                 desc: "故宮、黃大仙、大館、跑馬地全包，想把招牌都打卡的選這個。需嚴格守時。",
                 days: {
                     1: [
-                        { id: "airport", time: "10:30" },
-                        { id: "hotel", time: "12:00" },
-                        { id: "tsimchailee", time: "13:00" },
-                        { id: "escalator", time: "13:45" },
-                        { id: "taikwun", time: "14:30" },
-                        { id: "stonestairs", time: "15:15" },
-                        { id: "kamroast", time: "16:00" },
-                        { id: "kwankee", time: "17:30" },
-                        { id: "happyvalley", time: "19:00" },
-                        { id: "lankwaifong", time: "22:00" },
-                        { id: "ironfairies", time: "22:30" },
-                        { id: "hotel", time: "00:00" },
+                        { id: "airport", time: "10:30~12:00", zone: "抵達+交通" },
+                        { id: "hotel", time: "12:00~13:00", zone: "Check-in" },
+                        { id: "tsimchailee", time: "13:00~16:00", zone: "中環老街區（自由逛）" },
+                        { id: "escalator", time: "13:00~16:00", zone: "中環老街區（自由逛）" },
+                        { id: "taikwun", time: "13:00~16:00", zone: "中環老街區（自由逛）" },
+                        { id: "stonestairs", time: "13:00~16:00", zone: "中環老街區（自由逛）" },
+                        { id: "kamroast", time: "16:00~17:00", zone: "灣仔晚餐（二選一）" },
+                        { id: "kwankee", time: "⚡17:00到排隊", zone: "西環晚餐（二選一）🚨" },
+                        { id: "happyvalley", time: "19:00~21:30", zone: "跑馬地🐎" },
+                        { id: "lankwaifong", time: "21:30~", zone: "中環夜生活（自由）" },
+                        { id: "ironfairies", time: "21:30~", zone: "中環夜生活（自由）" },
+                        { id: "hotel", time: "00:00", zone: "回飯店" },
                     ],
                     2: [
-                        { id: "shuikee", time: "08:00" },
-                        { id: "lemonking", time: "09:00" },
-                        { id: "jenny", time: "09:30" },
-                        { id: "linheung", time: "10:30" },
-                        { id: "siushing", time: "11:30" },
-                        { id: "chanyeejai", time: "11:45" },
-                        { id: "palace", time: "12:30" },
-                        { id: "wongtaisin", time: "15:00" },
-                        { id: "k11", time: "16:00" },
-                        { id: "victoria", time: "17:00" },
-                        { id: "kaboom", time: "18:30" },
-                        { id: "barleone", time: "20:30" },
-                        { id: "hotel", time: "22:30" },
+                        { id: "shuikee", time: "08:00~12:00", zone: "上環老街區（自由逛）" },
+                        { id: "lemonking", time: "08:00~12:00", zone: "上環老街區（自由逛）" },
+                        { id: "jenny", time: "09:30 排隊", zone: "上環老街區（分工排）" },
+                        { id: "siushing", time: "08:00~12:00", zone: "上環老街區（自由逛）" },
+                        { id: "chanyeejai", time: "08:00~12:00", zone: "上環老街區（自由逛）" },
+                        { id: "linheung", time: "12:00~14:00", zone: "中環午餐+展覽" },
+                        { id: "palace", time: "12:00~14:30", zone: "西九龍展覽（擇一）" },
+                        { id: "wongtaisin", time: "14:30~16:00", zone: "黃大仙⚠️ 16:30關" },
+                        { id: "k11", time: "16:00~17:00", zone: "尖沙咀逛街" },
+                        { id: "victoria", time: "17:00~19:00", zone: "尖沙咀海濱黃昏" },
+                        { id: "kaboom", time: "19:00~21:00", zone: "尖沙咀晚餐" },
+                        { id: "barleone", time: "21:00~", zone: "中環酒吧（自由）" },
+                        { id: "hotel", time: "22:30", zone: "回飯店" },
                     ],
                     3: [
-                        { id: "mycupoftea", time: "07:30" },
-                        { id: "bakehouse", time: "08:30" },
-                        { id: "hkstation", time: "09:30" },
-                        { id: "cwb", time: "10:30" },
-                        { id: "yunggoose", time: "11:30" },
-                        { id: "airport", time: "13:00" },
+                        { id: "mycupoftea", time: "07:30~09:30", zone: "灣仔早餐（順路吃）" },
+                        { id: "bakehouse", time: "07:30~09:30", zone: "灣仔早餐（順路吃）" },
+                        { id: "hkstation", time: "09:30~10:30", zone: "預辦登機+託運" },
+                        { id: "cwb", time: "10:30~13:00", zone: "銅鑼灣逛街+午餐" },
+                        { id: "yunggoose", time: "10:30~13:00", zone: "銅鑼灣逛街+午餐" },
+                        { id: "airport", time: "13:00~", zone: "搭機返台" },
                     ],
                 }
             },
@@ -769,41 +781,41 @@
                 desc: "砍掉故宮黃大仙，多排旺角紅茶冰室、榮記車仔麵、Hashtag B。來香港就是要吃！",
                 days: {
                     1: [
-                        { id: "airport", time: "10:30" },
-                        { id: "hotel", time: "12:00" },
-                        { id: "lanfongyuen", time: "13:00" },
-                        { id: "singheung", time: "14:00" },
-                        { id: "stonestairs", time: "14:45" },
-                        { id: "kamroast", time: "16:00" },
-                        { id: "kwankee", time: "17:30" },
-                        { id: "happyvalley", time: "19:00" },
-                        { id: "mammy", time: "22:00" },
-                        { id: "lankwaifong", time: "23:00" },
-                        { id: "ironfairies", time: "23:30" },
-                        { id: "hotel", time: "00:30" },
+                        { id: "airport", time: "10:30~12:00", zone: "抵達+交通" },
+                        { id: "hotel", time: "12:00~13:00", zone: "Check-in" },
+                        { id: "lanfongyuen", time: "13:00~15:00", zone: "中環美食馬拉松" },
+                        { id: "singheung", time: "13:00~15:00", zone: "中環美食馬拉松" },
+                        { id: "stonestairs", time: "13:00~15:00", zone: "中環順路散步" },
+                        { id: "kamroast", time: "16:00~17:00", zone: "灣仔晚餐（二選一）" },
+                        { id: "kwankee", time: "⚡17:00到排隊", zone: "西環晚餐（二選一）🚨" },
+                        { id: "happyvalley", time: "19:00~21:30", zone: "跑馬地🐎" },
+                        { id: "mammy", time: "21:30~", zone: "銅鑼灣宵夜" },
+                        { id: "lankwaifong", time: "22:30~", zone: "中環夜生活（自由）" },
+                        { id: "ironfairies", time: "22:30~", zone: "中環夜生活（自由）" },
+                        { id: "hotel", time: "00:30", zone: "回飯店" },
                     ],
                     2: [
-                        { id: "shuikee", time: "08:00" },
-                        { id: "lemonking", time: "09:00" },
-                        { id: "siushing", time: "09:30" },
-                        { id: "jenny", time: "10:00" },
-                        { id: "linheung", time: "11:00" },
-                        { id: "wingkee", time: "12:30" },
-                        { id: "redtea", time: "14:00" },
-                        { id: "cookies4", time: "15:30" },
-                        { id: "victoria", time: "17:00" },
-                        { id: "kaboom", time: "18:30" },
-                        { id: "barleone", time: "20:30" },
-                        { id: "hotel", time: "22:30" },
+                        { id: "shuikee", time: "08:00~11:00", zone: "上環老街區（自由逛）" },
+                        { id: "lemonking", time: "08:00~11:00", zone: "上環老街區（自由逛）" },
+                        { id: "siushing", time: "08:00~11:00", zone: "上環老街區（自由逛）" },
+                        { id: "jenny", time: "09:30 排隊", zone: "上環老街區（分工排）" },
+                        { id: "linheung", time: "11:00~13:30", zone: "中環午餐接力" },
+                        { id: "wingkee", time: "11:00~13:30", zone: "中環午餐接力" },
+                        { id: "redtea", time: "14:00~16:00", zone: "旺角下午茶" },
+                        { id: "cookies4", time: "14:00~16:30", zone: "尖沙咀伴手禮" },
+                        { id: "victoria", time: "17:00~19:00", zone: "尖沙咀海濱黃昏" },
+                        { id: "kaboom", time: "19:00~21:00", zone: "尖沙咀晚餐" },
+                        { id: "barleone", time: "21:00~", zone: "中環酒吧（自由）" },
+                        { id: "hotel", time: "22:30", zone: "回飯店" },
                     ],
                     3: [
-                        { id: "mycupoftea", time: "07:00" },
-                        { id: "bakehouse", time: "08:00" },
-                        { id: "hashtagb", time: "09:00" },
-                        { id: "hkstation", time: "09:30" },
-                        { id: "yunggoose", time: "10:30" },
-                        { id: "cwb", time: "11:30" },
-                        { id: "airport", time: "13:00" },
+                        { id: "mycupoftea", time: "07:00~09:30", zone: "灣仔蛋塔早餐對決" },
+                        { id: "bakehouse", time: "07:00~09:30", zone: "灣仔蛋塔早餐對決" },
+                        { id: "hashtagb", time: "07:00~09:30", zone: "銅鑼灣蛋塔（順路）" },
+                        { id: "hkstation", time: "09:30~10:30", zone: "預辦登機+託運" },
+                        { id: "yunggoose", time: "10:30~13:00", zone: "銅鑼灣逛街+午餐" },
+                        { id: "cwb", time: "10:30~13:00", zone: "銅鑼灣逛街+午餐" },
+                        { id: "airport", time: "13:00~", zone: "搭機返台" },
                     ],
                 }
             },
@@ -813,32 +825,32 @@
                 desc: "砍掉故宮、黃大仙、小店群，每天都有自由時間。10人太多很難同步？這方案最不會吵架。",
                 days: {
                     1: [
-                        { id: "airport", time: "10:30" },
-                        { id: "hotel", time: "12:00" },
-                        { id: "lanfongyuen", time: "12:30" },
-                        { id: "escalator", time: "13:30" },
-                        { id: "kamroast", time: "17:00" },
-                        { id: "happyvalley", time: "19:00" },
-                        { id: "lankwaifong", time: "22:00" },
-                        { id: "ironfairies", time: "23:00" },
-                        { id: "hotel", time: "00:00" },
+                        { id: "airport", time: "10:30~12:30", zone: "抵達+Check-in" },
+                        { id: "hotel", time: "10:30~12:30", zone: "抵達+Check-in" },
+                        { id: "lanfongyuen", time: "12:30~14:30", zone: "中環午餐散步" },
+                        { id: "escalator", time: "12:30~14:30", zone: "中環午餐散步" },
+                        { id: "kamroast", time: "16:30~18:30", zone: "灣仔/西環晚餐" },
+                        { id: "happyvalley", time: "19:00~21:30", zone: "跑馬地🐎" },
+                        { id: "lankwaifong", time: "21:30~", zone: "中環夜生活（自由）" },
+                        { id: "ironfairies", time: "21:30~", zone: "中環夜生活（自由）" },
+                        { id: "hotel", time: "00:00", zone: "回飯店" },
                     ],
                     2: [
-                        { id: "shuikee", time: "08:30" },
-                        { id: "jenny", time: "09:30" },
-                        { id: "linheung", time: "10:30" },
-                        { id: "lemonking", time: "12:00" },
-                        { id: "k11", time: "15:00" },
-                        { id: "victoria", time: "17:00" },
-                        { id: "kaboom", time: "19:00" },
-                        { id: "hotel", time: "21:30" },
+                        { id: "shuikee", time: "08:30~10:30", zone: "上環早茶+排隊分工" },
+                        { id: "jenny", time: "09:30 排隊", zone: "上環（分工排）" },
+                        { id: "linheung", time: "08:30~10:30", zone: "上環早茶（擇一）" },
+                        { id: "lemonking", time: "10:30~13:00", zone: "上環伴手禮輕鬆買" },
+                        { id: "k11", time: "15:00~17:00", zone: "尖沙咀逛街" },
+                        { id: "victoria", time: "17:00~19:00", zone: "尖沙咀海濱黃昏" },
+                        { id: "kaboom", time: "19:00~22:00", zone: "尖沙咀晚餐+酒吧" },
+                        { id: "hotel", time: "22:00", zone: "回飯店" },
                     ],
                     3: [
-                        { id: "mycupoftea", time: "08:00" },
-                        { id: "bakehouse", time: "08:45" },
-                        { id: "hkstation", time: "09:30" },
-                        { id: "yunggoose", time: "10:30" },
-                        { id: "airport", time: "12:30" },
+                        { id: "mycupoftea", time: "08:00~10:00", zone: "灣仔早餐（順路吃）" },
+                        { id: "bakehouse", time: "08:00~10:00", zone: "灣仔早餐（順路吃）" },
+                        { id: "hkstation", time: "10:00~11:00", zone: "預辦登機+託運" },
+                        { id: "yunggoose", time: "11:00~13:00", zone: "銅鑼灣慢遊+午餐" },
+                        { id: "airport", time: "13:00~", zone: "搭機返台" },
                     ],
                 }
             }
@@ -924,6 +936,7 @@
                     html += `
         <div class="spot-card" id="card-${planKey}-${d}-${idx}" onclick="flyTo(${spot.lat},${spot.lng},${markers.length - 1})">
           <div class="spot-name"><span class="spot-time">${stop.time}</span> ${spot.name}</div>
+          ${stop.zone ? `<div class="spot-meta" style="margin-bottom:2px;"><span class="spot-zone-label">🗂️ ${stop.zone}</span></div>` : ''}
           <div class="spot-meta">📍 ${spot.area} ${spot.note ? `<br>📝 ${spot.note}` : ''}</div>
           ${spot.warn ? `<div class="spot-warn">${spot.warn}</div>` : ''}
           <span class="spot-tag ${typeTagClass[spot.type]}">${typeLabels[spot.type]}</span>
