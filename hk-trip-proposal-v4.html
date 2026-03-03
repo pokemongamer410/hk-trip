@@ -2,1407 +2,2047 @@
 <html lang="zh-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇭🇰 踢批哀香港行 — 行程提案手冊</title>
-    <!-- 引入 Google Fonts，使用圓潤可愛的字體增加旅遊感 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kiwimaru:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
-        rel="stylesheet">
-    <!-- 引入 Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            /* 旅遊風明亮色系 */
-            --bg-body: #F5F3EC;
-            /* 紙張米白色 */
-            --bg-card: #FFFFFF;
-            /* 卡片純白 */
-            --primary: #FF6B6B;
-            /* 珊瑚紅：活力、重點 */
-            --secondary: #4ECDC4;
-            /* 湖水綠：放鬆、副標 */
-            --accent: #FCA311;
-            /* 陽光橘：高光、評分 */
-            --text-main: #2D3436;
-            /* 深灰字體，好閱讀 */
-            --text-muted: #636E72;
-            /* 淺灰字體 */
-            --border-color: #E2DBD0;
-            /* 柔和邊框 */
-            --danger: #E15F41;
-            --success: #38ADA9;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans TC', sans-serif;
-            scroll-behavior: smooth;
-            /* 平滑滾動 */
-        }
-
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            /* 輕微的紙張紋理效果（用點點代替） */
-            background-image:
-                radial-gradient(var(--border-color) 1px, transparent 1px);
-            background-size: 20px 20px;
-            line-height: 1.7;
-        }
-
-        /* 標題字體使用圓潤感 */
-        h1,
-        h2,
-        h3,
-        h4,
-        .day-header {
-            font-family: 'Kiwimaru', serif;
-        }
-
-        /* --- Header & Hero --- */
-        header {
-            max-width: 900px;
-            margin: 40px auto 20px;
-            padding: 60px 30px;
-            text-align: center;
-            background: var(--bg-card);
-            border-radius: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border: 2px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 裝飾性幾何圖形 */
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: -50px;
-            width: 150px;
-            height: 150px;
-            background: var(--secondary);
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 100px;
-            height: 100px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            transform: rotate(-2deg);
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 24px;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .hero-meta div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-body);
-            color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-weight: 500;
-            border: 1px dashed var(--text-muted);
-        }
-
-        /* --- 原生導覽列 (Sticky) --- */
-        nav {
-            position: sticky;
-            top: 20px;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            z-index: 100;
-            padding: 0 15px;
-        }
-
-        .nav-container {
-            display: flex;
-            background: var(--bg-card);
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            overflow-x: auto;
-            padding: 6px;
-            gap: 6px;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
-            scrollbar-width: none;
-        }
-
-        .nav-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-item {
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
-            padding: 12px 10px;
-            border-radius: 14px;
-            color: var(--text-main);
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            white-space: nowrap;
-        }
-
-        .nav-item span {
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .nav-item:hover {
-            background: #FFF0F0;
-            color: var(--primary);
-        }
-
-        /* --- Main Content --- */
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 15px 80px;
-        }
-
-        section {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 40px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-            scroll-margin-top: 100px;
-            /* 給導覽列留空間 */
-        }
-
-        .section-header {
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 3px dashed var(--border-color);
-            padding-bottom: 15px;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--text-main);
-            font-weight: 900;
-        }
-
-        .section-tagline {
-            background: #F8F9FA;
-            padding: 15px 20px;
-            border-left: 6px solid var(--secondary);
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 30px;
-            font-size: 1.05rem;
-            color: var(--text-muted);
-        }
-
-        /* --- Warnings --- */
-        .warning-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .warning-card {
-            background: #FFF;
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            position: relative;
-        }
-
-        .warning-card.alert {
-            border-color: var(--danger);
-            background: #FFF5F5;
-        }
-
-        .warning-card.time {
-            border-color: var(--accent);
-            background: #FFFBF0;
-        }
-
-        .warning-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .warning-card.alert .warning-title {
-            color: var(--danger);
-        }
-
-        .warning-card.time .warning-title {
-            color: #D97706;
-        }
-
-        ul.bullet-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul.bullet-list li {
-            padding-left: 20px;
-            position: relative;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        ul.bullet-list li::before {
-            content: '📌';
-            position: absolute;
-            left: 0;
-            font-size: 0.8rem;
-            top: 3px;
-        }
-
-        /* --- Timeline (The Blocks!) --- */
-        .day-block {
-            margin-bottom: 50px;
-        }
-
-        .day-header {
-            font-size: 1.6rem;
-            background: var(--primary);
-            color: white;
-            display: inline-block;
-            padding: 8px 24px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        /* 時間線的棍子 */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 45px;
-            top: 80px;
-            bottom: -25px;
-            width: 2px;
-            background: var(--border-color);
-            border: 1px dashed var(--text-muted);
-            z-index: 1;
-        }
-
-        .timeline-item:last-child::before {
-            display: none;
-        }
-
-        .time-badge {
-            flex-shrink: 0;
-            width: 90px;
-            text-align: right;
-            font-weight: 700;
-            color: var(--secondary);
-            font-size: 1.1rem;
-            padding-top: 5px;
-        }
-
-        .content-card {
-            flex-grow: 1;
-            background: var(--bg-body);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px;
-            position: relative;
-            z-index: 2;
-            transition: transform 0.2s;
-        }
-
-        .content-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--secondary);
-            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.1);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .card-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .card-meta {
-            display: inline-flex;
-            gap: 10px;
-            background: #EAF7F6;
-            color: #2A9D8F;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .rec-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .rec-item {
-            background: #FFF;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-        }
-
-        .rec-item-title {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .rec-meta {
-            font-size: 0.85rem;
-            color: #E67E22;
-            background: #FFF3E0;
-            padding: 2px 8px;
-            border-radius: 6px;
-            display: inline-block;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .rec-desc {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* 比較表格 */
-        .combo-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #FFF;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid var(--border-color);
-        }
-
-        .combo-table th,
-        .combo-table td {
-            padding: 16px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .combo-table th {
-            background: #F8F9FA;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .combo-table td:first-child {
-            font-weight: 700;
-            text-align: left;
-            background: #FAFAFA;
-        }
-
-        /* --- Todo List --- */
-        .todo-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .todo-item:last-child {
-            border-bottom: none;
-        }
-
-        .todo-label {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-
-        .badge {
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .b-red {
-            background: #FFEAEA;
-            color: #E15F41;
-        }
-
-        .b-yel {
-            background: #FFF4E6;
-            color: #D97706;
-        }
-
-        .b-grn {
-            background: #E6F8F5;
-            color: #2A9D8F;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            section {
-                padding: 25px;
-            }
-
-            .timeline-item {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .timeline-item::before {
-                display: none;
-            }
-
-            .time-badge {
-                text-align: left;
-                width: 100%;
-                font-size: 1.2rem;
-                color: var(--primary);
-            }
-
-            .nav-item {
-                min-width: 100px;
-                padding: 10px;
-            }
-        }
-    
-/* ===== Full itinerary tables (from decision doc) ===== */
-.full-itinerary { margin-top: 14px; }
-.day-details { margin-top: 12px; border: 1.5px solid var(--border-color); border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
-.day-details summary { list-style: none; cursor: pointer; padding: 14px 16px; display: flex; align-items: center; gap: 10px; background: linear-gradient(180deg, rgba(78,205,196,0.10), rgba(255,255,255,0)); }
-.day-details summary::-webkit-details-marker { display: none; }
-.plan-details { margin-top: 14px; border: 2px solid var(--border-color); border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px rgba(0,0,0,0.06); }
-.plan-details summary { list-style: none; cursor: pointer; padding: 16px 16px; display: flex; align-items: center; gap: 10px; background: linear-gradient(180deg, rgba(255,107,107,0.12), rgba(255,255,255,0)); }
-.plan-details summary::-webkit-details-marker { display: none; }
-
-.day-pill { display:inline-flex; align-items:center; justify-content:center; padding: 6px 10px; border-radius: 999px; font-weight: 800; font-size: 12px; color: #fff; background: var(--primary); }
-.day-label { font-weight: 800; }
-.day-hint { margin-left: auto; font-size: 12px; color: var(--text-light); }
-.table-wrap { overflow-x: auto; border-top: 1px solid rgba(0,0,0,0.04); }
-.itinerary-table { width: 100%; border-collapse: collapse; min-width: 760px; }
-.itinerary-table th, .itinerary-table td { text-align: left; padding: 12px 12px; vertical-align: top; border-bottom: 1px solid rgba(0,0,0,0.06); }
-.itinerary-table th { background: rgba(255,255,255,0.7); position: sticky; top: 0; z-index: 1; }
-.itinerary-table td code { background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 6px; }
-.itinerary-table td b { font-weight: 800; }
-
-/* Mobile: bigger reading area + text */
-@media (max-width: 768px) {
-  .day-details summary { padding: 14px 14px; }
-  .itinerary-table { min-width: 640px; }
-  .itinerary-table th, .itinerary-table td { padding: 12px 10px; font-size: 14px; line-height: 1.55; }
-  .day-pill { font-size: 12px; }
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇭🇰 踢批哀香港行 — 行程提案手冊</title>
+  <!-- 引入 Google Fonts，使用圓潤可愛的字體增加旅遊感 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kiwimaru:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <!-- 引入 Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      /* 旅遊風明亮色系 */
+      --bg-body: #F5F3EC;
+      /* 紙張米白色 */
+      --bg-card: #FFFFFF;
+      /* 卡片純白 */
+      --primary: #FF6B6B;
+      /* 珊瑚紅：活力、重點 */
+      --secondary: #4ECDC4;
+      /* 湖水綠：放鬆、副標 */
+      --accent: #FCA311;
+      /* 陽光橘：高光、評分 */
+      --text-main: #2D3436;
+      /* 深灰字體，好閱讀 */
+      --text-muted: #636E72;
+      /* 淺灰字體 */
+      --border-color: #E2DBD0;
+      /* 柔和邊框 */
+      --danger: #E15F41;
+      --success: #38ADA9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      scroll-behavior: smooth;
+      /* 平滑滾動 */
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      /* 輕微的紙張紋理效果（用點點代替） */
+      background-image:
+        radial-gradient(var(--border-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+      line-height: 1.7;
+    }
+
+    /* 標題字體使用圓潤感 */
+    h1,
+    h2,
+    h3,
+    h4,
+    .day-header {
+      font-family: 'Kiwimaru', serif;
+    }
+
+    /* --- Header & Hero --- */
+    header {
+      max-width: 900px;
+      margin: 40px auto 20px;
+      padding: 60px 30px;
+      text-align: center;
+      background: var(--bg-card);
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 裝飾性幾何圖形 */
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 150px;
+      height: 150px;
+      background: var(--secondary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-body);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 500;
+      border: 1px dashed var(--text-muted);
+    }
+
+    /* --- 原生導覽列 (Sticky) --- */
+    nav {
+      position: sticky;
+      top: 20px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      z-index: 100;
+      padding: 0 15px;
+    }
+
+    .nav-container {
+      display: flex;
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      overflow-x: auto;
+      padding: 6px;
+      gap: 6px;
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-item {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 14px;
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .nav-item span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .nav-item:hover {
+      background: #FFF0F0;
+      color: var(--primary);
+    }
+
+    /* --- Main Content --- */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px 80px;
+    }
+
+    section {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      scroll-margin-top: 100px;
+      /* 給導覽列留空間 */
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 3px dashed var(--border-color);
+      padding-bottom: 15px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: var(--text-main);
+      font-weight: 900;
+    }
+
+    .section-tagline {
+      background: #F8F9FA;
+      padding: 15px 20px;
+      border-left: 6px solid var(--secondary);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Warnings --- */
+    .warning-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .warning-card {
+      background: #FFF;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .warning-card.alert {
+      border-color: var(--danger);
+      background: #FFF5F5;
+    }
+
+    .warning-card.time {
+      border-color: var(--accent);
+      background: #FFFBF0;
+    }
+
+    .warning-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-card.alert .warning-title {
+      color: var(--danger);
+    }
+
+    .warning-card.time .warning-title {
+      color: #D97706;
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.bullet-list li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '📌';
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+      top: 3px;
+    }
+
+    /* --- Timeline (The Blocks!) --- */
+    .day-block {
+      margin-bottom: 50px;
+    }
+
+    .day-header {
+      font-size: 1.6rem;
+      background: var(--primary);
+      color: white;
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    /* 時間線的棍子 */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 45px;
+      top: 80px;
+      bottom: -25px;
+      width: 2px;
+      background: var(--border-color);
+      border: 1px dashed var(--text-muted);
+      z-index: 1;
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .time-badge {
+      flex-shrink: 0;
+      width: 90px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      padding-top: 5px;
+    }
+
+    .content-card {
+      flex-grow: 1;
+      background: var(--bg-body);
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.2s;
+    }
+
+    .content-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--secondary);
+      box-shadow: 0 10px 20px rgba(78, 205, 196, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .card-meta {
+      display: inline-flex;
+      gap: 10px;
+      background: #EAF7F6;
+      color: #2A9D8F;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .rec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rec-item {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .rec-item-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rec-meta {
+      font-size: 0.85rem;
+      color: #E67E22;
+      background: #FFF3E0;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .rec-desc {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* 比較表格 */
+    .combo-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #FFF;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border-color);
+    }
+
+    .combo-table th,
+    .combo-table td {
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .combo-table th {
+      background: #F8F9FA;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .combo-table td:first-child {
+      font-weight: 700;
+      text-align: left;
+      background: #FAFAFA;
+    }
+
+    /* --- Todo List --- */
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .todo-item:last-child {
+      border-bottom: none;
+    }
+
+    .todo-label {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .b-red {
+      background: #FFEAEA;
+      color: #E15F41;
+    }
+
+    .b-yel {
+      background: #FFF4E6;
+      color: #D97706;
+    }
+
+    .b-grn {
+      background: #E6F8F5;
+      color: #2A9D8F;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      section {
+        padding: 25px;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .timeline-item::before {
+        display: none;
+      }
+
+      .time-badge {
+        text-align: left;
+        width: 100%;
+        font-size: 1.2rem;
+        color: var(--primary);
+      }
+
+      .nav-item {
+        min-width: 100px;
+        padding: 10px;
+      }
+    }
+
+    /* ===== Full itinerary tables (from decision doc) ===== */
+    .full-itinerary {
+      margin-top: 14px;
+    }
+
+    .day-details {
+      margin-top: 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .day-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(78, 205, 196, 0.10), rgba(255, 255, 255, 0));
+    }
+
+    .day-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .plan-details {
+      margin-top: 14px;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+    }
+
+    .plan-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(255, 107, 107, 0.12), rgba(255, 255, 255, 0));
+    }
+
+    .plan-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .day-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .day-label {
+      font-weight: 800;
+    }
+
+    .day-hint {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .itinerary-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    .itinerary-table th,
+    .itinerary-table td {
+      text-align: left;
+      padding: 12px 12px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .itinerary-table th {
+      background: rgba(255, 255, 255, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .itinerary-table td code {
+      background: rgba(0, 0, 0, 0.06);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .itinerary-table td b {
+      font-weight: 800;
+    }
+
+    /* Mobile: bigger reading area + text */
+    @media (max-width: 768px) {
+      .day-details summary {
+        padding: 14px 14px;
+      }
+
+      .itinerary-table {
+        min-width: 640px;
+      }
+
+      .itinerary-table th,
+      .itinerary-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .day-pill {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="hero-badge">💼 踢批哀員工旅遊手冊</div>
-        <h1>🇭🇰 香港解鎖計畫：三套方案</h1>
-        <div class="hero-meta">
-            <div><i data-lucide="calendar"></i> 2026/03/11 (三) - 03/13 (五)</div>
-            <div><i data-lucide="users"></i> 10 人出大團</div>
-            <div><i data-lucide="hotel"></i> 灣仔 合和酒店 (Hopewell)</div>
+  <header>
+    <div class="hero-badge">💼 踢批哀員工旅遊手冊</div>
+    <h1>🇭🇰 香港解鎖計畫：三套方案</h1>
+    <div class="hero-meta">
+      <div><i data-lucide="calendar"></i> 2026/03/11 (三) - 03/13 (五)</div>
+      <div><i data-lucide="users"></i> 10 人出大團</div>
+      <div><i data-lucide="hotel"></i> 灣仔 合和酒店 (Hopewell)</div>
+    </div>
+  </header>
+
+  <!-- 原生錨點導覽列，不需要JS也能運作！ -->
+  <nav>
+    <div class="nav-container">
+      <a href="#warnings" class="nav-item">⚠️ 避坑限制<span>出發必看</span></a>
+      <a href="#plan-a" class="nav-item">⭐ 方案 A<span>經典全包 (推)</span></a>
+      <a href="#plan-b" class="nav-item">🍜 方案 B<span>美食優先</span></a>
+      <a href="#plan-c" class="nav-item">😎 方案 C<span>輕鬆慢遊</span></a>
+      <a href="#compare" class="nav-item">🆚 方案比較<span>總表與投票</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ⚠️ 先看限制 -->
+    <section id="warnings">
+      <div class="section-header">
+        <i data-lucide="alert-octagon" color="#E15F41" size="36"></i>
+        <h2>在地情報與避坑指南</h2>
+      </div>
+
+      <div class="warning-grid">
+        <div class="warning-card alert">
+          <div class="warning-title"><i data-lucide="x-circle"></i> 殘酷的歇業與公休</div>
+          <ul class="bullet-list">
+            <li><b>波記大排檔：</b>永久歇業 😭 不能去了</li>
+            <li><b>澳洲牛奶公司：</b>✅ 週四公休 (Day 2 不能去)</li>
+            <li><b>香港藝術館：</b>✅ 週四公休</li>
+            <li><b>蓮香樓：</b>🚨 4月搬址！(3月是最後的朝聖)</li>
+          </ul>
         </div>
-    </header>
 
-    <!-- 原生錨點導覽列，不需要JS也能運作！ -->
-    <nav>
-        <div class="nav-container">
-            <a href="#warnings" class="nav-item">⚠️ 避坑限制<span>出發必看</span></a>
-            <a href="#plan-a" class="nav-item">⭐ 方案 A<span>經典全包 (推)</span></a>
-            <a href="#plan-b" class="nav-item">🍜 方案 B<span>美食優先</span></a>
-            <a href="#plan-c" class="nav-item">😎 方案 C<span>輕鬆慢遊</span></a>
-            <a href="#compare" class="nav-item">🆚 方案比較<span>總表與投票</span></a>
+        <div class="warning-card time">
+          <div class="warning-title"><i data-lucide="clock"></i> 魔鬼藏在「營業時間」</div>
+          <ul class="bullet-list">
+            <li><b>瑞記咖啡：</b>週六日公休 / 08:00-15:00</li>
+            <li><b>勝香園：</b>15:30 就早早打烊</li>
+            <li><b>坤記煲仔飯：</b>下午有中休，晚上 17:30 才開</li>
+            <li><b>珍妮曲奇小熊：</b>10:00開，但 09:30 就需要去排隊！</li>
+            <li><b>新興食家：</b>開凌晨 03:00 到下午 16:00</li>
+          </ul>
         </div>
-    </nav>
 
-    <main>
-        <!-- ⚠️ 先看限制 -->
-        <section id="warnings">
-            <div class="section-header">
-                <i data-lucide="alert-octagon" color="#E15F41" size="36"></i>
-                <h2>在地情報與避坑指南</h2>
+        <div class="warning-card time" style="border-color: #38ADA9; background: #EAF7F6;">
+          <div class="warning-title" style="color: #2A9D8F;"><i data-lucide="lightbulb"></i> 玩樂時間限定</div>
+          <ul class="bullet-list">
+            <li><b>跑馬地馬場：</b>🐎 只有週三晚上！(Day 1 是唯一機會)</li>
+            <li><b>鐵仙子 The Iron Fairies：</b>🎵 晚上 21:30 後才有 Live Band</li>
+            <li><b>星光大道：</b>🌅 黃昏再去，下午 2:00 去會直接在那邊融化</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ 方案 A -->
+    <section id="plan-a">
+      <div class="section-header">
+        <i data-lucide="star" color="#FF6B6B" size="36"></i>
+        <h2>方案 A：⭐ 經典全包（景點＋美食）</h2>
+      </div>
+      <div class="section-tagline">
+        🎒 <b>適合：</b>想把香港招牌景點與美食都打卡一遍的人！<br>
+        ⏱️ <b>節奏：</b>中等偏緊湊，需要全團守時配合。
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">Day 1（03/11 週三）</div>
+
+
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>12:00</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>香港國際機場 → 合和酒店 (灣仔)</b></div>
+            <div class="card-meta">⏳ 交通約 1.5hr</div>
+            <div class="rec-desc">• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：4人團體票 $70/人</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">12:00<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>合和酒店 Check-in 放行李</b></div>
+            <div class="card-meta">⏳ 停留約 1hr</div>
+            <div class="rec-desc">• 辦理入住、放行李，輕裝再出門玩<br>• 👩Angela：出門走旁邊「合和中心」搭透明電梯下山，別走路！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：押金 500-1000 HKD，建議刷信用卡。先放行李不用拖著走！</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>16:00</div>
+          <div class="content-card">
+            <div class="card-title">🚶 <b>中環歷史老街區 (中環站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 3hr</div>
+            <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30 每日)<br><br><b>📸 散步/打卡清單
+                (自由挑選逛)</b>：<br>• <b>半山扶手電梯</b> (🧑Frunky+👧Lucy推｜世界最長！體驗感特別)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜⚠️
+              👩Angela提醒：白天拍比較好看)<br>• <b>大館 Tai Kwun</b> (🧑Frunky+👧Lucy推｜舊警署建築群拍照點；👩Angela：不大，30-60min 夠)<br>•
+              <b>石板街</b> (👧Lucy推｜《難哄》取景地，有時間慢慢走)
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：此區地點彼此走路不超過 10 分鐘，吃飽後隨意逛</div>
+          </div>
+        </div>
 
-            <div class="warning-grid">
-                <div class="warning-card alert">
-                    <div class="warning-title"><i data-lucide="x-circle"></i> 殘酷的歇業與公休</div>
-                    <ul class="bullet-list">
-                        <li><b>波記大排檔：</b>永久歇業 😭 不能去了</li>
-                        <li><b>澳洲牛奶公司：</b>✅ 週四公休 (Day 2 不能去)</li>
-                        <li><b>香港藝術館：</b>✅ 週四公休</li>
-                        <li><b>蓮香樓：</b>🚨 4月搬址！(3月是最後的朝聖)</li>
-                        <li><b>孫中山紀念館：</b>⚠ 可能全館整修中</li>
-                    </ul>
-                </div>
+        <div class="timeline-item">
+          <div class="time-badge">16:00<br>18:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔/西環 在地晚餐區</b></div>
+            <div class="card-meta">⏳ 用餐約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐二選一 (或都去)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊走路 5 分鐘！｜✅ 11:30-21:30
+              每日)<br>• <b>坤記煲仔飯</b> (👩Angela推薦｜在西環，需搭叮叮車約 15 min｜✅ 11:00-14:30 / 17:30-22:30 有中休)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：甘牌近、坤記遠但更道地</div>
+          </div>
+        </div>
 
-                <div class="warning-card time">
-                    <div class="warning-title"><i data-lucide="clock"></i> 魔鬼藏在「營業時間」</div>
-                    <ul class="bullet-list">
-                        <li><b>瑞記咖啡：</b>週六日公休 / 08:00-15:00</li>
-                        <li><b>勝香園：</b>15:30 就早早打烊</li>
-                        <li><b>坤記煲仔飯：</b>下午有中休，晚上 17:30 才開</li>
-                        <li><b>珍妮曲奇小熊：</b>10:00開，但 09:30 就需要去排隊！</li>
-                        <li><b>新興食家：</b>開凌晨 03:00 到下午 16:00</li>
-                    </ul>
-                </div>
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>21:30</div>
+          <div class="content-card">
+            <div class="card-title">🏇 <b>跑馬地馬場</b></div>
+            <div class="card-meta">⏳ 停留約 2.5hr</div>
+            <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 恰好是週三 Happy Wednesday，本趟唯一看賽馬的機會！</b>
+              19:15 開賽<br>• 一般入場憑護照免費；想邊吃飯邊看馬 (如 The Beat) 需上賽馬會官網預約</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：從灣仔搭計程車或叮叮車約 10 min</div>
+          </div>
+        </div>
 
-                <div class="warning-card time" style="border-color: #38ADA9; background: #EAF7F6;">
-                    <div class="warning-title" style="color: #2A9D8F;"><i data-lucide="lightbulb"></i> 玩樂時間限定</div>
-                    <ul class="bullet-list">
-                        <li><b>跑馬地馬場：</b>🐎 只有週三晚上！(Day 1 是唯一機會)</li>
-                        <li><b>鐵仙子 The Iron Fairies：</b>🎵 晚上 21:30 後才有 Live Band</li>
-                        <li><b>星光大道：</b>🌅 黃昏再去，下午 2:00 去會直接在那邊融化</li>
-                    </ul>
-                </div>
+        <div class="timeline-item">
+          <div class="time-badge">21:30<br>00:00</div>
+          <div class="content-card">
+            <div class="card-title">🍸 <b>中環夜生活區 (蘭桂坊周邊)</b></div>
+            <div class="card-meta">⏳ 視體力決定</div>
+            <div class="rec-desc"><b>🍸 夜生活清單 (自由挑選)</b>：<br>• <b>蘭桂坊商圈</b> (👩Angela+👧Lucy推｜路邊桌椅＋大聲音樂，氛圍 chill)<br>•
+              <b>The Iron Fairies</b> (👩Angela 3/2 新推｜荷李活道，走路 3-5 分鐘｜⚠️ live band 21:30 後才有！別太早進去)
             </div>
-        </section>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：10 人可分組，累的人隨時回飯店</div>
+          </div>
+        </div>
 
-        <!-- ⭐ 方案 A -->
-        <section id="plan-a">
-            <div class="section-header">
-                <i data-lucide="star" color="#FF6B6B" size="36"></i>
-                <h2>方案 A：⭐ 經典全包（景點＋美食）</h2>
+        <div class="timeline-item">
+          <div class="time-badge">00:00</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第一天</div>
+            <div class="rec-desc">• 從蘭桂坊搭計程車回灣仔約 10 分鐘<br>• 累的人可以提早回飯店，不需等全團</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 2（03/12 週四）</div>
+
+
+        <div class="timeline-item">
+          <div class="time-badge">08:00<br>12:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️ <b>上環老街 (上環站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 4hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅
+              08:00-15:00，週六日公休｜👧Lucy：位子有點難找)<br><br><b>🛍️ 伴手禮採買清單 (自由挑選)</b>：<br>• <b>珍妮曲奇</b> (👩Angela推｜✅
+              10:00-19:00｜⚠️ <b>09:30 前到排隊！</b> 平日排 1-2hr；買<b>圓罐</b>！方罐比較騙錢)<br>• <b>檸檬王</b> (👩Angela+👧Lucy推｜伴手禮)<br>•
+              <b>兆成行精油</b> (👧Lucy推｜88 號舒淇香，店員超用心｜✅ 打烊 17:30，週日公休｜👧花了$640買4罐)<br>• <b>陳意齋</b> (👧Lucy推｜杏仁餅伴手禮｜✅
+              10:00-19:30，週日到18:30)
             </div>
-            <div class="section-tagline">
-                🎒 <b>適合：</b>想把香港招牌景點與美食都打卡一遍的人！<br>
-                ⏱️ <b>節奏：</b>中等偏緊湊，需要全團守時配合。
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：💡 建議 2-3 人代排珍妮，其他人先吃早餐＋掃伴手禮</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">12:00<br>14:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️📸 <b>中環/西九龍 午餐與展覽</b></div>
+            <div class="card-meta">⏳ 約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜「想體驗真正的飲茶請去蓮香樓」｜✅ 06:00-22:30｜🚨
+              <b>4月搬址！最後朝聖機會！</b> 10人可能需拆桌併桌)<br><br><b>📸 展覽推薦</b>：<br>• <b>香港故宮文化博物館</b> (📋原行程｜需 1.5-2hr｜搭港鐵到九龍站)
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：蓮香樓和故宮距離遠，擇一或分組</div>
+          </div>
+        </div>
 
-<div class="day-block">
-  <div class="day-header">Day 1（03/11 週三）</div>
+        <div class="timeline-item">
+          <div class="time-badge">15:00<br>17:00</div>
+          <div class="content-card">
+            <div class="card-title">📸🛍️ <b>黃大仙 → 尖沙咀 (搭港鐵)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>📸 景點推薦</b>：<br>• <b>黃大仙祠</b> (📋原行程｜參拜約 1hr)<br><br><b>🛍️ 逛街推薦</b>：<br>• <b>K11
+                MUSEA</b> (📋原行程｜購物＋藝術商場)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：搭港鐵移動，彈性調整</div>
+          </div>
+        </div>
 
+        <div class="timeline-item">
+          <div class="time-badge">17:00<br>19:00</div>
+          <div class="content-card">
+            <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>📸 散步清單</b>：<br>• <b>星光大道</b> (多方推薦｜沿岸走看名人手印｜👩Angela：⚠️ <b>黃昏去最舒適</b>，2:00
+              去會曬死)<br>• <b>維多利亞港</b> (👧Lucy：慢慢走很放鬆)<br>• ❌ 👩Angela 不推「幻彩詠香江」→「雷射燈射一射，浪費時間」</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：黃昏＋夜景一次收集</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>12:00</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>香港國際機場 → 香港站</b></div>
-      <div class="card-meta">⏳ 交通約 1.5hr</div>
-      <div class="rec-desc">• 搭乘<b>機場快線</b>至香港站</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：4人團體票 $70/人</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>22:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b></div>
+            <div class="card-meta">⏳ 約 3hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐推薦</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜泰式料理+炸物拼盤+特色調酒｜維港夜景氛圍很好｜🚨 <b>10
+                人必須先訂位！</b> 在 Google Map 上訂)<br><br><b>🍸 酒吧推薦 (選 1 家就好)</b>：<br>• <b>Bar Leone</b> (📋原行程｜世界級酒吧｜✅
+              17:00-00:00，週一休｜不設訂座)<br>• <b>The Old Man</b> (📋原行程｜世界級酒吧)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：KABOOM 在尖沙咀，酒吧在中環，需搭港鐵移動</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">12:00<br>15:00</div>
-    <div class="content-card">
-      <div class="card-title">🚶 <b>中環歷史老街區 (中環站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 3hr</div>
-      <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30 每日)<br><br><b>📸 散步/打卡清單 (自由挑選逛)</b>：<br>• <b>半山扶手電梯</b> (🧑Frunky+👧Lucy推｜世界最長！體驗感特別)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜⚠️ 👩Angela提醒：白天拍比較好看)<br>• <b>大館 Tai Kwun</b> (🧑Frunky+👧Lucy推｜舊警署建築群拍照點；👩Angela：不大，30-60min 夠)<br>• <b>石板街</b> (👧Lucy推｜《難哄》取景地，有時間慢慢走)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：此區地點彼此走路不超過 10 分鐘，吃飽後隨意逛</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">22:30</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第二天</div>
+            <div class="rec-desc">• 從中環搭港鐵或計程車回灣仔約 10 分鐘<br>• 明天最後一天，早點休息養精神</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">15:00<br>16:00</div>
-    <div class="content-card">
-      <div class="card-title">🏨 <b>合和酒店 (灣仔)</b></div>
-      <div class="card-meta">⏳ 停留約 1hr</div>
-      <div class="rec-desc">• 辦理入住、放行李休息<br>• 👩Angela：出門走旁邊「合和中心」搭透明電梯下山，別走路！</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：押金 500-1000 HKD，建議刷信用卡</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">16:00<br>18:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔/西環 在地晚餐區</b></div>
-      <div class="card-meta">⏳ 用餐約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐二選一 (或都去)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊走路 5 分鐘！｜✅ 11:30-21:30 每日)<br>• <b>坤記煲仔飯</b> (👩Angela推薦｜在西環，需搭叮叮車約 15 min｜✅ 11:00-14:30 / 17:30-22:30 有中休)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：甘牌近、坤記遠但更道地</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>21:30</div>
-    <div class="content-card">
-      <div class="card-title">🏇 <b>跑馬地馬場</b></div>
-      <div class="card-meta">⏳ 停留約 2.5hr</div>
-      <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 恰好是週三 Happy Wednesday，本趟唯一看賽馬的機會！</b> 19:15 開賽<br>• 一般入場憑護照免費；想邊吃飯邊看馬 (如 The Beat) 需上賽馬會官網預約</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：從灣仔搭計程車或叮叮車約 10 min</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">21:30<br>00:00</div>
-    <div class="content-card">
-      <div class="card-title">🍸 <b>中環夜生活區 (蘭桂坊周邊)</b></div>
-      <div class="card-meta">⏳ 視體力決定</div>
-      <div class="rec-desc"><b>🍸 夜生活清單 (自由挑選)</b>：<br>• <b>蘭桂坊商圈</b> (👩Angela+👧Lucy推｜路邊桌椅＋大聲音樂，氛圍 chill)<br>• <b>The Iron Fairies</b> (👩Angela 3/2 新推｜荷李活道，走路 3-5 分鐘｜⚠️ live band 21:30 後才有！別太早進去)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：10 人可分組，累的人隨時回飯店</div>
-    </div>
-  </div>
-
-</div>
-<div class="day-block">
-  <div class="day-header">Day 2（03/12 週四）</div>
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 3（03/13 週五）</div>
 
 
-  <div class="timeline-item">
-    <div class="time-badge">08:00<br>12:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️ <b>上環老街 (上環站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 4hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00，週六日公休｜👧Lucy：位子有點難找)<br><br><b>🛍️ 伴手禮採買清單 (自由挑選)</b>：<br>• <b>珍妮曲奇</b> (👩Angela推｜✅ 10:00-19:00｜⚠️ <b>09:30 前到排隊！</b> 平日排 1-2hr；買<b>圓罐</b>！方罐比較騙錢)<br>• <b>檸檬王</b> (👩Angela+👧Lucy推｜伴手禮)<br>• <b>兆成行精油</b> (👧Lucy推｜88 號舒淇香，店員超用心｜✅ 打烊 17:30，週日公休｜👧花了$640買4罐)<br>• <b>陳意齋</b> (👧Lucy推｜杏仁餅伴手禮｜✅ 10:00-19:30，週日到18:30)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：💡 建議 2-3 人代排珍妮，其他人先吃早餐＋掃伴手禮</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">07:30<br>09:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔飯店周邊 (灣仔站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐清單 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜「凍奶茶是香港喝到最好喝的」+「西多士毫無踩雷」｜✅
+              07:00-18:30｜店很擠但翻桌率高)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推「很一般，不用特地排隊」｜✅
+              08:00-21:00｜$14/顆，很便宜！海關會問但不檢查，可帶回台灣｜超過 24 個可 WhatsApp 線上預訂)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：兩家在灣仔飯店附近走路就到</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">12:00<br>14:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️📸 <b>中環/西九龍 午餐與展覽</b></div>
-      <div class="card-meta">⏳ 約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜「想體驗真正的飲茶請去蓮香樓」｜✅ 06:00-22:30｜🚨 <b>4月搬址！最後朝聖機會！</b> 10人可能需拆桌併桌)<br><br><b>📸 展覽推薦</b>：<br>• <b>香港故宮文化博物館</b> (📋原行程｜需 1.5-2hr｜搭港鐵到九龍站)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：蓮香樓和故宮距離遠，擇一或分組</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">09:30<br>10:30</div>
+          <div class="content-card">
+            <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
+            <div class="card-meta">⏳ 約 1hr</div>
+            <div class="rec-desc">• <b>預辦登機＋託運行李</b> (👩Angela推薦｜會先扣機場快線車資，下午再搭不重複扣款)<br>• 之後整天空手逛！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：之後不用再拖行李</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">15:00<br>17:00</div>
-    <div class="content-card">
-      <div class="card-title">📸🛍️ <b>黃大仙 → 尖沙咀 (搭港鐵)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>📸 景點推薦</b>：<br>• <b>黃大仙祠</b> (📋原行程｜參拜約 1hr)<br><br><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物＋藝術商場)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：搭港鐵移動，彈性調整</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️🍽️ <b>銅鑼灣逛街 (銅鑼灣站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 2.5hr</div>
+            <div class="rec-desc"><b>🛍️ 逛街推薦</b>：<br>• <b>百德新街/時代廣場</b> (👧Lucy提到「有點像台北的西門町，應有盡有」)<br><br><b>🍽️
+                午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！｜「燒鵝+文昌雞都好吃」「脆皮豬竟然比燒鵝還好吃」｜✅ 07:00-00:00｜💡 可外帶一個便當去機場吃！)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：最後掃貨＋外帶午餐一兼二顧</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">17:00<br>19:00</div>
-    <div class="content-card">
-      <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>📸 散步清單</b>：<br>• <b>星光大道</b> (多方推薦｜沿岸走看名人手印｜👩Angela：⚠️ <b>黃昏去最舒適</b>，2:00 去會曬死)<br>• <b>維多利亞港</b> (👧Lucy：慢慢走很放鬆)<br>• ❌ 👩Angela 不推「幻彩詠香江」→「雷射燈射一射，浪費時間」</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：黃昏＋夜景一次收集</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>15:35</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>搭機返台</b></div>
+            <div class="card-meta">⏳ 交通約 30min</div>
+            <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：15:35 起飛，務必提早到</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>22:00</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b></div>
-      <div class="card-meta">⏳ 約 3hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐推薦</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜泰式料理+炸物拼盤+特色調酒｜維港夜景氛圍很好｜🚨 <b>10 人必須先訂位！</b> 在 Google Map 上訂)<br><br><b>🍸 酒吧推薦 (選 1 家就好)</b>：<br>• <b>Bar Leone</b> (📋原行程｜世界級酒吧｜✅ 17:00-00:00，週一休｜不設訂座)<br>• <b>The Old Man</b> (📋原行程｜世界級酒吧)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：KABOOM 在尖沙咀，酒吧在中環，需搭港鐵移動</div>
-    </div>
-  </div>
+      </div>
 
-</div>
-<div class="day-block">
-  <div class="day-header">Day 3（03/13 週五）</div>
+    </section>
+
+    <section id="plan-b">
+      <div class="section-header">
+        <i data-lucide="utensils" color="#FCA311" size="36"></i>
+        <h2>方案 B：🍜 美食優先（吃貨爆擊區）</h2>
+      </div>
+      <div class="section-tagline">
+        🍱 <b>差異點：</b>大篇幅砍掉故宮和黃大仙，節奏悠閒，把時間拿來吃更多！<br>
+        加入「旺角紅茶冰室」以及豐富的宵夜接力賽。
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">Day 1（03/11 週三）</div>
 
 
-  <div class="timeline-item">
-    <div class="time-badge">07:30<br>09:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔飯店周邊 (灣仔站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐清單 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜「凍奶茶是香港喝到最好喝的」+「西多士毫無踩雷」｜✅ 07:00-18:30｜店很擠但翻桌率高)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推「很一般，不用特地排隊」｜✅ 08:00-21:00｜$14/顆，很便宜！海關會問但不檢查，可帶回台灣｜超過 24 個可 WhatsApp 線上預訂)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：兩家在灣仔飯店附近走路就到</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>12:00</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>香港國際機場 → 合和酒店 (灣仔)</b></div>
+            <div class="card-meta">⏳ 交通約 1.5hr</div>
+            <div class="rec-desc">• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</div>
 
-  <div class="timeline-item">
-    <div class="time-badge">09:30<br>10:30</div>
-    <div class="content-card">
-      <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
-      <div class="card-meta">⏳ 約 1hr</div>
-      <div class="rec-desc">• <b>預辦登機＋託運行李</b> (👩Angela推薦｜會先扣機場快線車資，下午再搭不重複扣款)<br>• 之後整天空手逛！</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：之後不用再拖行李</div>
-    </div>
-  </div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>13:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️🍽️ <b>銅鑼灣逛街 (銅鑼灣站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 2.5hr</div>
-      <div class="rec-desc"><b>🛍️ 逛街推薦</b>：<br>• <b>百德新街/時代廣場</b> (👧Lucy提到「有點像台北的西門町，應有盡有」)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！｜「燒鵝+文昌雞都好吃」「脆皮豬竟然比燒鵝還好吃」｜✅ 07:00-00:00｜💡 可外帶一個便當去機場吃！)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：最後掃貨＋外帶午餐一兼二顧</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">12:00<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>合和酒店 Check-in 放行李</b></div>
+            <div class="card-meta">⏳ 停留約 1hr</div>
+            <div class="rec-desc">• 辦理入住、放行李，輕裝再出門玩<br>• 先放行李不用拖著走！</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">13:00<br>15:35</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>搭機返台</b></div>
-      <div class="card-meta">⏳ 交通約 30min</div>
-      <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：15:35 起飛，務必提早到</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>15:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>中環午餐美食馬拉松 (中環站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 3.5hr</div>
+            <div class="rec-desc"><b>🍽️ 小吃清單 (以下全部走路可到)</b>：<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖！｜✅
+              07:30-18:00，週日公休)<br>• <b>勝香園</b> (👩Angela推｜蛋牛治+奶茶｜✅ 08:00-15:30，週日公休｜⚠️ 15:30就打烊！趁早去)<br><br><b>📸
+                順路散步</b>：<br>• <b>石板街</b> (👧Lucy推｜《難哄》取景地)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜白天拍！)<br><br><b>🍰 甜點推薦
+                (有爭議)</b>：<br>• <b>Vission Bakery</b> (👩Angela推蛋塔/👧Lucy❌不推「$60 太貴，吃起來像派」)<br>• <b>L'antico Gelato</b>
+              (📋原行程有列｜義式冰淇淋)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：全部在中環老街步行圈內，隨意吃隨意逛</div>
+          </div>
+        </div>
 
-</div>
-
-        </section>
-
-<section id="plan-b">
-            <div class="section-header">
-                <i data-lucide="utensils" color="#FCA311" size="36"></i>
-                <h2>方案 B：🍜 美食優先（吃貨爆擊區）</h2>
+        <div class="timeline-item">
+          <div class="time-badge">16:00<br>18:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔/西環 傍晚美食精選</b></div>
+            <div class="card-meta">⏳ 用餐約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐推薦 (都吃或擇一)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊！｜✅ 11:30-21:30)<br>•
+              <b>坤記煲仔飯</b> (👩Angela推薦｜搭叮叮車去西環｜✅ 有中休，17:30 後才有晚市)
             </div>
-            <div class="section-tagline">
-                🍱 <b>差異點：</b>大篇幅砍掉故宮和黃大仙，節奏悠閒，把時間拿來吃更多！<br>
-                加入「旺角紅茶冰室」以及豐富的宵夜接力賽。
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：兩家都吃也行，看胃有多大</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>21:30</div>
+          <div class="content-card">
+            <div class="card-title">🏇 <b>跑馬地馬場</b></div>
+            <div class="card-meta">⏳ 停留約 2.5hr</div>
+            <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 週三限定！</b> 19:15 開賽</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同，不可錯過</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">21:30<br>00:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🍸 <b>銅鑼灣宵夜 → 中環夜生活區</b></div>
+            <div class="card-meta">⏳ 視體力決定</div>
+            <div class="rec-desc"><b>🍽️ 宵夜推薦</b>：<br>• <b>媽咪雞蛋仔</b> (👧Lucy推｜「好好吃～軟 Q
+              又脆脆的，非常大份！好適合當宵夜」｜銅鑼灣)<br><br><b>🍸 夜生活清單</b>：<br>• <b>蘭桂坊</b> (👩Angela+👧Lucy推｜街上感受氛圍)<br>• <b>The Iron
+                Fairies</b> (👩Angela 3/2 推｜⚠️ 21:30 後才有 live band)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：銅鑼灣到蘭桂坊搭計程車約 15 min</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">00:30</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第一天</div>
+            <div class="rec-desc">• 從蘭桂坊搭計程車回灣仔約 10 分鐘<br>• 累的人可以提早回飯店</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 2（03/12 週四）</div>
+
+
+        <div class="timeline-item">
+          <div class="time-badge">08:00<br>11:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️ <b>上環老街 (上環站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 3hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00)<br><br><b>🛍️
+                伴手禮採買 (跟方案A同)</b>：<br>• <b>珍妮曲奇</b> (⚠️ 09:30 排隊！買圓罐！)<br>• <b>檸檬王</b> / <b>兆成行</b> / <b>陳意齋</b></div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 差不多，但多留 1hr 悠閒逛</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">11:00<br>13:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>中環/上環 午餐接力 (上環站周邊)</b></div>
+            <div class="card-meta">⏳ 約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 午餐清單 (連吃兩家)</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜傳統飲茶大餐｜🚨 4月搬址最後機會！)<br>•
+              <b>榮記潮州粉麵</b> (👩Angela推｜車仔麵｜上環)
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：吃貨方案特色：蓮香樓後再來一碗車仔麵</div>
+          </div>
+        </div>
 
-<div class="day-block">
-  <div class="day-header">Day 1（03/11 週三）</div>
+        <div class="timeline-item">
+          <div class="time-badge">14:00<br>16:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🛍️ <b>旺角 → 尖沙咀 (搭港鐵)</b></div>
+            <div class="card-meta">⏳ 約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 下午茶推薦</b>：<br>• <b>旺角紅茶冰室</b>
+              (👧Lucy⭐前三！「銀芽肉絲炒麵，每一口都沒有膩感，麵體炸過的非常酥脆！」)<br><br><b>🛍️ 伴手禮推薦</b>：<br>• <b>曲奇四重奏</b> (👧Lucy推｜蝴蝶酥與曲奇，蠻好吃｜✅
+              10:00-22:00 每日｜尖沙咀)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：從旺角搭港鐵到尖沙咀只要 10 min</div>
+          </div>
+        </div>
 
+        <div class="timeline-item">
+          <div class="time-badge">17:00<br>19:00</div>
+          <div class="content-card">
+            <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>📸 散步清單</b>：<br>• <b>星光大道 → 維多利亞港</b> (👩Angela：⚠️ 黃昏去最好！)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>12:00</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>香港國際機場 → 香港站</b></div>
-      <div class="card-meta">⏳ 交通約 1.5hr</div>
-      <div class="rec-desc">• 搭乘<b>機場快線</b>至香港站</div>
-      
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>22:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b></div>
+            <div class="card-meta">⏳ 約 3hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (選 1
+                家)</b>：<br>• <b>Bar Leone</b> / <b>The Old Man</b></div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">12:00<br>15:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>中環午餐美食馬拉松 (中環站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 3.5hr</div>
-      <div class="rec-desc"><b>🍽️ 小吃清單 (以下全部走路可到)</b>：<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖！｜✅ 07:30-18:00，週日公休)<br>• <b>勝香園</b> (👩Angela推｜蛋牛治+奶茶｜✅ 08:00-15:30，週日公休｜⚠️ 15:30就打烊！趁早去)<br><br><b>📸 順路散步</b>：<br>• <b>石板街</b> (👧Lucy推｜《難哄》取景地)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜白天拍！)<br><br><b>🍰 甜點推薦 (有爭議)</b>：<br>• <b>Vission Bakery</b> (👩Angela推蛋塔/👧Lucy❌不推「$60 太貴，吃起來像派」)<br>• <b>L'antico Gelato</b> (📋原行程有列｜義式冰淇淋)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：全部在中環老街步行圈內，隨意吃隨意逛</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">22:30</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第二天</div>
+            <div class="rec-desc">• 從中環搭港鐵或計程車回灣仔約 10 分鐘<br>• 明天最後一天，早點休息養精神</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">15:30<br>16:30</div>
-    <div class="content-card">
-      <div class="card-title">🏨 <b>合和酒店 (灣仔)</b></div>
-      <div class="card-meta">⏳ 停留約 1hr</div>
-      <div class="rec-desc">• 辦理入住、放行李休息</div>
-      
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">16:30<br>18:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔/西環 傍晚美食精選</b></div>
-      <div class="card-meta">⏳ 用餐約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐推薦 (都吃或擇一)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊！｜✅ 11:30-21:30)<br>• <b>坤記煲仔飯</b> (👩Angela推薦｜搭叮叮車去西環｜✅ 有中休，17:30 後才有晚市)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：兩家都吃也行，看胃有多大</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>21:30</div>
-    <div class="content-card">
-      <div class="card-title">🏇 <b>跑馬地馬場</b></div>
-      <div class="card-meta">⏳ 停留約 2.5hr</div>
-      <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 週三限定！</b> 19:15 開賽</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同，不可錯過</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">21:30<br>00:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🍸 <b>銅鑼灣宵夜 → 中環夜生活區</b></div>
-      <div class="card-meta">⏳ 視體力決定</div>
-      <div class="rec-desc"><b>🍽️ 宵夜推薦</b>：<br>• <b>媽咪雞蛋仔</b> (👧Lucy推｜「好好吃～軟 Q 又脆脆的，非常大份！好適合當宵夜」｜銅鑼灣)<br><br><b>🍸 夜生活清單</b>：<br>• <b>蘭桂坊</b> (👩Angela+👧Lucy推｜街上感受氛圍)<br>• <b>The Iron Fairies</b> (👩Angela 3/2 推｜⚠️ 21:30 後才有 live band)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：銅鑼灣到蘭桂坊搭計程車約 15 min</div>
-    </div>
-  </div>
-
-</div>
-<div class="day-block">
-  <div class="day-header">Day 2（03/12 週四）</div>
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 3（03/13 週五）</div>
 
 
-  <div class="timeline-item">
-    <div class="time-badge">08:00<br>11:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️ <b>上環老街 (上環站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 3hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00)<br><br><b>🛍️ 伴手禮採買 (跟方案A同)</b>：<br>• <b>珍妮曲奇</b> (⚠️ 09:30 排隊！買圓罐！)<br>• <b>檸檬王</b> / <b>兆成行</b> / <b>陳意齋</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 差不多，但多留 1hr 悠閒逛</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">07:00<br>09:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔/銅鑼灣 蛋塔早餐對決</b></div>
+            <div class="card-meta">⏳ 約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐清單 (三家走路可到)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜凍奶茶冠軍｜✅
+              07:00-18:30)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推｜✅ 08:00-21:00｜$14/顆)<br>• <b>Hashtag B</b>
+              (👧Lucy提到｜開心果蛋塔 $32/顆｜✅ 08:30-21:00｜銅鑼灣順路)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：吃貨方案 Day 3 連三家一次收集</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">11:00<br>13:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>中環/上環 午餐接力 (上環站周邊)</b></div>
-      <div class="card-meta">⏳ 約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 午餐清單 (連吃兩家)</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜傳統飲茶大餐｜🚨 4月搬址最後機會！)<br>• <b>榮記潮州粉麵</b> (👩Angela推｜車仔麵｜上環)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：吃貨方案特色：蓮香樓後再來一碗車仔麵</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">09:30<br>10:30</div>
+          <div class="content-card">
+            <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
+            <div class="card-meta">⏳ 約 1hr</div>
+            <div class="rec-desc">• <b>預辦登機＋託運行李</b> (👩Angela推薦)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：空手逛！</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">14:00<br>16:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🛍️ <b>旺角 → 尖沙咀 (搭港鐵)</b></div>
-      <div class="card-meta">⏳ 約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 下午茶推薦</b>：<br>• <b>旺角紅茶冰室</b> (👧Lucy⭐前三！「銀芽肉絲炒麵，每一口都沒有膩感，麵體炸過的非常酥脆！」)<br><br><b>🛍️ 伴手禮推薦</b>：<br>• <b>曲奇四重奏</b> (👧Lucy推｜蝴蝶酥與曲奇，蠻好吃｜✅ 10:00-22:00 每日｜尖沙咀)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：從旺角搭港鐵到尖沙咀只要 10 min</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🛍️ <b>銅鑼灣逛街 (銅鑼灣站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 2.5hr</div>
+            <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！脆皮豬必點｜💡 可外帶便當去機場！)<br><br><b>🛍️
+                最後掃貨</b>：<br>• <b>時代廣場周邊</b></div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：收尾，能吃就吃</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">17:00<br>19:00</div>
-    <div class="content-card">
-      <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>📸 散步清單</b>：<br>• <b>星光大道 → 維多利亞港</b> (👩Angela：⚠️ 黃昏去最好！)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>15:35</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>搭機返台</b></div>
 
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>22:00</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b></div>
-      <div class="card-meta">⏳ 約 3hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (選 1 家)</b>：<br>• <b>Bar Leone</b> / <b>The Old Man</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：跟方案 A 相同</div>
-    </div>
-  </div>
+            <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：務必提早出發</div>
+          </div>
+        </div>
 
-</div>
-<div class="day-block">
-  <div class="day-header">Day 3（03/13 週五）</div>
+      </div>
+
+    </section>
+
+    <section id="plan-c">
+      <div class="section-header">
+        <i data-lucide="coffee" color="#4ECDC4" size="36"></i>
+        <h2>方案 C：😎 輕鬆慢遊（長輩/chill版）</h2>
+      </div>
+      <div class="section-tagline">
+        🏝️ <b>主打：</b>不想太趕，每天只有 4-5 個點！<br>
+        🛌 <b>福利：</b>充滿自由時間，下午還能回飯店睡個午覺補眠。
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">Day 1（03/11 週三）</div>
 
 
-  <div class="timeline-item">
-    <div class="time-badge">07:00<br>09:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔/銅鑼灣 蛋塔早餐對決</b></div>
-      <div class="card-meta">⏳ 約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐清單 (三家走路可到)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜凍奶茶冠軍｜✅ 07:00-18:30)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推｜✅ 08:00-21:00｜$14/顆)<br>• <b>Hashtag B</b> (👧Lucy提到｜開心果蛋塔 $32/顆｜✅ 08:30-21:00｜銅鑼灣順路)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：吃貨方案 Day 3 連三家一次收集</div>
-    </div>
-  </div>
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>12:30</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>機場 → 灣仔飯店</b></div>
+            <div class="card-meta">⏳ 交通+入住約 2hr</div>
+            <div class="rec-desc">• 機場快線 → 飯店 <b>Check-in 先放行李</b><br>• 第一天先放行李再出門最輕鬆</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不用拖著行李趕景點</div>
+          </div>
+        </div>
 
-  <div class="timeline-item">
-    <div class="time-badge">09:30<br>10:30</div>
-    <div class="content-card">
-      <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
-      <div class="card-meta">⏳ 約 1hr</div>
-      <div class="rec-desc">• <b>預辦登機＋託運行李</b> (👩Angela推薦)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：空手逛！</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>13:00</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🛍️ <b>銅鑼灣逛街 (銅鑼灣站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 2.5hr</div>
-      <div class="rec-desc"><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！脆皮豬必點｜💡 可外帶便當去機場！)<br><br><b>🛍️ 最後掃貨</b>：<br>• <b>時代廣場周邊</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：收尾，能吃就吃</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">13:00<br>15:35</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>搭機返台</b></div>
-      
-      <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：務必提早出發</div>
-    </div>
-  </div>
-
-</div>
-
-        </section>
-
-<section id="plan-c">
-            <div class="section-header">
-                <i data-lucide="coffee" color="#4ECDC4" size="36"></i>
-                <h2>方案 C：😎 輕鬆慢遊（長輩/chill版）</h2>
+        <div class="timeline-item">
+          <div class="time-badge">12:30<br>14:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🚶 <b>中環午餐與散步 (中環站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 2hr</div>
+            <div class="rec-desc"><b>🍽️ 午餐推薦 (挑一家就好，不趕兩家)</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30)<br>•
+              <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖｜✅ 07:30-18:00)<br><br><b>📸 有空就逛</b>：<br>• <b>半山扶手電梯</b> →
+              <b>嘉咸街壁畫</b> → <b>石板街</b>
             </div>
-            <div class="section-tagline">
-                🏝️ <b>主打：</b>不想太趕，每天只有 4-5 個點！<br>
-                🛌 <b>福利：</b>充滿自由時間，下午還能回飯店睡個午覺補眠。
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不一定全都要去，放鬆逛</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">14:30<br>16:30</div>
+          <div class="content-card">
+            <div class="card-title">☕ <b>中環/灣仔 午茶放空</b></div>
+            <div class="card-meta">⏳ 自由時間 2hr</div>
+            <div class="rec-desc">• ✨ <b>自由放空時間！</b><br>• 可找間咖啡廳坐、回飯店休息，或分組去逛小店<br>• 10 人不需要全部綁在一起</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：悠閒方案的核心價值</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">16:30<br>18:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔/西環 隨意晚餐</b></div>
+            <div class="card-meta">⏳ 用餐約 2hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐二選一</b>：<br>• <b>甘牌燒鵝</b> (飯店旁邊！方便！)<br>• <b>坤記煲仔飯</b> (西環叮叮車🚃)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：看大家想方便還是冒險</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>21:30</div>
+          <div class="content-card">
+            <div class="card-title">🏇 <b>跑馬地馬場</b></div>
+            <div class="card-meta">⏳ 停留約 2.5hr</div>
+            <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>週三限定！</b></div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不可錯過的體驗</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">21:30<br>00:00</div>
+          <div class="content-card">
+            <div class="card-title">🍸 <b>中環 自由夜生活 (可選不去)</b></div>
+            <div class="card-meta">⏳ 想去就去</div>
+            <div class="rec-desc"><b>🍸 續攤組</b>：<br>• <b>蘭桂坊</b> (感受氛圍)<br>• <b>The Iron Fairies</b> (live band 21:30
+              後才有)<br><br><b>💤 休息組</b>：<br>• 回飯店睡覺！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：給予絕對彈性，不強迫</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">00:00</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第一天</div>
+            <div class="rec-desc">• 不管是續攤組還是休息組，最終都回飯店休息<br>• 從蘭桂坊搭計程車回灣仔約 10 分鐘</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 2（03/12 週四）</div>
+
+
+        <div class="timeline-item">
+          <div class="time-badge">08:30<br>10:30</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🛍️ <b>上環早茶＋排隊分工 (上環站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐推薦 (擇一)</b>：<br>• <b>瑞記咖啡</b> (三方推！｜✅ 08:00-15:00)<br>• <b>蓮香樓</b>
+              (👩Angela+🧑Frunky推｜🚨 4月搬址最後機會！)<br><br><b>🛍️ 排隊組分工</b>：<br>• 不想排隊的先吃早餐/去逛上環老街 → 想排隊的去排 <b>珍妮曲奇</b>
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：分組行動最適合 10 人</div>
+          </div>
+        </div>
 
-<div class="day-block">
-  <div class="day-header">Day 1（03/11 週三）</div>
-
-
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>12:30</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>機場 → 灣仔飯店</b></div>
-      <div class="card-meta">⏳ 交通+入住約 2hr</div>
-      <div class="rec-desc">• 機場快線 → 飯店 <b>Check-in 先放行李</b><br>• 第一天先放行李再出門最輕鬆</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不用拖著行李趕景點</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">12:30<br>14:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🚶 <b>中環午餐與散步 (中環站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 午餐推薦 (挑一家就好，不趕兩家)</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30)<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖｜✅ 07:30-18:00)<br><br><b>📸 有空就逛</b>：<br>• <b>半山扶手電梯</b> → <b>嘉咸街壁畫</b> → <b>石板街</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不一定全都要去，放鬆逛</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">14:30<br>16:30</div>
-    <div class="content-card">
-      <div class="card-title">☕ <b>中環/灣仔 午茶放空</b></div>
-      <div class="card-meta">⏳ 自由時間 2hr</div>
-      <div class="rec-desc">• ✨ <b>自由放空時間！</b><br>• 可找間咖啡廳坐、回飯店休息，或分組去逛小店<br>• 10 人不需要全部綁在一起</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：悠閒方案的核心價值</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">16:30<br>18:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔/西環 隨意晚餐</b></div>
-      <div class="card-meta">⏳ 用餐約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐二選一</b>：<br>• <b>甘牌燒鵝</b> (飯店旁邊！方便！)<br>• <b>坤記煲仔飯</b> (西環叮叮車🚃)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：看大家想方便還是冒險</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>21:30</div>
-    <div class="content-card">
-      <div class="card-title">🏇 <b>跑馬地馬場</b></div>
-      <div class="card-meta">⏳ 停留約 2.5hr</div>
-      <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>週三限定！</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：不可錯過的體驗</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">21:30<br>00:00</div>
-    <div class="content-card">
-      <div class="card-title">🍸 <b>中環 自由夜生活 (可選不去)</b></div>
-      <div class="card-meta">⏳ 想去就去</div>
-      <div class="rec-desc"><b>🍸 續攤組</b>：<br>• <b>蘭桂坊</b> (感受氛圍)<br>• <b>The Iron Fairies</b> (live band 21:30 後才有)<br><br><b>💤 休息組</b>：<br>• 回飯店睡覺！</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：給予絕對彈性，不強迫</div>
-    </div>
-  </div>
-
-</div>
-<div class="day-block">
-  <div class="day-header">Day 2（03/12 週四）</div>
-
-
-  <div class="timeline-item">
-    <div class="time-badge">08:30<br>10:30</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🛍️ <b>上環早茶＋排隊分工 (上環站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐推薦 (擇一)</b>：<br>• <b>瑞記咖啡</b> (三方推！｜✅ 08:00-15:00)<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜🚨 4月搬址最後機會！)<br><br><b>🛍️ 排隊組分工</b>：<br>• 不想排隊的先吃早餐/去逛上環老街 → 想排隊的去排 <b>珍妮曲奇</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：分組行動最適合 10 人</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">10:30<br>13:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️ <b>上環 伴手禮輕鬆買</b></div>
-      <div class="card-meta">⏳ 自由活動約 2.5hr</div>
-      <div class="rec-desc"><b>🛍️ 採買推薦 (順路逛)</b>：<br>• <b>檸檬王</b>、<b>兆成行</b>、<b>陳意齋</b><br><br>• ☕ <b>累了就停</b>：隨意找茶餐廳坐、來碗車仔麵休息</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：逛到累就停，不趕行程</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">13:00<br>15:00</div>
-    <div class="content-card">
-      <div class="card-title">😴 <b>灣仔飯店午休</b></div>
-      <div class="card-meta">⏳ 自由時間 2hr</div>
-      <div class="rec-desc">• ✨ <b>充電時間！</b> 回房休息、補眠<br>• 對長輩或怕累的人非常重要</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：輕鬆方案獨有的午休</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">15:00<br>17:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️ <b>尖沙咀商場 (尖沙咀站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物+藝術商場，有冷氣吹)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：室內逛街不曬太陽</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">17:00<br>19:00</div>
-    <div class="content-card">
-      <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>📸 散步推薦</b>：<br>• <b>星光大道 → 維港</b> (👩Angela：黃昏去！)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：黃昏景緻最美</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">19:00<br>22:00</div>
-    <div class="content-card">
-      <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 酒吧小酌 (可選不去)</b></div>
-      <div class="card-meta">⏳ 約 3hr</div>
-      <div class="rec-desc"><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (想去就去)</b>：<br>• <b>Bar Leone</b> (✅ 17:00-00:00，週一休)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：可分組，不勉強</div>
-    </div>
-  </div>
-
-</div>
-<div class="day-block">
-  <div class="day-header">Day 3（03/13 週五）</div>
-
-
-  <div class="timeline-item">
-    <div class="time-badge">08:00<br>10:00</div>
-    <div class="content-card">
-      <div class="card-title">🍽️ <b>灣仔飯店周邊 (灣仔站)</b></div>
-      <div class="card-meta">⏳ 約 2hr</div>
-      <div class="rec-desc"><b>🍽️ 早餐推薦 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三｜凍奶茶冠軍｜✅ 07:00-18:30)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy推/👩Angela不推｜$14/顆)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：享受最後一個悠閒早晨</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">10:00<br>11:00</div>
-    <div class="content-card">
-      <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
-      <div class="card-meta">⏳ 約 1hr</div>
-      <div class="rec-desc">• <b>預辦登機＋託運行李</b></div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：把行李卸下，輕鬆出發</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">11:00<br>13:00</div>
-    <div class="content-card">
-      <div class="card-title">🛍️🍽️ <b>銅鑼灣慢遊 (銅鑼灣站)</b></div>
-      <div class="card-meta">⏳ 自由活動約 2hr</div>
-      <div class="rec-desc"><b>🛍️ 散步推薦</b>：<br>• <b>銅鑼灣周邊</b> (隨意逛逛看看)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！可帶便當上飛機！)</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：愜意不留遺憾</div>
-    </div>
-  </div>
-
-  <div class="timeline-item">
-    <div class="time-badge">13:00<br>15:35</div>
-    <div class="content-card">
-      <div class="card-title">✈️ <b>搭機返台</b></div>
-      
-      <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
-      <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：提早一點不趕</div>
-    </div>
-  </div>
-
-</div>
-
-        </section>
-
-<section id="compare">
-            <div class="section-header">
-                <i data-lucide="git-merge" color="#2D3436" size="36"></i>
-                <h2>總結分析與投票</h2>
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️ <b>上環 伴手禮輕鬆買</b></div>
+            <div class="card-meta">⏳ 自由活動約 2.5hr</div>
+            <div class="rec-desc"><b>🛍️ 採買推薦 (順路逛)</b>：<br>• <b>檸檬王</b>、<b>兆成行</b>、<b>陳意齋</b><br><br>• ☕
+              <b>累了就停</b>：隨意找茶餐廳坐、來碗車仔麵休息
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：逛到累就停，不趕行程</div>
+          </div>
+        </div>
 
-            <div style="overflow-x: auto; margin-bottom: 30px;">
-                <table class="combo-table">
-                    <thead>
-                        <tr>
-                            <th>維度</th>
-                            <th style="color:var(--primary);">⭐ 方案 A (經典全包)</th>
-                            <th style="color:var(--accent);">🍜 方案 B (美食優先)</th>
-                            <th style="color:var(--secondary);">😎 方案 C (輕鬆慢遊)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>步調</td>
-                            <td>中等偏緊湊</td>
-                            <td>只在吃的時候停留</td>
-                            <td>悠哉漫步</td>
-                        </tr>
-                        <tr>
-                            <td>餐廳數量</td>
-                            <td>~ 12 家</td>
-                            <td>~ 16 家 (超級多)</td>
-                            <td>~ 8 家</td>
-                        </tr>
-                        <tr>
-                            <td>景點數量</td>
-                            <td>大館,故宮,黃大仙,馬場</td>
-                            <td>只去維港與馬場</td>
-                            <td>打卡指標景點</td>
-                        </tr>
-                        <tr>
-                            <td>留白時間</td>
-                            <td>幾乎沒有</td>
-                            <td>很少</td>
-                            <td>每天必有放空/午睡</td>
-                        </tr>
-                        <tr>
-                            <td>適合族群</td>
-                            <td>首次遊港 / 想看滿</td>
-                            <td>無底洞吃貨</td>
-                            <td>怕累族 / 想 Chill 的人</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>15:00</div>
+          <div class="content-card">
+            <div class="card-title">😴 <b>灣仔飯店午休</b></div>
+            <div class="card-meta">⏳ 自由時間 2hr</div>
+            <div class="rec-desc">• ✨ <b>充電時間！</b> 回房休息、補眠<br>• 對長輩或怕累的人非常重要</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：輕鬆方案獨有的午休</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">15:00<br>17:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️ <b>尖沙咀商場 (尖沙咀站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物+藝術商場，有冷氣吹)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：室內逛街不曬太陽</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">17:00<br>19:00</div>
+          <div class="content-card">
+            <div class="card-title">🌅 <b>尖沙咀海濱 (尖沙咀站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>📸 散步推薦</b>：<br>• <b>星光大道 → 維港</b> (👩Angela：黃昏去！)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：黃昏景緻最美</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>22:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️🍸 <b>尖沙咀晚餐 → 酒吧小酌 (可選不去)</b></div>
+            <div class="card-meta">⏳ 約 3hr</div>
+            <div class="rec-desc"><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧
+                (想去就去)</b>：<br>• <b>Bar Leone</b> (✅ 17:00-00:00，週一休)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：可分組，不勉強</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">22:00</div>
+          <div class="content-card">
+            <div class="card-title">🏨 <b>回合和酒店休息</b></div>
+            <div class="card-meta">🌙 結束第二天</div>
+            <div class="rec-desc">• 從中環/尖沙咀搭港鐵或計程車回灣仔<br>• 明天最後一天，早點休息</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="day-block">
+        <div class="day-header">Day 3（03/13 週五）</div>
+
+
+        <div class="timeline-item">
+          <div class="time-badge">08:00<br>10:00</div>
+          <div class="content-card">
+            <div class="card-title">🍽️ <b>灣仔飯店周邊 (灣仔站)</b></div>
+            <div class="card-meta">⏳ 約 2hr</div>
+            <div class="rec-desc"><b>🍽️ 早餐推薦 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三｜凍奶茶冠軍｜✅ 07:00-18:30)<br>•
+              <b>Bakehouse 蛋塔</b> (👧Lucy推/👩Angela不推｜$14/顆)
             </div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：享受最後一個悠閒早晨</div>
+          </div>
+        </div>
 
-            <div class="content-card" style="border-color: var(--primary);">
-                <div class="card-title">💡 員工私底下最推【混搭打法】</div>
-                <div class="rec-desc">
-                    <p style="margin-bottom: 10px;">不一定要死守一套方案！大家可以這樣配：</p>
-                    <ul class="bullet-list">
-                        <li><b>節奏漸進法：</b> <code>Day 1 用 A</code> + <code>Day 2 用 B</code> +
-                            <code>Day 3 用 C</code>。第一天精神好衝景點，第二天吃爽，最後一天躺平慢活。</li>
-                        <li><b>選擇性放棄：</b> 走方案 A 的骨幹，但直接砍掉「故宮與黃大仙」，把時間拿去吃「旺角紅茶冰室」(方案B)。</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <div class="timeline-item">
+          <div class="time-badge">10:00<br>11:00</div>
+          <div class="content-card">
+            <div class="card-title">🚇 <b>港鐵香港站 (中環)</b></div>
+            <div class="card-meta">⏳ 約 1hr</div>
+            <div class="rec-desc">• <b>預辦登機＋託運行李</b></div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：把行李卸下，輕鬆出發</div>
+          </div>
+        </div>
 
-        <!-- 📝 To-Do List -->
-        <section id="todo">
-            <div class="section-header">
-                <i data-lucide="check-square" color="#E67E22" size="36"></i>
-                <h2>開會前：出發待辦事項清單</h2>
-            </div>
+        <div class="timeline-item">
+          <div class="time-badge">11:00<br>13:00</div>
+          <div class="content-card">
+            <div class="card-title">🛍️🍽️ <b>銅鑼灣慢遊 (銅鑼灣站)</b></div>
+            <div class="card-meta">⏳ 自由活動約 2hr</div>
+            <div class="rec-desc"><b>🛍️ 散步推薦</b>：<br>• <b>銅鑼灣周邊</b> (隨意逛逛看看)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b>
+              (👧Lucy⭐前三！可帶便當上飛機！)</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：愜意不留遺憾</div>
+          </div>
+        </div>
 
-            <div style="background: #FFF; border: 2px solid var(--border-color); border-radius: 16px;">
-                <div class="todo-item">
-                    <div class="todo-label">KABOOM Rooftop 高空餐酒館訂位 (10人！)</div>
-                    <div class="badge b-red">🔴 必須本週搞定</div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-label">蓮香樓營業狀態確認 (3/12 週四)</div>
-                    <div class="badge b-yel">🟡 出發前再確認</div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-label">先買好「機場快線 4人團體票」</div>
-                    <div class="badge b-yel">🟡 出發前線上買</div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-label">跑馬地是否訂位 / The Iron Fairies 是否預約</div>
-                    <div class="badge b-yel">🟡 視群組開會意願</div>
-                </div>
-                <div class="todo-item">
-                    <div class="todo-label">Bakehouse 蛋塔是否要 WhatsApp 先預訂 (>24個)</div>
-                    <div class="badge b-grn">🟢 可看狀況決定</div>
-                </div>
-            </div>
-        </section>
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>15:35</div>
+          <div class="content-card">
+            <div class="card-title">✈️ <b>搭機返台</b></div>
 
-    
+            <div class="rec-desc">• 從香港站搭<b>機場快線</b>前往機場</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：提早一點不趕</div>
+          </div>
+        </div>
 
-<section id="appendix">
-  <div class="section-header">
-    <i data-lucide="file-text" color="#636E72" size="36"></i>
-    <h2>補充資料：完整版表格（想細看再打開）</h2>
-  </div>
-  <div class="section-tagline">這裡的表格內容與各方案「流程時間表」一致，只是用表格方便快速掃描與對照。</div>
+      </div>
 
-<details class="plan-details"><summary><span class="day-pill">⭐ 方案 A｜經典全包</span><span class="day-hint">點開看完整版表格</span></summary>
-<details class="day-details"><summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
+    </section>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>10:30-12:00</td><td>✈️ <b>香港國際機場 → 香港站</b><br>⏳ 交通約 1.5hr</td><td>• 搭乘<b>機場快線</b>至香港站</td><td>4人團體票 $70/人</td></tr><tr><td class='col-time'>12:00-15:00</td><td>🚶 <b>中環歷史老街區 (中環站)</b><br>⏳ 自由活動約 3hr</td><td><b>🍽️ 午餐推薦</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30 每日)<br><br><b>📸 散步/打卡清單 (自由挑選逛)</b>：<br>• <b>半山扶手電梯</b> (🧑Frunky+👧Lucy推｜世界最長！體驗感特別)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜⚠️ 👩Angela提醒：白天拍比較好看)<br>• <b>大館 Tai Kwun</b> (🧑Frunky+👧Lucy推｜舊警署建築群拍照點；👩Angela：不大，30-60min 夠)<br>• <b>石板街</b> (👧Lucy推｜《難哄》取景地，有時間慢慢走)</td><td>此區地點彼此走路不超過 10 分鐘，吃飽後隨意逛</td></tr><tr><td class='col-time'>15:00-16:00</td><td>🏨 <b>合和酒店 (灣仔)</b><br>⏳ 停留約 1hr</td><td>• 辦理入住、放行李休息<br>• 👩Angela：出門走旁邊「合和中心」搭透明電梯下山，別走路！</td><td>押金 500-1000 HKD，建議刷信用卡</td></tr><tr><td class='col-time'>16:00-18:30</td><td>🍽️ <b>灣仔/西環 在地晚餐區</b><br>⏳ 用餐約 2.5hr</td><td><b>🍽️ 晚餐二選一 (或都去)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊走路 5 分鐘！｜✅ 11:30-21:30 每日)<br>• <b>坤記煲仔飯</b> (👩Angela推薦｜在西環，需搭叮叮車約 15 min｜✅ 11:00-14:30 / 17:30-22:30 有中休)</td><td>甘牌近、坤記遠但更道地</td></tr><tr><td class='col-time'>19:00-21:30</td><td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td><td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 恰好是週三 Happy Wednesday，本趟唯一看賽馬的機會！</b> 19:15 開賽<br>• 一般入場憑護照免費；想邊吃飯邊看馬 (如 The Beat) 需上賽馬會官網預約</td><td>從灣仔搭計程車或叮叮車約 10 min</td></tr><tr><td class='col-time'>21:30-00:00</td><td>🍸 <b>中環夜生活區 (蘭桂坊周邊)</b><br>⏳ 視體力決定</td><td><b>🍸 夜生活清單 (自由挑選)</b>：<br>• <b>蘭桂坊商圈</b> (👩Angela+👧Lucy推｜路邊桌椅＋大聲音樂，氛圍 chill)<br>• <b>The Iron Fairies</b> (👩Angela 3/2 新推｜荷李活道，走路 3-5 分鐘｜⚠️ live band 21:30 後才有！別太早進去)</td><td>10 人可分組，累的人隨時回飯店</td></tr>
-</tbody>
-</table>
-</div>
+    <section id="compare">
+      <div class="section-header">
+        <i data-lucide="git-merge" color="#2D3436" size="36"></i>
+        <h2>總結分析與投票</h2>
+      </div>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
+      <div style="overflow-x: auto; margin-bottom: 30px;">
+        <table class="combo-table">
+          <thead>
+            <tr>
+              <th>維度</th>
+              <th style="color:var(--primary);">⭐ 方案 A (經典全包)</th>
+              <th style="color:var(--accent);">🍜 方案 B (美食優先)</th>
+              <th style="color:var(--secondary);">😎 方案 C (輕鬆慢遊)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>步調</td>
+              <td>中等偏緊湊</td>
+              <td>只在吃的時候停留</td>
+              <td>悠哉漫步</td>
+            </tr>
+            <tr>
+              <td>餐廳數量</td>
+              <td>~ 12 家</td>
+              <td>~ 16 家 (超級多)</td>
+              <td>~ 8 家</td>
+            </tr>
+            <tr>
+              <td>景點數量</td>
+              <td>大館,故宮,黃大仙,馬場</td>
+              <td>只去維港與馬場</td>
+              <td>打卡指標景點</td>
+            </tr>
+            <tr>
+              <td>留白時間</td>
+              <td>幾乎沒有</td>
+              <td>很少</td>
+              <td>每天必有放空/午睡</td>
+            </tr>
+            <tr>
+              <td>適合族群</td>
+              <td>首次遊港 / 想看滿</td>
+              <td>無底洞吃貨</td>
+              <td>怕累族 / 想 Chill 的人</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>08:00-12:00</td><td>🛍️ <b>上環老街 (上環站)</b><br>⏳ 自由活動約 4hr</td><td><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00，週六日公休｜👧Lucy：位子有點難找)<br><br><b>🛍️ 伴手禮採買清單 (自由挑選)</b>：<br>• <b>珍妮曲奇</b> (👩Angela推｜✅ 10:00-19:00｜⚠️ <b>09:30 前到排隊！</b> 平日排 1-2hr；買<b>圓罐</b>！方罐比較騙錢)<br>• <b>檸檬王</b> (👩Angela+👧Lucy推｜伴手禮)<br>• <b>兆成行精油</b> (👧Lucy推｜88 號舒淇香，店員超用心｜✅ 打烊 17:30，週日公休｜👧花了$640買4罐)<br>• <b>陳意齋</b> (👧Lucy推｜杏仁餅伴手禮｜✅ 10:00-19:30，週日到18:30)</td><td>💡 建議 2-3 人代排珍妮，其他人先吃早餐＋掃伴手禮</td></tr><tr><td class='col-time'>12:00-14:30</td><td>🍽️📸 <b>中環/西九龍 午餐與展覽</b><br>⏳ 約 2.5hr</td><td><b>🍽️ 午餐推薦</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜「想體驗真正的飲茶請去蓮香樓」｜✅ 06:00-22:30｜🚨 <b>4月搬址！最後朝聖機會！</b> 10人可能需拆桌併桌)<br><br><b>📸 展覽推薦</b>：<br>• <b>香港故宮文化博物館</b> (📋原行程｜需 1.5-2hr｜搭港鐵到九龍站)</td><td>蓮香樓和故宮距離遠，擇一或分組</td></tr><tr><td class='col-time'>15:00-17:00</td><td>📸🛍️ <b>黃大仙 → 尖沙咀 (搭港鐵)</b><br>⏳ 約 2hr</td><td><b>📸 景點推薦</b>：<br>• <b>黃大仙祠</b> (📋原行程｜參拜約 1hr)<br><br><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物＋藝術商場)</td><td>搭港鐵移動，彈性調整</td></tr><tr><td class='col-time'>17:00-19:00</td><td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td><td><b>📸 散步清單</b>：<br>• <b>星光大道</b> (多方推薦｜沿岸走看名人手印｜👩Angela：⚠️ <b>黃昏去最舒適</b>，2:00 去會曬死)<br>• <b>維多利亞港</b> (👧Lucy：慢慢走很放鬆)<br>• ❌ 👩Angela 不推「幻彩詠香江」→「雷射燈射一射，浪費時間」</td><td>黃昏＋夜景一次收集</td></tr><tr><td class='col-time'>19:00-22:00</td><td>🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b><br>⏳ 約 3hr</td><td><b>🍽️ 晚餐推薦</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜泰式料理+炸物拼盤+特色調酒｜維港夜景氛圍很好｜🚨 <b>10 人必須先訂位！</b> 在 Google Map 上訂)<br><br><b>🍸 酒吧推薦 (選 1 家就好)</b>：<br>• <b>Bar Leone</b> (📋原行程｜世界級酒吧｜✅ 17:00-00:00，週一休｜不設訂座)<br>• <b>The Old Man</b> (📋原行程｜世界級酒吧)</td><td>KABOOM 在尖沙咀，酒吧在中環，需搭港鐵移動</td></tr>
-</tbody>
-</table>
-</div>
+      <div class="content-card" style="border-color: var(--primary);">
+        <div class="card-title">💡 員工私底下最推【混搭打法】</div>
+        <div class="rec-desc">
+          <p style="margin-bottom: 10px;">不一定要死守一套方案！大家可以這樣配：</p>
+          <ul class="bullet-list">
+            <li><b>節奏漸進法：</b> <code>Day 1 用 A</code> + <code>Day 2 用 B</code> +
+              <code>Day 3 用 C</code>。第一天精神好衝景點，第二天吃爽，最後一天躺平慢活。
+            </li>
+            <li><b>選擇性放棄：</b> 走方案 A 的骨幹，但直接砍掉「故宮與黃大仙」，把時間拿去吃「旺角紅茶冰室」(方案B)。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
+    <!-- 📝 To-Do List -->
+    <section id="todo">
+      <div class="section-header">
+        <i data-lucide="check-square" color="#E67E22" size="36"></i>
+        <h2>開會前：出發待辦事項清單</h2>
+      </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>07:30-09:30</td><td>🍽️ <b>灣仔飯店周邊 (灣仔站)</b><br>⏳ 約 2hr</td><td><b>🍽️ 早餐清單 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜「凍奶茶是香港喝到最好喝的」+「西多士毫無踩雷」｜✅ 07:00-18:30｜店很擠但翻桌率高)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推「很一般，不用特地排隊」｜✅ 08:00-21:00｜$14/顆，很便宜！海關會問但不檢查，可帶回台灣｜超過 24 個可 WhatsApp 線上預訂)</td><td>兩家在灣仔飯店附近走路就到</td></tr><tr><td class='col-time'>09:30-10:30</td><td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td><td>• <b>預辦登機＋託運行李</b> (👩Angela推薦｜會先扣機場快線車資，下午再搭不重複扣款)<br>• 之後整天空手逛！</td><td>之後不用再拖行李</td></tr><tr><td class='col-time'>10:30-13:00</td><td>🛍️🍽️ <b>銅鑼灣逛街 (銅鑼灣站)</b><br>⏳ 自由活動約 2.5hr</td><td><b>🛍️ 逛街推薦</b>：<br>• <b>百德新街/時代廣場</b> (👧Lucy提到「有點像台北的西門町，應有盡有」)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！｜「燒鵝+文昌雞都好吃」「脆皮豬竟然比燒鵝還好吃」｜✅ 07:00-00:00｜💡 可外帶一個便當去機場吃！)</td><td>最後掃貨＋外帶午餐一兼二顧</td></tr><tr><td class='col-time'>13:00-15:35</td><td>✈️ <b>搭機返台</b><br>⏳ 交通約 30min</td><td>• 從香港站搭<b>機場快線</b>前往機場</td><td>15:35 起飛，務必提早到</td></tr>
-</tbody>
-</table>
-</div>
+      <div style="background: #FFF; border: 2px solid var(--border-color); border-radius: 16px;">
+        <div class="todo-item">
+          <div class="todo-label">KABOOM Rooftop 高空餐酒館訂位 (10人！)</div>
+          <div class="badge b-red">🔴 必須本週搞定</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">蓮香樓營業狀態確認 (3/12 週四)</div>
+          <div class="badge b-yel">🟡 出發前再確認</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">先買好「機場快線 4人團體票」</div>
+          <div class="badge b-yel">🟡 出發前線上買</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">跑馬地是否訂位 / The Iron Fairies 是否預約</div>
+          <div class="badge b-yel">🟡 視群組開會意願</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">Bakehouse 蛋塔是否要 WhatsApp 先預訂 (>24個)</div>
+          <div class="badge b-grn">🟢 可看狀況決定</div>
+        </div>
+      </div>
+    </section>
 
-</details>
-</details>
-<details class="plan-details"><summary><span class="day-pill">🍜 方案 B｜美食優先</span><span class="day-hint">點開看完整版表格</span></summary>
-<details class="day-details"><summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>10:30-12:00</td><td>✈️ <b>香港國際機場 → 香港站</b><br>⏳ 交通約 1.5hr</td><td>• 搭乘<b>機場快線</b>至香港站</td><td></td></tr><tr><td class='col-time'>12:00-15:30</td><td>🍽️ <b>中環午餐美食馬拉松 (中環站)</b><br>⏳ 自由活動約 3.5hr</td><td><b>🍽️ 小吃清單 (以下全部走路可到)</b>：<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖！｜✅ 07:30-18:00，週日公休)<br>• <b>勝香園</b> (👩Angela推｜蛋牛治+奶茶｜✅ 08:00-15:30，週日公休｜⚠️ 15:30就打烊！趁早去)<br><br><b>📸 順路散步</b>：<br>• <b>石板街</b> (👧Lucy推｜《難哄》取景地)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜白天拍！)<br><br><b>🍰 甜點推薦 (有爭議)</b>：<br>• <b>Vission Bakery</b> (👩Angela推蛋塔/👧Lucy❌不推「$60 太貴，吃起來像派」)<br>• <b>L'antico Gelato</b> (📋原行程有列｜義式冰淇淋)</td><td>全部在中環老街步行圈內，隨意吃隨意逛</td></tr><tr><td class='col-time'>15:30-16:30</td><td>🏨 <b>合和酒店 (灣仔)</b><br>⏳ 停留約 1hr</td><td>• 辦理入住、放行李休息</td><td></td></tr><tr><td class='col-time'>16:30-18:30</td><td>🍽️ <b>灣仔/西環 傍晚美食精選</b><br>⏳ 用餐約 2hr</td><td><b>🍽️ 晚餐推薦 (都吃或擇一)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊！｜✅ 11:30-21:30)<br>• <b>坤記煲仔飯</b> (👩Angela推薦｜搭叮叮車去西環｜✅ 有中休，17:30 後才有晚市)</td><td>兩家都吃也行，看胃有多大</td></tr><tr><td class='col-time'>19:00-21:30</td><td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td><td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 週三限定！</b> 19:15 開賽</td><td>跟方案 A 相同，不可錯過</td></tr><tr><td class='col-time'>21:30-00:30</td><td>🍽️🍸 <b>銅鑼灣宵夜 → 中環夜生活區</b><br>⏳ 視體力決定</td><td><b>🍽️ 宵夜推薦</b>：<br>• <b>媽咪雞蛋仔</b> (👧Lucy推｜「好好吃～軟 Q 又脆脆的，非常大份！好適合當宵夜」｜銅鑼灣)<br><br><b>🍸 夜生活清單</b>：<br>• <b>蘭桂坊</b> (👩Angela+👧Lucy推｜街上感受氛圍)<br>• <b>The Iron Fairies</b> (👩Angela 3/2 推｜⚠️ 21:30 後才有 live band)</td><td>銅鑼灣到蘭桂坊搭計程車約 15 min</td></tr>
-</tbody>
-</table>
-</div>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
+    <section id="appendix">
+      <div class="section-header">
+        <i data-lucide="file-text" color="#636E72" size="36"></i>
+        <h2>補充資料：完整版表格（想細看再打開）</h2>
+      </div>
+      <div class="section-tagline">這裡的表格內容與各方案「流程時間表」一致，只是用表格方便快速掃描與對照。</div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>08:00-11:00</td><td>🛍️ <b>上環老街 (上環站)</b><br>⏳ 自由活動約 3hr</td><td><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00)<br><br><b>🛍️ 伴手禮採買 (跟方案A同)</b>：<br>• <b>珍妮曲奇</b> (⚠️ 09:30 排隊！買圓罐！)<br>• <b>檸檬王</b> / <b>兆成行</b> / <b>陳意齋</b></td><td>跟方案 A 差不多，但多留 1hr 悠閒逛</td></tr><tr><td class='col-time'>11:00-13:30</td><td>🍽️ <b>中環/上環 午餐接力 (上環站周邊)</b><br>⏳ 約 2.5hr</td><td><b>🍽️ 午餐清單 (連吃兩家)</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜傳統飲茶大餐｜🚨 4月搬址最後機會！)<br>• <b>榮記潮州粉麵</b> (👩Angela推｜車仔麵｜上環)</td><td>吃貨方案特色：蓮香樓後再來一碗車仔麵</td></tr><tr><td class='col-time'>14:00-16:30</td><td>🍽️🛍️ <b>旺角 → 尖沙咀 (搭港鐵)</b><br>⏳ 約 2.5hr</td><td><b>🍽️ 下午茶推薦</b>：<br>• <b>旺角紅茶冰室</b> (👧Lucy⭐前三！「銀芽肉絲炒麵，每一口都沒有膩感，麵體炸過的非常酥脆！」)<br><br><b>🛍️ 伴手禮推薦</b>：<br>• <b>曲奇四重奏</b> (👧Lucy推｜蝴蝶酥與曲奇，蠻好吃｜✅ 10:00-22:00 每日｜尖沙咀)</td><td>從旺角搭港鐵到尖沙咀只要 10 min</td></tr><tr><td class='col-time'>17:00-19:00</td><td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td><td><b>📸 散步清單</b>：<br>• <b>星光大道 → 維多利亞港</b> (👩Angela：⚠️ 黃昏去最好！)</td><td>跟方案 A 相同</td></tr><tr><td class='col-time'>19:00-22:00</td><td>🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b><br>⏳ 約 3hr</td><td><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (選 1 家)</b>：<br>• <b>Bar Leone</b> / <b>The Old Man</b></td><td>跟方案 A 相同</td></tr>
-</tbody>
-</table>
-</div>
+      <details class="plan-details">
+        <summary><span class="day-pill">⭐ 方案 A｜經典全包</span><span class="day-hint">點開看完整版表格</span></summary>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>10:30-12:00</td>
+                  <td>✈️ <b>香港國際機場 → 合和酒店</b><br>⏳ 交通約 1.5hr</td>
+                  <td>• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</td>
+                  <td>4人團體票 $70/人</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>12:00-13:00</td>
+                  <td>🏨 <b>合和酒店 Check-in 放行李</b><br>⏳ 停留約 1hr</td>
+                  <td>• 辦理入住、放行李，輕裝再出門<br>• 👩Angela：出門走旁邊「合和中心」搭透明電梯下山</td>
+                  <td>押金 500-1000 HKD，建議刷信用卡</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-16:00</td>
+                  <td>🚶 <b>中環歷史老街區 (中環站)</b><br>⏳ 自由活動約 3hr</td>
+                  <td><b>🍽️ 午餐推薦</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30 每日)<br><br><b>📸 散步/打卡清單
+                      (自由挑選逛)</b>：<br>• <b>半山扶手電梯</b> (🧑Frunky+👧Lucy推｜世界最長！體驗感特別)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜⚠️
+                    👩Angela提醒：白天拍比較好看)<br>• <b>大館 Tai Kwun</b> (🧑Frunky+👧Lucy推｜舊警署建築群拍照點；👩Angela：不大，30-60min 夠)<br>•
+                    <b>石板街</b> (👧Lucy推｜《難哄》取景地)
+                  </td>
+                  <td>此區地點彼此走路不超過 10 分鐘</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>16:00-18:30</td>
+                  <td>🍽️ <b>灣仔/西環 在地晚餐區</b><br>⏳ 用餐約 2.5hr</td>
+                  <td><b>🍽️ 晚餐二選一 (或都去)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊走路 5 分鐘！｜✅ 11:30-21:30 每日)<br>•
+                    <b>坤記煲仔飯</b> (👩Angela推薦｜在西環，需搭叮叮車約 15 min｜✅ 11:00-14:30 / 17:30-22:30 有中休)
+                  </td>
+                  <td>甘牌近、坤記遠但更道地</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-21:30</td>
+                  <td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td>
+                  <td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 恰好是週三 Happy Wednesday，本趟唯一看賽馬的機會！</b> 19:15 開賽<br>•
+                    一般入場憑護照免費</td>
+                  <td>從灣仔搭計程車或叮叮車約 10 min</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>21:30-00:00</td>
+                  <td>🍸 <b>中環夜生活區 (蘭桂坊周邊)</b><br>⏳ 視體力決定</td>
+                  <td><b>🍸 夜生活清單 (自由挑選)</b>：<br>• <b>蘭桂坊商圈</b> (👩Angela+👧Lucy推｜路邊桌椅＋大聲音樂，氛圍 chill)<br>• <b>The Iron
+                      Fairies</b> (👩Angela 3/2 新推｜⚠️ live band 21:30 後才有！)</td>
+                  <td>10 人可分組，累的人隨時回飯店</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>00:00</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從蘭桂坊搭計程車回灣仔約 10 分鐘</td>
+                  <td>結束第一天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>07:00-09:30</td><td>🍽️ <b>灣仔/銅鑼灣 蛋塔早餐對決</b><br>⏳ 約 2.5hr</td><td><b>🍽️ 早餐清單 (三家走路可到)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜凍奶茶冠軍｜✅ 07:00-18:30)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推｜✅ 08:00-21:00｜$14/顆)<br>• <b>Hashtag B</b> (👧Lucy提到｜開心果蛋塔 $32/顆｜✅ 08:30-21:00｜銅鑼灣順路)</td><td>吃貨方案 Day 3 連三家一次收集</td></tr><tr><td class='col-time'>09:30-10:30</td><td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td><td>• <b>預辦登機＋託運行李</b> (👩Angela推薦)</td><td>空手逛！</td></tr><tr><td class='col-time'>10:30-13:00</td><td>🍽️🛍️ <b>銅鑼灣逛街 (銅鑼灣站)</b><br>⏳ 自由活動約 2.5hr</td><td><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！脆皮豬必點｜💡 可外帶便當去機場！)<br><br><b>🛍️ 最後掃貨</b>：<br>• <b>時代廣場周邊</b></td><td>收尾，能吃就吃</td></tr><tr><td class='col-time'>13:00-15:35</td><td>✈️ <b>搭機返台</b></td><td>• 從香港站搭<b>機場快線</b>前往機場</td><td>務必提早出發</td></tr>
-</tbody>
-</table>
-</div>
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
 
-</details>
-</details>
-<details class="plan-details"><summary><span class="day-pill">😎 方案 C｜輕鬆慢遊</span><span class="day-hint">點開看完整版表格</span></summary>
-<details class="day-details"><summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:00-12:00</td>
+                  <td>🛍️ <b>上環老街 (上環站)</b><br>⏳ 自由活動約 4hr</td>
+                  <td><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅
+                    08:00-15:00，週六日公休｜👧Lucy：位子有點難找)<br><br><b>🛍️ 伴手禮採買清單 (自由挑選)</b>：<br>• <b>珍妮曲奇</b> (👩Angela推｜✅
+                    10:00-19:00｜⚠️ <b>09:30 前到排隊！</b> 平日排 1-2hr；買<b>圓罐</b>！方罐比較騙錢)<br>• <b>檸檬王</b>
+                    (👩Angela+👧Lucy推｜伴手禮)<br>• <b>兆成行精油</b> (👧Lucy推｜88 號舒淇香，店員超用心｜✅ 打烊 17:30，週日公休｜👧花了$640買4罐)<br>•
+                    <b>陳意齋</b> (👧Lucy推｜杏仁餅伴手禮｜✅ 10:00-19:30，週日到18:30)
+                  </td>
+                  <td>💡 建議 2-3 人代排珍妮，其他人先吃早餐＋掃伴手禮</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>12:00-14:30</td>
+                  <td>🍽️📸 <b>中環/西九龍 午餐與展覽</b><br>⏳ 約 2.5hr</td>
+                  <td><b>🍽️ 午餐推薦</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜「想體驗真正的飲茶請去蓮香樓」｜✅ 06:00-22:30｜🚨
+                    <b>4月搬址！最後朝聖機會！</b> 10人可能需拆桌併桌)<br><br><b>📸 展覽推薦</b>：<br>• <b>香港故宮文化博物館</b> (📋原行程｜需
+                    1.5-2hr｜搭港鐵到九龍站)
+                  </td>
+                  <td>蓮香樓和故宮距離遠，擇一或分組</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>15:00-17:00</td>
+                  <td>📸🛍️ <b>黃大仙 → 尖沙咀 (搭港鐵)</b><br>⏳ 約 2hr</td>
+                  <td><b>📸 景點推薦</b>：<br>• <b>黃大仙祠</b> (📋原行程｜參拜約 1hr)<br><br><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b>
+                    (📋原行程｜購物＋藝術商場)</td>
+                  <td>搭港鐵移動，彈性調整</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>17:00-19:00</td>
+                  <td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td>
+                  <td><b>📸 散步清單</b>：<br>• <b>星光大道</b> (多方推薦｜沿岸走看名人手印｜👩Angela：⚠️ <b>黃昏去最舒適</b>，2:00 去會曬死)<br>•
+                    <b>維多利亞港</b> (👧Lucy：慢慢走很放鬆)<br>• ❌ 👩Angela 不推「幻彩詠香江」→「雷射燈射一射，浪費時間」
+                  </td>
+                  <td>黃昏＋夜景一次收集</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-22:00</td>
+                  <td>🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b><br>⏳ 約 3hr</td>
+                  <td><b>🍽️ 晚餐推薦</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜泰式料理+炸物拼盤+特色調酒｜維港夜景氛圍很好｜🚨 <b>10 人必須先訂位！</b>
+                    在 Google Map 上訂)<br><br><b>🍸 酒吧推薦 (選 1 家就好)</b>：<br>• <b>Bar Leone</b> (📋原行程｜世界級酒吧｜✅
+                    17:00-00:00，週一休｜不設訂座)<br>• <b>The Old Man</b> (📋原行程｜世界級酒吧)</td>
+                  <td>KABOOM 在尖沙咀，酒吧在中環，需搭港鐵移動</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>22:30</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從中環搭港鐵或計程車回灣仔</td>
+                  <td>結束第二天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>10:30-12:30</td><td>✈️ <b>機場 → 灣仔飯店</b><br>⏳ 交通+入住約 2hr</td><td>• 機場快線 → 飯店 <b>Check-in 先放行李</b><br>• 第一天先放行李再出門最輕鬆</td><td>不用拖著行李趕景點</td></tr><tr><td class='col-time'>12:30-14:30</td><td>🍽️🚶 <b>中環午餐與散步 (中環站)</b><br>⏳ 自由活動約 2hr</td><td><b>🍽️ 午餐推薦 (挑一家就好，不趕兩家)</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30)<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖｜✅ 07:30-18:00)<br><br><b>📸 有空就逛</b>：<br>• <b>半山扶手電梯</b> → <b>嘉咸街壁畫</b> → <b>石板街</b></td><td>不一定全都要去，放鬆逛</td></tr><tr><td class='col-time'>14:30-16:30</td><td>☕ <b>中環/灣仔 午茶放空</b><br>⏳ 自由時間 2hr</td><td>• ✨ <b>自由放空時間！</b><br>• 可找間咖啡廳坐、回飯店休息，或分組去逛小店<br>• 10 人不需要全部綁在一起</td><td>悠閒方案的核心價值</td></tr><tr><td class='col-time'>16:30-18:30</td><td>🍽️ <b>灣仔/西環 隨意晚餐</b><br>⏳ 用餐約 2hr</td><td><b>🍽️ 晚餐二選一</b>：<br>• <b>甘牌燒鵝</b> (飯店旁邊！方便！)<br>• <b>坤記煲仔飯</b> (西環叮叮車🚃)</td><td>看大家想方便還是冒險</td></tr><tr><td class='col-time'>19:00-21:30</td><td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td><td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>週三限定！</b></td><td>不可錯過的體驗</td></tr><tr><td class='col-time'>21:30-00:00</td><td>🍸 <b>中環 自由夜生活 (可選不去)</b><br>⏳ 想去就去</td><td><b>🍸 續攤組</b>：<br>• <b>蘭桂坊</b> (感受氛圍)<br>• <b>The Iron Fairies</b> (live band 21:30 後才有)<br><br><b>💤 休息組</b>：<br>• 回飯店睡覺！</td><td>給予絕對彈性，不強迫</td></tr>
-</tbody>
-</table>
-</div>
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>07:30-09:30</td>
+                  <td>🍽️ <b>灣仔飯店周邊 (灣仔站)</b><br>⏳ 約 2hr</td>
+                  <td><b>🍽️ 早餐清單 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜「凍奶茶是香港喝到最好喝的」+「西多士毫無踩雷」｜✅
+                    07:00-18:30｜店很擠但翻桌率高)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推「很一般，不用特地排隊」｜✅
+                    08:00-21:00｜$14/顆，很便宜！海關會問但不檢查，可帶回台灣｜超過 24 個可 WhatsApp 線上預訂)</td>
+                  <td>兩家在灣仔飯店附近走路就到</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>09:30-10:30</td>
+                  <td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td>
+                  <td>• <b>預辦登機＋託運行李</b> (👩Angela推薦｜會先扣機場快線車資，下午再搭不重複扣款)<br>• 之後整天空手逛！</td>
+                  <td>之後不用再拖行李</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>10:30-13:00</td>
+                  <td>🛍️🍽️ <b>銅鑼灣逛街 (銅鑼灣站)</b><br>⏳ 自由活動約 2.5hr</td>
+                  <td><b>🛍️ 逛街推薦</b>：<br>• <b>百德新街/時代廣場</b> (👧Lucy提到「有點像台北的西門町，應有盡有」)<br><br><b>🍽️ 午餐推薦</b>：<br>•
+                    <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！｜「燒鵝+文昌雞都好吃」「脆皮豬竟然比燒鵝還好吃」｜✅ 07:00-00:00｜💡 可外帶一個便當去機場吃！)
+                  </td>
+                  <td>最後掃貨＋外帶午餐一兼二顧</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-15:35</td>
+                  <td>✈️ <b>搭機返台</b><br>⏳ 交通約 30min</td>
+                  <td>• 從香港站搭<b>機場快線</b>前往機場</td>
+                  <td>15:35 起飛，務必提早到</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>08:30-10:30</td><td>🍽️🛍️ <b>上環早茶＋排隊分工 (上環站)</b><br>⏳ 約 2hr</td><td><b>🍽️ 早餐推薦 (擇一)</b>：<br>• <b>瑞記咖啡</b> (三方推！｜✅ 08:00-15:00)<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜🚨 4月搬址最後機會！)<br><br><b>🛍️ 排隊組分工</b>：<br>• 不想排隊的先吃早餐/去逛上環老街 → 想排隊的去排 <b>珍妮曲奇</b></td><td>分組行動最適合 10 人</td></tr><tr><td class='col-time'>10:30-13:00</td><td>🛍️ <b>上環 伴手禮輕鬆買</b><br>⏳ 自由活動約 2.5hr</td><td><b>🛍️ 採買推薦 (順路逛)</b>：<br>• <b>檸檬王</b>、<b>兆成行</b>、<b>陳意齋</b><br><br>• ☕ <b>累了就停</b>：隨意找茶餐廳坐、來碗車仔麵休息</td><td>逛到累就停，不趕行程</td></tr><tr><td class='col-time'>13:00-15:00</td><td>😴 <b>灣仔飯店午休</b><br>⏳ 自由時間 2hr</td><td>• ✨ <b>充電時間！</b> 回房休息、補眠<br>• 對長輩或怕累的人非常重要</td><td>輕鬆方案獨有的午休</td></tr><tr><td class='col-time'>15:00-17:00</td><td>🛍️ <b>尖沙咀商場 (尖沙咀站)</b><br>⏳ 約 2hr</td><td><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物+藝術商場，有冷氣吹)</td><td>室內逛街不曬太陽</td></tr><tr><td class='col-time'>17:00-19:00</td><td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td><td><b>📸 散步推薦</b>：<br>• <b>星光大道 → 維港</b> (👩Angela：黃昏去！)</td><td>黃昏景緻最美</td></tr><tr><td class='col-time'>19:00-22:00</td><td>🍽️🍸 <b>尖沙咀晚餐 → 酒吧小酌 (可選不去)</b><br>⏳ 約 3hr</td><td><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (想去就去)</b>：<br>• <b>Bar Leone</b> (✅ 17:00-00:00，週一休)</td><td>可分組，不勉強</td></tr>
-</tbody>
-</table>
-</div>
+        </details>
+      </details>
+      <details class="plan-details">
+        <summary><span class="day-pill">🍜 方案 B｜美食優先</span><span class="day-hint">點開看完整版表格</span></summary>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
 
-</details>
-<details class="day-details"><summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>10:30-12:00</td>
+                  <td>✈️ <b>香港國際機場 → 合和酒店</b><br>⏳ 交通約 1.5hr</td>
+                  <td>• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class='col-time'>12:00-13:00</td>
+                  <td>🏨 <b>合和酒店 Check-in 放行李</b><br>⏳ 停留約 1hr</td>
+                  <td>• 辦理入住、放行李，輕裝再出門</td>
+                  <td>先放行李不用拖著走</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-15:00</td>
+                  <td>🍽️ <b>中環午餐美食馬拉松 (中環站)</b><br>⏳ 自由活動約 2hr</td>
+                  <td><b>🍽️ 小吃清單 (以下全部走路可到)</b>：<br>• <b>蘭芳園</b> (👩Angela+🧑Frunky推｜絲襪奶茶始祖！｜✅ 07:30-18:00，週日公休)<br>•
+                    <b>勝香園</b> (👩Angela推｜蛋牛治+奶茶｜✅ 08:00-15:30，週日公休｜⚠️ 15:30就打烊！趁早去)<br><br><b>📸 順路散步</b>：<br>•
+                    <b>石板街</b> (👧Lucy推｜《難哄》取景地)<br>• <b>嘉咸街壁畫</b> (🧑Frunky推｜白天拍！)<br><br><b>🍰 甜點推薦 (有爭議)</b>：<br>•
+                    <b>Vission Bakery</b> (👩Angela推蛋塔/👧Lucy❌不推「$60 太貴，吃起來像派」)<br>• <b>L'antico Gelato</b>
+                    (📋原行程有列｜義式冰淇淋)
+                  </td>
+                  <td>全部在中環老街步行圈內</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>16:00-18:30</td>
+                  <td>🍽️ <b>灣仔/西環 傍晚美食精選</b><br>⏳ 用餐約 2.5hr</td>
+                  <td><b>🍽️ 晚餐推薦 (都吃或擇一)</b>：<br>• <b>甘牌燒鵝</b> (👩Angela提到｜飯店旁邊！｜✅ 11:30-21:30)<br>• <b>坤記煲仔飯</b>
+                    (👩Angela推薦｜搭叮叮車去西環｜✅ 有中休，17:30 後才有晚市)</td>
+                  <td>兩家都吃也行，看胃有多大</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-21:30</td>
+                  <td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td>
+                  <td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 週三限定！</b> 19:15 開賽</td>
+                  <td>跟方案 A 相同，不可錯過</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>21:30-00:30</td>
+                  <td>🍽️🍸 <b>銅鑼灣宵夜 → 中環夜生活區</b><br>⏳ 視體力決定</td>
+                  <td><b>🍽️ 宵夜推薦</b>：<br>• <b>媽咪雞蛋仔</b> (👧Lucy推｜「好好吃～軟 Q 又脆脆的，非常大份！好適合當宵夜」｜銅鑼灣)<br><br><b>🍸
+                      夜生活清單</b>：<br>• <b>蘭桂坊</b> (👩Angela+👧Lucy推｜街上感受氛圍)<br>• <b>The Iron Fairies</b> (👩Angela 3/2
+                    推｜⚠️ 21:30 後才有 live band)</td>
+                  <td>銅鑼灣到蘭桂坊搭計程車約 15 min</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>00:30</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從蘭桂坊搭計程車回灣仔</td>
+                  <td>結束第一天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-<div class="table-wrap">
-<table class="itinerary-table">
-<thead><tr><th style="width:120px;">時段</th><th>定位大點 / 停留時間</th><th>推薦踩點清單</th><th style="width:180px;">備註</th></tr></thead>
-<tbody>
-<tr><td class='col-time'>08:00-10:00</td><td>🍽️ <b>灣仔飯店周邊 (灣仔站)</b><br>⏳ 約 2hr</td><td><b>🍽️ 早餐推薦 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三｜凍奶茶冠軍｜✅ 07:00-18:30)<br>• <b>Bakehouse 蛋塔</b> (👧Lucy推/👩Angela不推｜$14/顆)</td><td>享受最後一個悠閒早晨</td></tr><tr><td class='col-time'>10:00-11:00</td><td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td><td>• <b>預辦登機＋託運行李</b></td><td>把行李卸下，輕鬆出發</td></tr><tr><td class='col-time'>11:00-13:00</td><td>🛍️🍽️ <b>銅鑼灣慢遊 (銅鑼灣站)</b><br>⏳ 自由活動約 2hr</td><td><b>🛍️ 散步推薦</b>：<br>• <b>銅鑼灣周邊</b> (隨意逛逛看看)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！可帶便當上飛機！)</td><td>愜意不留遺憾</td></tr><tr><td class='col-time'>13:00-15:35</td><td>✈️ <b>搭機返台</b></td><td>• 從香港站搭<b>機場快線</b>前往機場</td><td>提早一點不趕</td></tr>
-</tbody>
-</table>
-</div>
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
 
-</details>
-</details>
-</section>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:00-11:00</td>
+                  <td>🛍️ <b>上環老街 (上環站)</b><br>⏳ 自由活動約 3hr</td>
+                  <td><b>🍽️ 早餐推薦</b>：<br>• <b>瑞記咖啡</b> (👩👧🧑三方推！｜西多士+凍奶茶｜✅ 08:00-15:00)<br><br><b>🛍️ 伴手禮採買
+                      (跟方案A同)</b>：<br>• <b>珍妮曲奇</b> (⚠️ 09:30 排隊！買圓罐！)<br>• <b>檸檬王</b> / <b>兆成行</b> / <b>陳意齋</b></td>
+                  <td>跟方案 A 差不多，但多留 1hr 悠閒逛</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>11:00-13:30</td>
+                  <td>🍽️ <b>中環/上環 午餐接力 (上環站周邊)</b><br>⏳ 約 2.5hr</td>
+                  <td><b>🍽️ 午餐清單 (連吃兩家)</b>：<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜傳統飲茶大餐｜🚨 4月搬址最後機會！)<br>•
+                    <b>榮記潮州粉麵</b> (👩Angela推｜車仔麵｜上環)
+                  </td>
+                  <td>吃貨方案特色：蓮香樓後再來一碗車仔麵</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>14:00-16:30</td>
+                  <td>🍽️🛍️ <b>旺角 → 尖沙咀 (搭港鐵)</b><br>⏳ 約 2.5hr</td>
+                  <td><b>🍽️ 下午茶推薦</b>：<br>• <b>旺角紅茶冰室</b> (👧Lucy⭐前三！「銀芽肉絲炒麵，每一口都沒有膩感，麵體炸過的非常酥脆！」)<br><br><b>🛍️
+                      伴手禮推薦</b>：<br>• <b>曲奇四重奏</b> (👧Lucy推｜蝴蝶酥與曲奇，蠻好吃｜✅ 10:00-22:00 每日｜尖沙咀)</td>
+                  <td>從旺角搭港鐵到尖沙咀只要 10 min</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>17:00-19:00</td>
+                  <td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td>
+                  <td><b>📸 散步清單</b>：<br>• <b>星光大道 → 維多利亞港</b> (👩Angela：⚠️ 黃昏去最好！)</td>
+                  <td>跟方案 A 相同</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-22:00</td>
+                  <td>🍽️🍸 <b>尖沙咀晚餐 → 中環酒吧</b><br>⏳ 約 3hr</td>
+                  <td><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (選 1 家)</b>：<br>•
+                    <b>Bar Leone</b> / <b>The Old Man</b>
+                  </td>
+                  <td>跟方案 A 相同</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>22:30</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從中環搭港鐵或計程車回灣仔</td>
+                  <td>結束第二天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-</main>
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
 
-    <script>
-        // Init Lucide Icons
-        lucide.createIcons();
-    </script>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>07:00-09:30</td>
+                  <td>🍽️ <b>灣仔/銅鑼灣 蛋塔早餐對決</b><br>⏳ 約 2.5hr</td>
+                  <td><b>🍽️ 早餐清單 (三家走路可到)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三+🧑Frunky推｜凍奶茶冠軍｜✅ 07:00-18:30)<br>•
+                    <b>Bakehouse 蛋塔</b> (👧Lucy⭐大推/👩Angela❌不推｜✅ 08:00-21:00｜$14/顆)<br>• <b>Hashtag B</b>
+                    (👧Lucy提到｜開心果蛋塔 $32/顆｜✅ 08:30-21:00｜銅鑼灣順路)
+                  </td>
+                  <td>吃貨方案 Day 3 連三家一次收集</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>09:30-10:30</td>
+                  <td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td>
+                  <td>• <b>預辦登機＋託運行李</b> (👩Angela推薦)</td>
+                  <td>空手逛！</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>10:30-13:00</td>
+                  <td>🍽️🛍️ <b>銅鑼灣逛街 (銅鑼灣站)</b><br>⏳ 自由活動約 2.5hr</td>
+                  <td><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b> (👧Lucy⭐前三！脆皮豬必點｜💡 可外帶便當去機場！)<br><br><b>🛍️ 最後掃貨</b>：<br>•
+                    <b>時代廣場周邊</b>
+                  </td>
+                  <td>收尾，能吃就吃</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-15:35</td>
+                  <td>✈️ <b>搭機返台</b></td>
+                  <td>• 從香港站搭<b>機場快線</b>前往機場</td>
+                  <td>務必提早出發</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </details>
+      </details>
+      <details class="plan-details">
+        <summary><span class="day-pill">😎 方案 C｜輕鬆慢遊</span><span class="day-hint">點開看完整版表格</span></summary>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
+
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>10:30-12:30</td>
+                  <td>✈️ <b>機場 → 灣仔飯店</b><br>⏳ 交通+入住約 2hr</td>
+                  <td>• 機場快線 → 飯店 <b>Check-in 先放行李</b><br>• 第一天先放行李再出門最輕鬆</td>
+                  <td>不用拖著行李趕景點</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>12:30-14:30</td>
+                  <td>🍽️🚶 <b>中環午餐與散步 (中環站)</b><br>⏳ 自由活動約 2hr</td>
+                  <td><b>🍽️ 午餐推薦 (挑一家就好，不趕兩家)</b>：<br>• <b>沾仔記</b> (📋原行程｜雲吞麵｜✅ 11:00-21:30)<br>• <b>蘭芳園</b>
+                    (👩Angela+🧑Frunky推｜絲襪奶茶始祖｜✅ 07:30-18:00)<br><br><b>📸 有空就逛</b>：<br>• <b>半山扶手電梯</b> → <b>嘉咸街壁畫</b> →
+                    <b>石板街</b>
+                  </td>
+                  <td>不一定全都要去，放鬆逛</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>14:30-16:30</td>
+                  <td>☕ <b>中環/灣仔 午茶放空</b><br>⏳ 自由時間 2hr</td>
+                  <td>• ✨ <b>自由放空時間！</b><br>• 可找間咖啡廳坐、回飯店休息，或分組去逛小店<br>• 10 人不需要全部綁在一起</td>
+                  <td>悠閒方案的核心價值</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>16:30-18:30</td>
+                  <td>🍽️ <b>灣仔/西環 隨意晚餐</b><br>⏳ 用餐約 2hr</td>
+                  <td><b>🍽️ 晚餐二選一</b>：<br>• <b>甘牌燒鵝</b> (飯店旁邊！方便！)<br>• <b>坤記煲仔飯</b> (西環叮叮車🚃)</td>
+                  <td>看大家想方便還是冒險</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-21:30</td>
+                  <td>🏇 <b>跑馬地馬場</b><br>⏳ 停留約 2.5hr</td>
+                  <td>• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>週三限定！</b></td>
+                  <td>不可錯過的體驗</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>21:30-00:00</td>
+                  <td>🍸 <b>中環 自由夜生活 (可選不去)</b><br>⏳ 想去就去</td>
+                  <td><b>🍸 續攤組</b>：<br>• <b>蘭桂坊</b> (感受氛圍)<br>• <b>The Iron Fairies</b> (live band 21:30
+                    後才有)<br><br><b>💤 休息組</b>：<br>• 回飯店睡覺！</td>
+                  <td>給予絕對彈性，不強迫</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>00:00</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從蘭桂坊搭計程車回灣仔</td>
+                  <td>結束第一天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
+
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:30-10:30</td>
+                  <td>🍽️🛍️ <b>上環早茶＋排隊分工 (上環站)</b><br>⏳ 約 2hr</td>
+                  <td><b>🍽️ 早餐推薦 (擇一)</b>：<br>• <b>瑞記咖啡</b> (三方推！｜✅ 08:00-15:00)<br>• <b>蓮香樓</b> (👩Angela+🧑Frunky推｜🚨
+                    4月搬址最後機會！)<br><br><b>🛍️ 排隊組分工</b>：<br>• 不想排隊的先吃早餐/去逛上環老街 → 想排隊的去排 <b>珍妮曲奇</b></td>
+                  <td>分組行動最適合 10 人</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>10:30-13:00</td>
+                  <td>🛍️ <b>上環 伴手禮輕鬆買</b><br>⏳ 自由活動約 2.5hr</td>
+                  <td><b>🛍️ 採買推薦 (順路逛)</b>：<br>• <b>檸檬王</b>、<b>兆成行</b>、<b>陳意齋</b><br><br>• ☕
+                    <b>累了就停</b>：隨意找茶餐廳坐、來碗車仔麵休息
+                  </td>
+                  <td>逛到累就停，不趕行程</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-15:00</td>
+                  <td>😴 <b>灣仔飯店午休</b><br>⏳ 自由時間 2hr</td>
+                  <td>• ✨ <b>充電時間！</b> 回房休息、補眠<br>• 對長輩或怕累的人非常重要</td>
+                  <td>輕鬆方案獨有的午休</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>15:00-17:00</td>
+                  <td>🛍️ <b>尖沙咀商場 (尖沙咀站)</b><br>⏳ 約 2hr</td>
+                  <td><b>🛍️ 逛街推薦</b>：<br>• <b>K11 MUSEA</b> (📋原行程｜購物+藝術商場，有冷氣吹)</td>
+                  <td>室內逛街不曬太陽</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>17:00-19:00</td>
+                  <td>🌅 <b>尖沙咀海濱 (尖沙咀站)</b><br>⏳ 約 2hr</td>
+                  <td><b>📸 散步推薦</b>：<br>• <b>星光大道 → 維港</b> (👩Angela：黃昏去！)</td>
+                  <td>黃昏景緻最美</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-22:00</td>
+                  <td>🍽️🍸 <b>尖沙咀晚餐 → 酒吧小酌 (可選不去)</b><br>⏳ 約 3hr</td>
+                  <td><b>🍽️ 晚餐</b>：<br>• <b>KABOOM Rooftop</b> (👧Lucy推｜🚨 10 人先訂位！)<br><br><b>🍸 酒吧 (想去就去)</b>：<br>•
+                    <b>Bar Leone</b> (✅ 17:00-00:00，週一休)
+                  </td>
+                  <td>可分組，不勉強</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>22:00</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從中環/尖沙咀搭港鐵或計程車回灣仔</td>
+                  <td>結束第二天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </details>
+        <details class="day-details">
+          <summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
+
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:00-10:00</td>
+                  <td>🍽️ <b>灣仔飯店周邊 (灣仔站)</b><br>⏳ 約 2hr</td>
+                  <td><b>🍽️ 早餐推薦 (順路吃)</b>：<br>• <b>我杯茶</b> (👧Lucy⭐前三｜凍奶茶冠軍｜✅ 07:00-18:30)<br>• <b>Bakehouse 蛋塔</b>
+                    (👧Lucy推/👩Angela不推｜$14/顆)</td>
+                  <td>享受最後一個悠閒早晨</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>10:00-11:00</td>
+                  <td>🚇 <b>港鐵香港站 (中環)</b><br>⏳ 約 1hr</td>
+                  <td>• <b>預辦登機＋託運行李</b></td>
+                  <td>把行李卸下，輕鬆出發</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>11:00-13:00</td>
+                  <td>🛍️🍽️ <b>銅鑼灣慢遊 (銅鑼灣站)</b><br>⏳ 自由活動約 2hr</td>
+                  <td><b>🛍️ 散步推薦</b>：<br>• <b>銅鑼灣周邊</b> (隨意逛逛看看)<br><br><b>🍽️ 午餐推薦</b>：<br>• <b>榕哥陳皮燒鵝</b>
+                    (👧Lucy⭐前三！可帶便當上飛機！)</td>
+                  <td>愜意不留遺憾</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-15:35</td>
+                  <td>✈️ <b>搭機返台</b></td>
+                  <td>• 從香港站搭<b>機場快線</b>前往機場</td>
+                  <td>提早一點不趕</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </details>
+      </details>
+    </section>
+
+  </main>
+
+  <script>
+    // Init Lucide Icons
+    lucide.createIcons();
+  </script>
 </body>
 
 </html>
