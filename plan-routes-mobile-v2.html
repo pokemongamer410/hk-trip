@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇭🇰 踢批哀香港行 — 三套方案路線圖</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --day1: #10b981;
+            --day1-bg: #10b98120;
+            --day2: #f59e0b;
+            --day2-bg: #f59e0b20;
+            --day3: #ef4444;
+            --day3-bg: #ef444420;
+            --fixed: #6366f1;
+            --fixed-bg: #6366f120;
+            --bg: #0f1117;
+            --card: #1a1d27;
+            --card-hover: #222531;
+            --border: #2a2d3a;
+            --text: #e4e4e7;
+            --text-dim: #9ca3af;
+            --accent: #818cf8;
+            --green: #10b981;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f1117 100%);
+            padding: 12px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .plan-switcher {
+            display: flex;
+            gap: 6px;
+        }
+
+        .plan-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            background: var(--card);
+            color: var(--text-dim);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .plan-btn:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .plan-btn.active-main {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #fff;
+            border-color: #7c3aed;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 440px;
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .plan-desc {
+            padding: 12px;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            line-height: 1.6;
+            color: #c7d2fe;
+            flex-shrink: 0;
+        }
+
+        .plan-desc strong {
+            color: #e0e7ff;
+            font-size: 13px;
+        }
+
+        .plan-desc .plan-subtitle {
+            color: #a5b4fc;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .day-tabs {
+            display: flex;
+            padding: 8px 12px 0;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .day-tab {
+            flex: 1;
+            padding: 7px 6px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            background: transparent;
+            color: var(--text-dim);
+        }
+
+        .day-tab:hover {
+            background: var(--card-hover);
+        }
+
+        .day-tab.active-day1 {
+            background: var(--day1-bg);
+            color: var(--day1);
+            border-color: var(--day1);
+        }
+
+        .day-tab.active-day2 {
+            background: var(--day2-bg);
+            color: var(--day2);
+            border-color: var(--day2);
+        }
+
+        .day-tab.active-day3 {
+            background: var(--day3-bg);
+            color: var(--day3);
+            border-color: var(--day3);
+        }
+
+        .day-tab.active-all {
+            background: var(--fixed-bg);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .spot-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .spot-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .spot-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .spot-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .spot-card {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .spot-card:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+            transform: translateX(3px);
+        }
+
+        .spot-card.highlighted {
+            border-color: var(--accent);
+            background: #818cf820;
+            box-shadow: 0 0 12px #818cf830;
+        }
+
+        .spot-card .spot-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .spot-card .spot-meta {
+            font-size: 10px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .spot-card .spot-time {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            background: #6366f120;
+            color: #818cf8;
+            margin-right: 4px;
+        }
+
+        .spot-card .spot-zone-label {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 500;
+            background: #818cf810;
+            color: #a5b4fc;
+            margin-left: 2px;
+        }
+
+        .spot-tag {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            margin-top: 3px;
+            margin-right: 2px;
+        }
+
+        .tag-food {
+            background: #f59e0b20;
+            color: #f59e0b;
+        }
+
+        .tag-sight {
+            background: #3b82f620;
+            color: #3b82f6;
+        }
+
+        .tag-shop {
+            background: #ec489920;
+            color: #ec4899;
+        }
+
+        .tag-transport {
+            background: #6366f120;
+            color: #6366f1;
+        }
+
+        .tag-hotel {
+            background: #8b5cf620;
+            color: #8b5cf6;
+        }
+
+        .tag-bar {
+            background: #f4364520;
+            color: #f43645;
+        }
+
+        .spot-warn {
+            background: #ef444415;
+            color: #fca5a5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-top: 3px;
+            font-size: 10px;
+            line-height: 1.4;
+            border-left: 2px solid #ef4444;
+        }
+
+        #map {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            z-index: 999;
+            font-size: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .legend h3 {
+            font-size: 11px;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 2px;
+            color: var(--text-dim);
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .custom-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 11px;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            line-height: 1;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: var(--card) !important;
+            color: var(--text) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .leaflet-popup-tip {
+            background: var(--card) !important;
+        }
+
+        .leaflet-popup-content {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif !important;
+            font-size: 12px !important;
+            line-height: 1.6 !important;
+            margin: 10px 12px !important;
+        }
+
+        .leaflet-popup-content h3 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--accent);
+        }
+
+        .leaflet-popup-content .popup-meta {
+            color: var(--text-dim);
+            font-size: 11px;
+        }
+
+        .leaflet-popup-content .popup-warn {
+            background: #ef444420;
+            color: #fca5a5;
+            padding: 4px 7px;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 10px;
+            border-left: 2px solid #ef4444;
+        }
+
+        .leaflet-popup-close-button {
+            color: var(--text-dim) !important;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 12px;
+            padding: 6px 12px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            font-size: 10px;
+            color: var(--text-dim);
+            flex-shrink: 0;
+        }
+
+        .stats-bar span {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+
+        /* ===== Mobile toggle (hidden on desktop) ===== */
+        .mobile-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                overflow: auto;
+                height: auto;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 16px;
+                position: sticky;
+                top: 0;
+            }
+
+            header h1 {
+                font-size: 18px;
+            }
+
+            header p {
+                font-size: 13px;
+            }
+
+            .plan-switcher {
+                width: 100%;
+                display: flex;
+                gap: 8px;
+            }
+
+            .plan-btn {
+                flex: 1;
+                font-size: 14px;
+                padding: 12px 8px;
+                border-radius: 10px;
+                min-height: 44px;
+            }
+
+            .main-container {
+                flex-direction: column;
+                overflow: visible;
+            }
+
+            /* Reading area first */
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                overflow: visible;
+            }
+
+            .spot-list {
+                padding: 16px;
+                overflow: visible;
+            }
+
+            .plan-desc {
+                font-size: 14px;
+                padding: 16px;
+                line-height: 1.75;
+            }
+
+            .plan-desc strong {
+                font-size: 16px;
+            }
+
+            .day-tabs {
+                padding: 12px 16px 0;
+                gap: 8px;
+            }
+
+            .day-tab {
+                font-size: 14px;
+                padding: 10px 8px;
+                border-radius: 12px 12px 0 0;
+                min-height: 40px;
+            }
+
+
+
+            .spot-card {
+                padding: 16px;
+                margin-bottom: 12px;
+                border-radius: 14px;
+            }
+
+            .spot-card:hover {
+                transform: none;
+            }
+
+            .spot-card .spot-name {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+
+            .spot-card .spot-meta {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .spot-card .spot-time {
+                font-size: 13px;
+                padding: 4px 8px;
+            }
+
+            .spot-tag {
+                font-size: 12px;
+                padding: 4px 8px;
+                margin-top: 8px;
+                border-radius: 8px;
+            }
+
+            .spot-warn {
+                font-size: 13px;
+                padding: 8px 10px;
+                margin-top: 8px;
+            }
+
+            .stats-bar {
+                font-size: 14px;
+                padding: 14px 16px 70px;
+                /* leave space for mobile nav */
+            }
+
+            /* Map: default hidden on mobile, toggled by nav */
+            #map {
+                display: none;
+                flex: none;
+                width: 100%;
+                height: calc(100vh - 160px);
+            }
+
+            .legend {
+                display: none;
+            }
+
+            /* ===== Mobile bottom nav ===== */
+            .mobile-nav {
+                display: flex;
+                position: fixed;
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                background: rgba(26, 29, 39, 0.92);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 8px;
+                gap: 8px;
+                z-index: 2000;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            }
+
+            .mobile-nav button {
+                flex: 1;
+                border: 1px solid var(--border);
+                background: var(--card);
+                color: var(--text);
+                font-size: 14px;
+                font-weight: 800;
+                border-radius: 12px;
+                padding: 12px 10px;
+                cursor: pointer;
+                min-height: 44px;
+                font-family: inherit;
+            }
+
+            .mobile-nav button.active {
+                border-color: var(--accent);
+                background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                color: #fff;
+            }
+
+            /* ===== When user chooses map view ===== */
+            body.mobile-show-map .sidebar {
+                display: none;
+            }
+
+            body.mobile-show-map #map {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>🇭🇰 踢批哀香港行 — 方案路線圖</h1>
+            <p>切換方案看不同路線｜點地點看詳情｜03/11-13｜10人</p>
+        </div>
+        <div class="plan-switcher">
+            <button class="plan-btn active-main" onclick="switchPlan('main')" id="btn-main">⭐ 完整行程 (混搭法)</button>
+            <button class="plan-btn" onclick="switchPlan('s')" id="btn-s"
+                style="background:#1f2937; color:#fff; border-color:#4b5563;">📍 分區備案 (Julia & Angela)</button>
+        </div>
+    </header>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="plan-desc" id="planDesc"></div>
+            <div class="day-tabs" id="dayTabsContainer">
+                <div class="day-tab active-all" onclick="filterDay('all')" id="tab-all">全部</div>
+                <div class="day-tab" onclick="filterDay(1)" id="tab-1">Day 1</div>
+                <div class="day-tab" onclick="filterDay(2)" id="tab-2">Day 2</div>
+                <div class="day-tab" onclick="filterDay(3)" id="tab-3">Day 3</div>
+            </div>
+            <!-- Plan S Area Tabs (Hidden by default) -->
+            <div class="day-tabs" id="areaTabsContainer"
+                style="display: none; overflow-x: auto; white-space: nowrap; justify-content: flex-start; gap: 4px;">
+                <div class="day-tab active-all" onclick="filterDay('all')" id="tab-all-s">全部區域</div>
+                <div class="day-tab" onclick="filterDay('central')" id="tab-central">中環/半山</div>
+                <div class="day-tab" onclick="filterDay('sheungwan')" id="tab-sheungwan">上環/西環</div>
+                <div class="day-tab" onclick="filterDay('cwb')" id="tab-cwb">灣仔/銅鑼灣</div>
+                <div class="day-tab" onclick="filterDay('tst')" id="tab-tst">尖沙咀/佐敦</div>
+                <div class="day-tab" onclick="filterDay('mongkok')" id="tab-mongkok">旺角/深水埗</div>
+                <div class="day-tab" onclick="filterDay('other')" id="tab-other">其他區/待探索</div>
+            </div>
+            <div class="spot-list" id="spotList"></div>
+            <div class="stats-bar" id="statsBar"></div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <div class="legend">
+        <h3>圖例</h3>
+        <div class="legend-item">
+            <div class="legend-dot" style="background:var(--day1)"></div> Day 1（03/11 三）
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background:var(--day2)"></div> Day 2（03/12 四）
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background:var(--day3)"></div> Day 3（03/13 五）
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background:var(--fixed)"></div> 固定/交通
+        </div>
+        <div class="legend-item" style="margin-top:4px;border-top:1px solid var(--border);padding-top:4px;">
+            <div style="width:20px;height:2px;background:var(--text-dim);border-top:2px dashed var(--text-dim);"></div>
+            建議路線
+        </div>
+    </div>
+
+
+    <div class="mobile-nav" aria-label="mobile navigation">
+        <button id="mobileBtnList" class="active" type="button">📋 清單</button>
+        <button id="mobileBtnMap" type="button">🗺️ 地圖</button>
+    </div>
+
+    <script>
+        // ===== 所有地點資料庫 =====
+        const allSpots = {
+            "airport": { name: "香港國際機場", searchName: "Hong Kong International Airport", lat: 22.3080, lng: 113.9185, type: "transport", area: "機場", note: "去程 10:30 抵達 / 回程 15:35 前到" },
+            "hotel": { name: "合和酒店", searchName: "Hopewell Hotel Wan Chai Hong Kong", lat: 22.2733, lng: 114.1713, type: "hotel", area: "灣仔", note: "👩Angela：走合和中心電梯下山" },
+            "hkstation": { name: "港鐵香港站", searchName: "Hong Kong MTR Station", lat: 22.2849, lng: 114.1584, type: "transport", area: "中環", note: "👩Angela：託運行李+拿登機證，空手逛" },
+            "tsimchailee": { name: "沾仔記", searchName: "Tsim Chai Kee Wellington Street Hong Kong", lat: 22.2827, lng: 114.1553, type: "food", area: "中環", note: "📋原行程｜雲吞麵", warn: "✅ 11:00-21:30 每日營業" },
+            "escalator": { name: "中環半山扶手電梯", searchName: "Central Mid-Levels Escalator Hong Kong", lat: 22.2830, lng: 114.1530, type: "sight", area: "中環", note: "🧑Frunky＋👧Lucy推薦｜世界最長" },
+            "taikwun": { name: "大館 Tai Kwun", searchName: "Tai Kwun Centre for Heritage and Arts Hong Kong", lat: 22.2816, lng: 114.1538, type: "sight", area: "中環", note: "🧑Frunky＋👧Lucy推薦", warn: "👩Angela：不是很大，30-60min 夠" },
+            "stonestairs": { name: "石板街", searchName: "Pottinger Street Hong Kong", lat: 22.2825, lng: 114.1540, type: "sight", area: "中環", note: "👧Lucy推薦｜《難哄》取景地" },
+            "kamroast": { name: "甘牌燒鵝", searchName: "Kam's Roast Goose Wan Chai Hong Kong", lat: 22.2748, lng: 114.1722, type: "food", area: "灣仔", note: "👩Angela提到｜飯店旁邊！", warn: "✅ 11:30-21:30 每日營業" },
+            "kwankee": { name: "坤記煲仔飯", searchName: "Kwan Kee Claypot Rice Hong Kong", lat: 22.2870, lng: 114.1430, type: "food", area: "西環", note: "👩Angela推薦", warn: "🚨 17:30 開門！建議 17:00~17:15 到排隊，否則等 40min+ 來不及趕 19:00 跑馬地" },
+            "happyvalley": { name: "跑馬地馬場 🏇", searchName: "Happy Valley Racecourse Hong Kong", lat: 22.2710, lng: 114.1833, type: "sight", area: "跑馬地", note: "👩Angela強推｜✅ 週三19:15開賽", warn: "⭐ 3/11 週三唯一機會！務必 19:00 前抵達" },
+            "lankwaifong": { name: "蘭桂坊", searchName: "Lan Kwai Fong Hong Kong", lat: 22.2808, lng: 114.1553, type: "bar", area: "中環", note: "👩Angela＋👧Lucy推薦", warn: "體會夜生活氛圍" },
+            "ironfairies": { name: "The Iron Fairies", searchName: "The Iron Fairies Hong Kong", lat: 22.2840, lng: 114.1503, type: "bar", area: "中環", note: "👩Angela 3/2推薦｜live band 推薦店", warn: "🚨 21:30 後才有 live band" },
+            "lanfongyuen": { name: "蘭芳園", searchName: "Lan Fong Yuen Hong Kong Central", lat: 22.2819, lng: 114.1550, type: "food", area: "中環", note: "👩Angela＋🧑Frunky推薦｜絲襪奶茶始祖", warn: "✅ 07:30-18:00 (週日公休)" },
+            "singheung": { name: "勝香園", searchName: "Sing Heung Yuen Hong Kong", lat: 22.2843, lng: 114.1524, type: "food", area: "中環", note: "👩Angela推薦｜蛋牛治+奶茶", warn: "✅ 08:00-15:30（週日公休）" },
+            "vission": { name: "Vission Bakery", searchName: "Vission Bakery Hong Kong", lat: 22.2822, lng: 114.1533, type: "food", area: "中環", note: "👩推薦/👧不推（$60太貴）", warn: "兩派意見" },
+            "mammy": { name: "媽咪雞蛋仔", searchName: "Mammy Pancake Hong Kong", lat: 22.2803, lng: 114.1840, type: "food", area: "銅鑼灣", note: "👧Lucy推薦｜軟Q又脆宵夜" },
+            "shuikee": { name: "瑞記咖啡", searchName: "Shui Kee Coffee Sheung Wan Hong Kong", lat: 22.2870, lng: 114.1490, type: "food", area: "上環", note: "👩👧🧑三方推！西多士+凍奶茶", warn: "✅ 08:00-15:00｜週六日公休" },
+            "lemonking": { name: "檸檬王", searchName: "Lemon King Hong Kong", lat: 22.2862, lng: 114.1497, type: "shop", area: "上環", note: "👩Angela＋👧Lucy推薦｜伴手禮" },
+            "jenny": { name: "珍妮曲奇（上環）", searchName: "Jenny Bakery Sheung Wan Hong Kong", lat: 22.2868, lng: 114.1464, type: "shop", area: "上環", note: "👩Angela推薦", warn: "✅ 10:00-19:00 每日｜買圓罐！平日排1-2hr" },
+            "linheung": { name: "蓮香樓", searchName: "Lin Heung Tea House Hong Kong", lat: 22.2847, lng: 114.1515, type: "food", area: "中環", note: "👩Angela＋🧑Frunky推薦", warn: "🚨 4月搬址！最後機會！✅ 06:00-22:30" },
+            "siushing": { name: "兆成行（精油）", searchName: "Siu Sing Hang Hong Kong Sheung Wan", lat: 22.2867, lng: 114.1473, type: "shop", area: "上環", note: "👧Lucy推薦｜88號舒淇香", warn: "✅ 打烊17:30｜週日公休" },
+            "chanyeejai": { name: "陳意齋", searchName: "Chan Yee Jai Hong Kong", lat: 22.2857, lng: 114.1509, type: "shop", area: "中環", note: "👧Lucy推薦｜杏仁餅", warn: "✅ 10:00-19:30 (週日到18:30)" },
+            "palace": { name: "香港故宮文化博物館", searchName: "Hong Kong Palace Museum", lat: 22.3031, lng: 114.1534, type: "sight", area: "西九龍", note: "📋原行程｜需1.5-2hr" },
+            "wongtaisin": { name: "黃大仙祠", searchName: "Wong Tai Sin Temple Hong Kong", lat: 22.3423, lng: 114.1935, type: "sight", area: "黃大仙", note: "📋原行程｜參拜~1hr", warn: "🚨 16:30 關門！建議 15:30 前抵達" },
+            "k11": { name: "K11 MUSEA", searchName: "K11 Musea Tsim Sha Tsui Hong Kong", lat: 22.2977, lng: 114.1723, type: "shop", area: "尖沙咀", note: "📋原行程｜購物+藝術" },
+            "victoria": { name: "星光大道/維港", searchName: "Victoria Harbour Tsim Sha Tsui", lat: 22.2934, lng: 114.1738, type: "sight", area: "尖沙咀", note: "多方推薦", warn: "👩Angela：黃昏去！2:00會曬死" },
+            "kaboom": { name: "KABOOM Rooftop", searchName: "KABOOM Rooftop Tsim Sha Tsui Hong Kong", lat: 22.2952, lng: 114.1718, type: "food", area: "尖沙咀", note: "👧Lucy推薦｜泰式+維港夜景", warn: "🚨 10人必須先訂位！" },
+            "barleone": { name: "Bar Leone", searchName: "Bar Leone Hong Kong Central", lat: 22.2816, lng: 114.1556, type: "bar", area: "中環", note: "📋原行程｜世界級酒吧｜💡 從尖沙咀搭天星小輪到中環看夜景！", warn: "✅ 17:00-00:00 (週一休)｜不設訂座" },
+            "wingkee": { name: "榮記粉麵", searchName: "Wing Kee Noodle Jardine's Bazaar Causeway Bay Hong Kong", lat: 22.2797, lng: 114.1844, type: "food", area: "銅鑼灣", note: "👩Angela推薦｜渣甸街43號｜在地粉麵" },
+            "redtea": { name: "旺角紅茶冰室", searchName: "Mong Kok Black Tea Restaurant Hong Kong", lat: 22.3192, lng: 114.1698, type: "food", area: "旺角", note: "👧Lucy⭐前三！銀芽肉絲炒麵" },
+            "cookies4": { name: "曲奇四重奏", searchName: "Cookies Quartet Tsim Sha Tsui Hong Kong", lat: 22.2957, lng: 114.1722, type: "shop", area: "尖沙咀", note: "👧Lucy推薦｜蝴蝶酥", warn: "✅ 10:00-22:00 每日｜💡 機場也有賣！可回程再買省手提空間" },
+            "mycupoftea": { name: "我杯茶", searchName: "My Cup of Tea Wan Chai Hong Kong", lat: 22.2780, lng: 114.1740, type: "food", area: "灣仔", note: "👧Lucy⭐前三＋🧑Frunky推薦", warn: "✅ 07:00-18:30｜凍奶茶冠軍" },
+            "bakehouse": { name: "Bakehouse 蛋塔", searchName: "Bakehouse Wan Chai Hong Kong", lat: 22.2780, lng: 114.1724, type: "food", area: "灣仔", note: "👧Lucy⭐大推 / 👩Angela不推", warn: "✅ 08:00-21:00｜$14/顆可帶回台灣" },
+            "hashtagb": { name: "Hashtag B", searchName: "Hashtag B Causeway Bay Hong Kong", lat: 22.2800, lng: 114.1848, type: "food", area: "銅鑼灣", note: "👧Lucy｜開心果蛋塔$32", warn: "✅ 08:30-21:00" },
+            "cwb": { name: "希慎廣場 Hysan Place", searchName: "Hysan Place Causeway Bay Hong Kong", lat: 22.2793, lng: 114.1835, type: "shop", area: "銅鑼灣", note: "👩Angela推薦取代時代廣場｜附近有大型Sephora" },
+            "yunggoose": { name: "榕哥陳皮燒鵝", searchName: "Yung Kee Roast Goose Causeway Bay Hong Kong", lat: 22.2791, lng: 114.1847, type: "food", area: "銅鑼灣", note: "👧Lucy⭐前三！脆皮豬必點", warn: "✅ 07:00-00:00｜可外帶便當去機場！" },
+            "artmuseum": { name: "香港藝術館", searchName: "Hong Kong Museum of Art", lat: 22.2943, lng: 114.1738, type: "sight", area: "尖沙咀", note: "👧Lucy推薦｜落地窗看維港", warn: "🚨 週四公休！3/12是週四不能去！" },
+            // 新增 Angela 補充與 Julia 推薦
+            "kamsroast2": { name: "甘棠燒鵝", searchName: "Kam Tong Roast Goose Causeway Bay", lat: 22.2766, lng: 114.1868, type: "food", area: "銅鑼灣", note: "👩Angela推薦｜號稱叉燒界Hermes", warn: "✅ 11:00-22:00", url: "https://maps.app.goo.gl/11KmkgqE1kPKUfbBA" },
+            "hingkee": { name: "興記煲仔飯", searchName: "Hing Kee Claypot Rice Temple Street", lat: 22.3111, lng: 114.1706, type: "food", area: "油麻地", note: "👩Angela推薦", warn: "✅ 17:30-00:00", url: "https://maps.app.goo.gl/WzQzMHkarbKABZDe8" },
+            "chopchop": { name: "竺扶大班燒味", searchName: "Chop Chop Wan Chai", lat: 22.2762, lng: 114.1741, type: "food", area: "灣仔", note: "👩Angela推薦", warn: "✅ 09:30-20:30", url: "https://maps.app.goo.gl/kapUF8qZQvnx1Pnp7" },
+            "fongwingkee": { name: "方榮記沙爹牛肉火鍋", searchName: "Fong Wing Kee 九龍城", lat: 22.3298, lng: 114.1884, type: "food", area: "九龍城", note: "👩Angela推薦", warn: "✅ 11:30-00:30", url: "https://maps.app.goo.gl/tkDhQbiyRmNPwSq97" },
+            "guoxin": { name: "鍋心粥底海鮮火鍋", searchName: "Guo Xin Seafood Hotpot 佐敦", lat: 22.3045, lng: 114.1724, type: "food", area: "佐敦", note: "👩Angela推薦", warn: "✅ 17:30-00:00", url: "https://maps.app.goo.gl/g2QhfrkWzZWNeJbC7" },
+            "sangkee": { name: "生記粥品專家", searchName: "Sang Kee Congee Sheung Wan", lat: 22.2856, lng: 114.1506, type: "food", area: "上環", note: "👩Angela推薦", warn: "✅ 06:30-20:30", url: "https://maps.app.goo.gl/QVCocBTgGMQuirit8" },
+            "london": { name: "倫敦大酒樓", searchName: "London Restaurant Mong Kok", lat: 22.3174, lng: 114.1711, type: "food", area: "旺角", note: "★第二天午餐指定吃這家", warn: "✅ 不用訂位直接去吃" },
+            "lionsrock": { name: "獅子山郊野公園步道", searchName: "Lion Rock Country Park", lat: 22.3510, lng: 114.1852, type: "sight", area: "黃大仙", note: "新增：夜間步道備案", warn: "視天氣決定" },
+            "victoriapeak": { name: "太平山/盧吉道觀景台", searchName: "Lugard Road Lookout", lat: 22.2769, lng: 114.1444, type: "sight", area: "山頂", note: "新增：夜間步道備案", warn: "視天氣決定" },
+            "juliacafe": { name: "Julia 推薦咖啡甜點群", searchName: "Julia Cafe List", lat: 22.2800, lng: 114.1800, type: "food", area: "各區自由探索", note: "包含Bakehouse, L'antico, Messina等", warn: "以小團為單位自由探索" },
+            "juliashop": { name: "Julia 推薦逛街群", searchName: "Julia Shop List", lat: 22.2850, lng: 114.1800, type: "shop", area: "各區自由探索", note: "包含AIRSIDE, 觀夏, RAZE等", warn: "以小團為單位自由探索" },
+            "juliarest": { name: "Julia 推薦餐廳群", searchName: "Julia Restaurant List", lat: 22.2900, lng: 114.1800, type: "food", area: "各區自由探索", note: "包含大班樓, 澳洲牛奶, 愛文生等", warn: "以小團為單位自由探索" },
+
+            // --- 新增 Julia 區域 POI 資料 ---
+            // 中環/金鐘/半山 (central)
+            "guanhsia": { name: "觀夏", searchName: "觀夏 中環", lat: 22.2811, lng: 114.1542, type: "shop", area: "中環" },
+            "raze": { name: "RAZE Central", searchName: "RAZE Central", lat: 22.2829, lng: 114.1551, type: "shop", area: "中環" },
+            "buly": { name: "Officine Universelle Buly 1803", searchName: "Buly 1803 中環", lat: 22.2825, lng: 114.1548, type: "shop", area: "中環" },
+            "vissionnine": { name: "Vission Nine", searchName: "Vission Nine 中環", lat: 22.2818, lng: 114.1539, type: "food", area: "中環" },
+            "lanticogelato": { name: "L'antico Gelato", searchName: "L'antico Gelato Central", lat: 22.2831, lng: 114.1528, type: "food", area: "中環" },
+            "messina": { name: "Messina", searchName: "Messina Central", lat: 22.2824, lng: 114.1554, type: "food", area: "中環" },
+            "bagelsalley": { name: "Bagels Alley", searchName: "Bagels Alley Central", lat: 22.2835, lng: 114.1561, type: "food", area: "中環" },
+            "dabanlou": { name: "大班樓", searchName: "The Chairman Restaurant", lat: 22.2838, lng: 114.1535, type: "food", area: "中環", note: "極難訂位" },
+            "yungkee": { name: "鏞記酒家", searchName: "Yung Kee Restaurant Central", lat: 22.2819, lng: 114.1555, type: "food", area: "中環" },
+            "lukyu": { name: "陸羽茶室", searchName: "Luk Yu Tea House", lat: 22.2826, lng: 114.1557, type: "food", area: "中環" },
+            "kaukee": { name: "九記牛腩", searchName: "Kau Kee Restaurant Central", lat: 22.2842, lng: 114.1527, type: "food", area: "中環" },
+            "stanley": { name: "士丹利街大排檔", searchName: "Stanley Street Dai Pai Dong", lat: 22.2830, lng: 114.1545, type: "food", area: "中環" },
+
+            // 上環/西環/堅尼地城 (sheungwan)
+            "lemonking2": { name: "檸檬王 Lemon King", searchName: "Lemon King Sheung Wan", lat: 22.2862, lng: 114.1497, type: "shop", area: "上環" },
+            "chunkee": { name: "香港淳記", searchName: "香港淳記", lat: 22.2865, lng: 114.1488, type: "shop", area: "上環" },
+            "winstonssw": { name: "Winstons Coffee", searchName: "Winstons Coffee Sai Ying Pun", lat: 22.2858, lng: 114.1425, type: "food", area: "西營盤" },
+            "halfway": { name: "半路咖啡", searchName: "Halfway Coffee Sheung Wan", lat: 22.2845, lng: 114.1492, type: "food", area: "上環" },
+            "thestation": { name: "THE STATION", searchName: "THE STATION Sheung Wan", lat: 22.2851, lng: 114.1485, type: "food", area: "上環" },
+            "queenpuff": { name: "酥妃皇后", searchName: "Queen Sophie Sheung Wan", lat: 22.2861, lng: 114.1501, type: "food", area: "上環" },
+            "lungbong": { name: "龍邦燒味小廚", searchName: "龍邦燒味小廚", lat: 22.2855, lng: 114.1466, type: "food", area: "上環" },
+            "yingkee": { name: "英記麵家", searchName: "英記麵家", lat: 22.2868, lng: 114.1422, type: "food", area: "西營盤" },
+            "tasteluck": { name: "嚐囍煲仔小菜", searchName: "嚐囍煲仔小菜", lat: 22.2825, lng: 114.1298, type: "food", area: "堅尼地城" },
+            "sunhing": { name: "新興食家", searchName: "Sun Hing Restaurant", lat: 22.2828, lng: 114.1285, type: "food", area: "堅尼地城" },
+
+            // 灣仔/銅鑼灣/天后/跑馬地 (cwb)
+            "leekungman": { name: "利工民", searchName: "Lee Kung Man Wan Chai", lat: 22.2775, lng: 114.1732, type: "shop", area: "灣仔" },
+            "her": { name: "HER", searchName: "HER Paterson Street", lat: 22.2811, lng: 114.1855, type: "shop", area: "銅鑼灣" },
+            "bakehouse_cwb": { name: "Bakehouse", searchName: "Bakehouse Causeway Bay", lat: 22.2785, lng: 114.1832, type: "food", area: "銅鑼灣" },
+            "hashtagb_cwb": { name: "Hashtag B", searchName: "Hashtag B Causeway Bay", lat: 22.2800, lng: 114.1848, type: "food", area: "銅鑼灣" },
+            "ganto_cwb": { name: "GANTO GELATO", searchName: "GANTO GELATO Causeway Bay", lat: 22.2788, lng: 114.1822, type: "food", area: "銅鑼灣" },
+            "mingcourt": { name: "明閣 (灣仔)", searchName: "Ming Court Wan Chai", lat: 22.2798, lng: 114.1765, type: "food", area: "灣仔" },
+            "joyhing": { name: "再興燒臘飯店", searchName: "Joy Hing Roasted Meat", lat: 22.2783, lng: 114.1761, type: "food", area: "灣仔" },
+            "hocheungkee": { name: "何洪記粥麵專家", searchName: "Ho Hung Kee", lat: 22.2795, lng: 114.1838, type: "food", area: "銅鑼灣" },
+            "bapo": { name: "八寶清湯腩", searchName: "八寶清湯腩 天后", lat: 22.2821, lng: 114.1921, type: "food", area: "天后" },
+
+            // 尖沙咀/佐敦/油麻地 (tst)
+            "k11musea": { name: "K11 MUSEA", searchName: "K11 MUSEA", lat: 22.2938, lng: 114.1736, type: "shop", area: "尖沙咀" },
+            "finfoods": { name: "帝苑餅店 FINE.FOODS", searchName: "帝苑餅店", lat: 22.2982, lng: 114.1775, type: "food", area: "尖沙咀" },
+            "kingmancookies": { name: "曲奇四重奏", searchName: "Cookies Quartet TST", lat: 22.2985, lng: 114.1725, type: "shop", area: "尖沙咀" },
+            "owls": { name: "Owl's Choux Pastry", searchName: "Owl's Choux Pastry", lat: 22.2975, lng: 114.1738, type: "food", area: "尖沙咀" },
+            "grindie": { name: "研香 Grindie", searchName: "Grindie Tsim Sha Tsui", lat: 22.2989, lng: 114.1712, type: "food", area: "尖沙咀" },
+            "kaikai": { name: "佳佳甜品", searchName: "Kai Kai Dessert", lat: 22.3068, lng: 114.1705, type: "food", area: "佐敦" },
+            "kamfan2": { name: "金飯館 2.0", searchName: "金飯館 2.0 尖沙咀", lat: 22.2995, lng: 114.1748, type: "food", area: "尖沙咀" },
+            "aussiedairy": { name: "澳洲牛奶公司", searchName: "Australia Dairy Company", lat: 22.3048, lng: 114.1706, type: "food", area: "佐敦" },
+            "yatting": { name: "逸東軒", searchName: "Yat Tung Heen Jordan", lat: 22.3075, lng: 114.1718, type: "food", area: "佐敦" },
+            "makmankee": { name: "麥文記麵家", searchName: "Mak Man Kee Noodle", lat: 22.3051, lng: 114.1703, type: "food", area: "佐敦" },
+
+            // 旺角/太子/深水埗/長沙灣 (mongkok)
+            "sneakerst": { name: "波鞋街", searchName: "Sneakers Street Mong Kok", lat: 22.3168, lng: 114.1716, type: "shop", area: "旺角" },
+            "ganto_mk": { name: "GANTO GELATO", searchName: "GANTO GELATO Mong Kok", lat: 22.3175, lng: 114.1685, type: "food", area: "旺角" },
+            "kamwah": { name: "金華美食", searchName: "Kam Wah Cafe Mong Kok", lat: 22.3225, lng: 114.1695, type: "food", area: "旺角" },
+            "mingcourt_mk": { name: "明閣 (旺角)", searchName: "Ming Court Mong Kok", lat: 22.3178, lng: 114.1682, type: "food", area: "旺角" },
+            "oimansang": { name: "愛文生", searchName: "Oi Man Sang Sham Shui Po", lat: 22.3262, lng: 114.1615, type: "food", area: "深水埗" },
+            "manfat": { name: "萬發海鮮菜館", searchName: "萬發海鮮菜館 深水埗", lat: 22.3305, lng: 114.1638, type: "food", area: "深水埗" },
+            "chungyung": { name: "中央飯店", searchName: "中央飯店 深水埗", lat: 22.3323, lng: 114.1610, type: "food", area: "深水埗" },
+            "lausumkee": { name: "劉森記麵家", searchName: "Lau Sum Kee Noodle", lat: 22.3315, lng: 114.1625, type: "food", area: "深水埗" },
+
+            // 其他區/待探索 (other)
+            "airside": { name: "AIRSIDE", searchName: "AIRSIDE Kai Tak", lat: 22.3338, lng: 114.2015, type: "shop", area: "啟德" },
+            "duckshing": { name: "德成號", searchName: "Duck Shing Ho North Point", lat: 22.2915, lng: 114.2005, type: "shop", area: "北角" },
+            "tungpo": { name: "東寶小館", searchName: "Tung Po North Point", lat: 22.2925, lng: 114.2025, type: "food", area: "北角" },
+            "lungo": { name: "Lungo", searchName: "Lungo Kowloon Bay", lat: 22.3255, lng: 114.2085, type: "food", area: "九龍灣" },
+            "kamfanktk": { name: "金飯館", searchName: "金飯館 牛頭角", lat: 22.3155, lng: 114.2185, type: "food", area: "牛頭角" }
+        };
+
+        // ===== 三套方案定義（以「時段區間」呈現，表示大概幾點在哪個區域）=====
+        // time: 顯示時段範圍，zone: 區域標籤 (包含 ⚓ 共同點 / 🚶 自由分支 標示)
+        const plans = {
+            main: {
+                name: "⭐ 完整行程 (共同點+自由分支)",
+                subtitle: "配合手冊V4混搭打法｜全團主軸與小組彈性",
+                desc: "標示「⚓」為建議全團集合點；標示「🚶」為該時段推薦的自由探索選項，不一定要全去，可依當下區域挑著逛！",
+                days: {
+                    1: [
+                        { id: "airport", time: "10:30~12:00", zone: "⚓ 抵達+交通" },
+                        { id: "hotel", time: "12:00~13:00", zone: "⚓ Check-in 放行李" },
+
+                        { id: "tsimchailee", time: "13:00~18:30", zone: "🚶 中環區 (午餐)" },
+                        { id: "lanfongyuen", time: "13:00~15:00", zone: "🚶 中環區 (午餐/小吃)" },
+                        { id: "singheung", time: "13:00~15:00", zone: "🚶 中環區 (午餐/小吃)" },
+                        { id: "escalator", time: "14:00~18:00", zone: "🚶 中環區 (景點散步)" },
+                        { id: "taikwun", time: "14:00~18:00", zone: "🚶 中環區 (拍照點)" },
+                        { id: "stonestairs", time: "14:00~18:00", zone: "🚶 中環區 (拍照點)" },
+
+                        { id: "kamroast", time: "16:00~18:30", zone: "🚶 灣仔區 (晚餐推)" },
+                        { id: "kwankee", time: "⚡17:00 排隊", zone: "🚶 西環區 (晚餐)🚨" },
+
+                        { id: "happyvalley", time: "19:00~21:30", zone: "🏇 跑馬地馬場 (極推)" },
+
+                        { id: "mammy", time: "21:30~", zone: "🚶 銅鑼灣 (宵夜)" },
+                        { id: "lankwaifong", time: "21:30~", zone: "🚶 中環區 (夜間氛圍)" },
+                        { id: "ironfairies", time: "21:30~", zone: "🚶 中環區 (酒吧聽歌)" },
+                        { id: "lionsrock", time: "21:30~", zone: "🚶 步道夜遊 (看天氣)" },
+                        { id: "victoriapeak", time: "21:30~", zone: "🚶 登高夜景 (看天氣)" },
+
+                        { id: "hotel", time: "00:00", zone: "回飯店" },
+                    ],
+                    2: [
+                        { id: "shuikee", time: "08:30~11:00", zone: "🚶 上環區 (早餐)" },
+                        { id: "jenny", time: "09:30 排隊", zone: "🚶 上環區 (伴手禮)🚨" },
+                        { id: "lemonking", time: "09:00~11:00", zone: "🚶 上環區 (伴手禮)" },
+                        { id: "siushing", time: "09:00~11:00", zone: "🚶 上環區 (香氛)" },
+                        { id: "chanyeejai", time: "09:00~11:00", zone: "🚶 中環區 (伴手禮)" },
+
+                        { id: "london", time: "11:30~13:30", zone: "⚓ 倫敦大酒樓 (全團)" },
+
+                        { id: "redtea", time: "14:00~16:00", zone: "🚶 旺角區 (下午茶)" },
+                        { id: "sneakerst", time: "14:00~16:30", zone: "🚶 旺角區 (逛街)" },
+                        { id: "palace", time: "14:00~16:30", zone: "🚶 西九龍 (故宮展覽)" },
+                        { id: "wongtaisin", time: "14:30~16:00", zone: "🚶 黃大仙⚠️16:30關" },
+                        { id: "k11", time: "15:00~17:30", zone: "🚶 尖沙咀 (商場文青)" },
+                        { id: "cookies4", time: "15:00~17:30", zone: "🚶 尖沙咀 (伴手禮)" },
+
+                        { id: "victoria", time: "17:30~19:00", zone: "⚓ 天星小輪+星光大道" },
+
+                        { id: "kaboom", time: "19:00~", zone: "🚶 尖沙咀 (泰菜需訂位)" },
+                        { id: "barleone", time: "21:00~", zone: "🚶 中環區 (酒吧)" },
+
+                        { id: "hotel", time: "22:30", zone: "回飯店" },
+                    ],
+                    3: [
+                        { id: "mycupoftea", time: "08:00~09:30", zone: "🚶 灣仔區 (早餐)" },
+                        { id: "bakehouse", time: "08:00~09:30", zone: "🚶 灣仔區 (蛋塔)" },
+                        { id: "hashtagb", time: "08:00~09:30", zone: "🚶 銅鑼灣 (蛋塔)" },
+
+                        { id: "hkstation", time: "09:30~10:30", zone: "⚓ 預辦登機+託運" },
+
+                        { id: "cwb", time: "10:30~15:00", zone: "🚶 銅鑼灣 (懶人逛街)" },
+                        { id: "yunggoose", time: "10:30~14:30", zone: "🚶 銅鑼灣 (吃/外帶便當)" },
+                        { id: "kamsroast2", time: "10:30~14:30", zone: "🚶 銅鑼灣 (午餐燒鵝)" },
+                        { id: "wingkee", time: "10:30~14:30", zone: "🚶 銅鑼灣 (粉麵小吃)" },
+
+                        { id: "airport", time: "15:35", zone: "⚓ 搭機返台 (16:35關)" },
+                    ],
+                }
+            },
+            s: {
+                name: "📍 分區備案 (Julia & Angela)",
+                subtitle: "依地鐵站分區｜隨時就近覓食｜不受行程綁死",
+                desc: "100+ 個收藏點已按區域分類。當小組行動不知道吃什麼時，打開這裡就近找！包含 Angela 嚴選好店！",
+                days: {
+                    central: [
+                        { id: "guanhsia", time: "推薦", zone: "購物選物" }, { id: "raze", time: "推薦", zone: "購物選物" }, { id: "buly", time: "推薦", zone: "購物選物" },
+                        { id: "vissionnine", time: "推薦", zone: "咖啡甜點" }, { id: "lanticogelato", time: "推薦", zone: "冰淇淋" }, { id: "messina", time: "推薦", zone: "冰淇淋" }, { id: "bagelsalley", time: "推薦", zone: "咖啡甜點" },
+                        { id: "dabanlou", time: "推薦", zone: "餐廳正餐" }, { id: "yungkee", time: "推薦", zone: "餐廳正餐" }, { id: "lukyu", time: "推薦", zone: "餐廳正餐" }, { id: "kaukee", time: "推薦", zone: "餐廳正餐" }, { id: "stanley", time: "推薦", zone: "餐廳正餐" }
+                    ],
+                    sheungwan: [
+                        { id: "lemonking2", time: "推薦", zone: "伴手禮" }, { id: "chunkee", time: "推薦", zone: "購物選物" },
+                        { id: "winstonssw", time: "推薦", zone: "咖啡甜點" }, { id: "halfway", time: "推薦", zone: "咖啡甜點" }, { id: "thestation", time: "推薦", zone: "咖啡甜點" }, { id: "queenpuff", time: "推薦", zone: "烘焙" },
+                        { id: "lungbong", time: "推薦", zone: "餐廳正餐" }, { id: "yingkee", time: "推薦", zone: "餐廳正餐" }, { id: "tasteluck", time: "推薦", zone: "餐廳正餐" }, { id: "sunhing", time: "推薦", zone: "餐廳正餐" },
+                        { id: "sangkee", time: "推薦", zone: "Angela 推薦" }
+                    ],
+                    cwb: [
+                        { id: "leekungman", time: "推薦", zone: "購物服裝" }, { id: "her", time: "推薦", zone: "購物服飾" },
+                        { id: "bakehouse_cwb", time: "推薦", zone: "烘焙" }, { id: "hashtagb_cwb", time: "推薦", zone: "烘焙" }, { id: "ganto_cwb", time: "推薦", zone: "冰淇淋" },
+                        { id: "mingcourt", time: "推薦", zone: "餐廳正餐" }, { id: "joyhing", time: "推薦", zone: "餐廳正餐" }, { id: "hocheungkee", time: "推薦", zone: "餐廳正餐" }, { id: "bapo", time: "推薦", zone: "餐廳正餐" },
+                        { id: "kamsroast2", time: "推薦", zone: "Angela 推薦" }, { id: "chopchop", time: "推薦", zone: "Angela 推薦" }
+                    ],
+                    tst: [
+                        { id: "k11musea", time: "推薦", zone: "購物中心" }, { id: "finfoods", time: "推薦", zone: "購物伴手禮" }, { id: "kingmancookies", time: "推薦", zone: "伴手禮" },
+                        { id: "owls", time: "推薦", zone: "咖啡甜點" }, { id: "grindie", time: "推薦", zone: "咖啡甜點" }, { id: "kaikai", time: "推薦", zone: "傳統甜水" },
+                        { id: "kamfan2", time: "推薦", zone: "餐廳正餐" }, { id: "aussiedairy", time: "推薦", zone: "餐廳正餐" }, { id: "yatting", time: "推薦", zone: "餐廳正餐" }, { id: "makmankee", time: "推薦", zone: "餐廳正餐" },
+                        { id: "hingkee", time: "推薦", zone: "Angela 推薦" }, { id: "guoxin", time: "推薦", zone: "Angela 推薦" }
+                    ],
+                    mongkok: [
+                        { id: "sneakerst", time: "推薦", zone: "購物逛街" },
+                        { id: "ganto_mk", time: "推薦", zone: "冰淇淋" },
+                        { id: "kamwah", time: "推薦", zone: "餐廳正餐" }, { id: "mingcourt_mk", time: "推薦", zone: "餐廳正餐" }, { id: "oimansang", time: "推薦", zone: "餐廳正餐" }, { id: "manfat", time: "推薦", zone: "大排檔" }, { id: "chungyung", time: "推薦", zone: "餐廳正餐" }, { id: "lausumkee", time: "推薦", zone: "餐廳正餐" }
+                    ],
+                    other: [
+                        { id: "airside", time: "推薦", zone: "啟德購物" }, { id: "duckshing", time: "推薦", zone: "北角伴手禮" },
+                        { id: "tungpo", time: "推薦", zone: "北角大排檔" }, { id: "lungo", time: "推薦", zone: "九龍灣咖啡" }, { id: "kamfanktk", time: "推薦", zone: "牛頭角餐廳" },
+                        { id: "fongwingkee", time: "推薦", zone: "Angela 推薦" }
+                    ]
+                }
+            }
+        };
+
+        // ===== 顏色/類型 =====
+        const dayColors = { 1: '#10b981', 2: '#f59e0b', 3: '#ef4444' };
+        const typeLabels = { food: '🍽️ 美食', sight: '📸 景點', shop: '🛍️ 購物', transport: '🚇 交通', hotel: '🏨 住宿', bar: '🍸 酒吧' };
+        const typeTagClass = { food: 'tag-food', sight: 'tag-sight', shop: 'tag-shop', transport: 'tag-transport', hotel: 'tag-hotel', bar: 'tag-bar' };
+
+        // ===== 地圖 =====
+        const map = L.map('map', { zoomControl: true }).setView([22.2850, 114.1580], 14);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19,
+        }).addTo(map);
+
+        let markers = [];
+        let routeLines = [];
+        let currentPlan = 'main';
+        let currentDay = 'all';
+
+        function clearMap() {
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+            routeLines.forEach(l => map.removeLayer(l));
+            routeLines = [];
+        }
+
+        function renderPlan(planKey, dayFilter) {
+            clearMap();
+            const plan = plans[planKey];
+            const descEl = document.getElementById('planDesc');
+            descEl.innerHTML = `<strong>${plan.name}</strong><div class="plan-subtitle">${plan.subtitle}</div><div style="margin-top:4px;">${plan.desc}</div>`;
+
+            const listEl = document.getElementById('spotList');
+            let html = '';
+
+            // 定義 Plan S 的顯示名稱與顏色 (可以比較繽紛)
+            const areaNames = {
+                'central': '🏢 中環/金鐘/半山', 'sheungwan': '🚋 上環/西營盤', 'cwb': '🛍️ 灣仔/銅鑼灣/天后',
+                'tst': '✨ 尖沙咀/佐敦', 'mongkok': '👟 旺角/太子/深水埗', 'other': '📍 其他區/待探索'
+            };
+            const areaColors = {
+                'central': '#a855f7', 'sheungwan': '#ec4899', 'cwb': '#eab308',
+                'tst': '#3b82f6', 'mongkok': '#14b8a6', 'other': '#64748b'
+            };
+
+            const dayNames = { 1: '🟢 Day 1（03/11 三）', 2: '🟡 Day 2（03/12 四）', 3: '🔴 Day 3（03/13 五）' };
+            let totalSpots = 0;
+            let foodCount = 0, sightCount = 0, shopCount = 0;
+
+            // 判斷要跑訪的是數字天數 (A/B) 還是地區字串 (S)
+            const loopKeys = planKey === 's' ? Object.keys(areaNames) : [1, 2, 3];
+
+            loopKeys.forEach(d => {
+                if (dayFilter !== 'all' && dayFilter !== d) return;
+                const dayStops = plan.days[d];
+                if (!dayStops) return;
+
+                const displayName = planKey === 's' ? areaNames[d] : dayNames[d];
+                const displayColor = planKey === 's' ? areaColors[d] : dayColors[d];
+
+                html += `<div style="font-size:12px;font-weight:700;color:${displayColor};margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid ${displayColor}40;">${displayName}（${dayStops.length} 站）</div>`;
+
+                const routeCoords = [];
+
+                dayStops.forEach((stop, idx) => {
+                    const spot = allSpots[stop.id];
+                    if (!spot) return;
+                    totalSpots++;
+                    if (spot.type === 'food') foodCount++;
+                    if (spot.type === 'sight') sightCount++;
+                    if (spot.type === 'shop') shopCount++;
+
+                    const color = planKey === 's' ? areaColors[d] : dayColors[d];
+                    const size = 24;
+                    const icon = L.divIcon({
+                        className: '',
+                        html: `<div class="custom-marker" style="width:${size}px;height:${size}px;background:${color};">${idx + 1}</div>`,
+                        iconSize: [size, size], iconAnchor: [size / 2, size / 2],
+                    });
+
+                    const googleMapsUrl = spot.url ? spot.url : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.searchName)}`;
+                    const marker = L.marker([spot.lat, spot.lng], { icon }).addTo(map);
+                    marker.on('click', () => {
+                        marker.unbindPopup().bindPopup(L.popup({ maxWidth: 300 }).setContent(`
+          <h3>${spot.name}</h3>
+          <div class="popup-meta">
+            <strong>${planKey === 's' ? areaNames[d] : `Day ${d}`} #${idx + 1}</strong>（${stop.time}）｜ ${typeLabels[spot.type]} ｜ 📍 ${spot.area}<br>
+            ${spot.note ? `📝 ${spot.note}` : ''}
+          </div>
+          ${spot.warn ? `<div class="popup-warn">${spot.warn}</div>` : ''}
+          <div style="margin-top:6px;"><a href="${googleMapsUrl}" target="_blank" style="color:#818cf8;text-decoration:underline;font-size:11px;">📍 Google Maps 確認</a></div>
+        `)).openPopup();
+                        highlightCard(`${planKey}-${d}-${idx}`);
+                    });
+                    markers.push(marker);
+                    routeCoords.push([spot.lat, spot.lng]);
+
+                    html += `
+        <div class="spot-card" id="card-${planKey}-${d}-${idx}" onclick="flyTo(${spot.lat},${spot.lng},${markers.length - 1})">
+          <div class="spot-name"><span class="spot-time">${stop.time}</span> ${spot.name}</div>
+          ${stop.zone ? `<div class="spot-meta" style="margin-bottom:2px;"><span class="spot-zone-label">🗂️ ${stop.zone}</span></div>` : ''}
+          <div class="spot-meta">📍 ${spot.area} ${spot.note ? `<br>📝 ${spot.note}` : ''}</div>
+          ${spot.warn ? `<div class="spot-warn">${spot.warn}</div>` : ''}
+          <span class="spot-tag ${typeTagClass[spot.type]}">${typeLabels[spot.type]}</span>
+        </div>`;
+                });
+
+                // 畫路線 (如果在 Plan S 就不畫路線，因為只是清單)
+                if (planKey !== 's' && routeCoords.length >= 2) {
+                    routeLines.push(L.polyline(routeCoords, {
+                        color: displayColor, weight: 3, opacity: 0.6, dashArray: '8 6'
+                    }).addTo(map));
+                }
+            });
+
+            listEl.innerHTML = html;
+            document.getElementById('statsBar').innerHTML = `共 <span>${totalSpots}</span> 站 ｜ 🍽️ <span>${foodCount}</span> ｜ 📸 <span>${sightCount}</span> ｜ 🛍️ <span>${shopCount}</span>`;
+
+            // 調整視野
+            if (markers.length > 0) {
+                const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+                map.fitBounds(bounds.pad(0.15));
+            }
+        }
+
+        function flyTo(lat, lng, markerIdx) {
+            map.flyTo([lat, lng], 16, { duration: 0.8 });
+            if (markers[markerIdx]) markers[markerIdx].fire('click');
+        }
+
+        function highlightCard(id) {
+            document.querySelectorAll('.spot-card').forEach(c => c.classList.remove('highlighted'));
+            const card = document.getElementById(`card-${id}`);
+            if (card) { card.classList.add('highlighted'); card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }
+
+        function switchPlan(key) {
+            currentPlan = key;
+            currentDay = 'all';
+            document.querySelectorAll('.plan-btn').forEach(b => b.className = 'plan-btn');
+            const newBtn = document.getElementById(`btn-${key}`);
+            newBtn.className = 'plan-btn active-' + key;
+            if (key === 's') newBtn.style.cssText = 'background: #f59e0b; color: #fff; border-color: #f59e0b;';
+
+            // Toggle Tab Visibility based on Plan
+            if (key === 's') {
+                document.getElementById('dayTabsContainer').style.display = 'none';
+                document.getElementById('areaTabsContainer').style.display = 'flex';
+                document.querySelectorAll('#areaTabsContainer .day-tab').forEach(t => t.className = 'day-tab');
+                document.getElementById('tab-all-s').classList.add('active-all');
+            } else {
+                document.getElementById('dayTabsContainer').style.display = 'flex';
+                document.getElementById('areaTabsContainer').style.display = 'none';
+                document.querySelectorAll('#dayTabsContainer .day-tab').forEach(t => t.className = 'day-tab');
+                document.getElementById('tab-all').classList.add('active-all');
+                document.getElementById('btn-s').style.cssText = 'background:#1f2937; color:#fff; border-color:#4b5563;';
+            }
+
+            renderPlan(key, 'all');
+        }
+
+        function filterDay(day) {
+            currentDay = day;
+
+            const isAreaTab = isNaN(day) && day !== 'all';
+            const containerId = currentPlan === 's' ? 'areaTabsContainer' : 'dayTabsContainer';
+
+            document.querySelectorAll(`#${containerId} .day-tab`).forEach(t => t.className = 'day-tab');
+
+            if (day === 'all') {
+                document.getElementById(currentPlan === 's' ? 'tab-all-s' : 'tab-all').classList.add('active-all');
+            } else {
+                const targetTab = document.getElementById(`tab-${day}`);
+                if (targetTab) {
+                    targetTab.className = 'day-tab active-day' + (isAreaTab ? 's' : day);
+                }
+            }
+            renderPlan(currentPlan, day);
+        }
+
+
+        // ===== 手機：清單/地圖切換（不影響桌機）=====
+        function isMobile() {
+            return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        function setMobileView(view) {
+            if (!isMobile()) return;
+
+            const showMap = (view === 'map');
+            document.body.classList.toggle('mobile-show-map', showMap);
+
+            const btnList = document.getElementById('mobileBtnList');
+            const btnMap = document.getElementById('mobileBtnMap');
+            if (btnList && btnMap) {
+                btnList.classList.toggle('active', !showMap);
+                btnMap.classList.toggle('active', showMap);
+            }
+
+            // Leaflet map needs to recalc size when becoming visible
+            if (showMap) {
+                setTimeout(() => {
+                    try {
+                        map.invalidateSize();
+                        if (markers.length > 0) {
+                            const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+                            map.fitBounds(bounds.pad(0.15));
+                        }
+                    } catch (e) { }
+                }, 180);
+            }
+        }
+
+        function wireMobileNav() {
+            const btnList = document.getElementById('mobileBtnList');
+            const btnMap = document.getElementById('mobileBtnMap');
+            if (!btnList || !btnMap) return;
+
+            btnList.addEventListener('click', () => setMobileView('list'));
+            btnMap.addEventListener('click', () => setMobileView('map'));
+
+            // default view on mobile: list
+            setMobileView('list');
+
+            // If user rotates / resizes, keep state sensible
+            window.addEventListener('resize', () => {
+                if (!isMobile()) {
+                    document.body.classList.remove('mobile-show-map');
+                } else {
+                    // keep buttons in sync
+                    const showMap = document.body.classList.contains('mobile-show-map');
+                    setMobileView(showMap ? 'map' : 'list');
+                }
+            }, { passive: true });
+        }
+
+
+        // 初始渲染
+        renderPlan('main', 'all');
+        wireMobileNav();
+    </script>
+</body>
+
+</html>

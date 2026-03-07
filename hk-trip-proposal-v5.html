@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇭🇰 踢批哀香港行 — 行程提案手冊</title>
+  <!-- 引入 Google Fonts，使用圓潤可愛的字體增加旅遊感 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kiwimaru:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+  <!-- Lucide Icons 已移至 body 底部，避免 Safari render-blocking -->
+  <style>
+    :root {
+      /* 旅遊風明亮色系 */
+      --bg-body: #F5F3EC;
+      /* 紙張米白色 */
+      --bg-card: #FFFFFF;
+      /* 卡片純白 */
+      --primary: #FF6B6B;
+      /* 珊瑚紅：活力、重點 */
+      --secondary: #4ECDC4;
+      /* 湖水綠：放鬆、副標 */
+      --accent: #FCA311;
+      /* 陽光橘：高光、評分 */
+      --text-main: #2D3436;
+      /* 深灰字體，好閱讀 */
+      --text-muted: #636E72;
+      /* 淺灰字體 */
+      --border-color: #E2DBD0;
+      /* 柔和邊框 */
+      --danger: #E15F41;
+      --success: #38ADA9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      scroll-behavior: smooth;
+      /* 平滑滾動 */
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      /* 輕微的紙張紋理效果（用點點代替） */
+      background-image:
+        radial-gradient(var(--border-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+      line-height: 1.7;
+    }
+
+    /* 標題字體使用圓潤感 */
+    h1,
+    h2,
+    h3,
+    h4,
+    .day-header {
+      font-family: 'Kiwimaru', serif;
+    }
+
+    /* --- Header & Hero --- */
+    header {
+      max-width: 900px;
+      margin: 40px auto 20px;
+      padding: 60px 30px;
+      text-align: center;
+      background: var(--bg-card);
+      border-radius: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 裝飾性幾何圖形 */
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 150px;
+      height: 150px;
+      background: var(--secondary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-body);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 500;
+      border: 1px dashed var(--text-muted);
+    }
+
+    /* --- 原生導覽列 (Sticky) --- */
+    nav {
+      position: sticky;
+      top: 20px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      z-index: 100;
+      padding: 0 15px;
+    }
+
+    .nav-container {
+      display: flex;
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      overflow-x: auto;
+      padding: 6px;
+      gap: 6px;
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-item {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 14px;
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .nav-item span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .nav-item:hover {
+      background: #FFF0F0;
+      color: var(--primary);
+    }
+
+    /* --- Main Content --- */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px 80px;
+    }
+
+    section {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      scroll-margin-top: 100px;
+      /* 給導覽列留空間 */
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 3px dashed var(--border-color);
+      padding-bottom: 15px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: var(--text-main);
+      font-weight: 900;
+    }
+
+    .section-tagline {
+      background: #F8F9FA;
+      padding: 15px 20px;
+      border-left: 6px solid var(--secondary);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Warnings --- */
+    .warning-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .warning-card {
+      background: #FFF;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .warning-card.alert {
+      border-color: var(--danger);
+      background: #FFF5F5;
+    }
+
+    .warning-card.time {
+      border-color: var(--accent);
+      background: #FFFBF0;
+    }
+
+    .warning-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-card.alert .warning-title {
+      color: var(--danger);
+    }
+
+    .warning-card.time .warning-title {
+      color: #D97706;
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.bullet-list li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    ul.bullet-list li::before {
+      content: '📌';
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+      top: 3px;
+    }
+
+    /* --- Timeline (The Blocks!) --- */
+    .day-block {
+      margin-bottom: 50px;
+    }
+
+    .day-header {
+      font-size: 1.6rem;
+      background: var(--primary);
+      color: white;
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    /* 時間線的棍子 */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 45px;
+      top: 80px;
+      bottom: -25px;
+      width: 2px;
+      background: var(--border-color);
+      border: 1px dashed var(--text-muted);
+      z-index: 1;
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .time-badge {
+      flex-shrink: 0;
+      width: 90px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      padding-top: 5px;
+    }
+
+    .content-card {
+      flex-grow: 1;
+      background: var(--bg-body);
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.2s;
+    }
+
+    .content-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--secondary);
+      box-shadow: 0 10px 20px rgba(78, 205, 196, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .card-meta {
+      display: inline-flex;
+      gap: 10px;
+      background: #EAF7F6;
+      color: #2A9D8F;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .rec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rec-item {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .rec-item-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rec-meta {
+      font-size: 0.85rem;
+      color: #E67E22;
+      background: #FFF3E0;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .rec-desc {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* 比較表格 */
+    .combo-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #FFF;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border-color);
+    }
+
+    .combo-table th,
+    .combo-table td {
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .combo-table th {
+      background: #F8F9FA;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .combo-table td:first-child {
+      font-weight: 700;
+      text-align: left;
+      background: #FAFAFA;
+    }
+
+    /* --- Todo List --- */
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .todo-item:last-child {
+      border-bottom: none;
+    }
+
+    .todo-label {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .b-red {
+      background: #FFEAEA;
+      color: #E15F41;
+    }
+
+    .b-yel {
+      background: #FFF4E6;
+      color: #D97706;
+    }
+
+    .b-grn {
+      background: #E6F8F5;
+      color: #2A9D8F;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      section {
+        padding: 25px;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .timeline-item::before {
+        display: none;
+      }
+
+      .time-badge {
+        text-align: left;
+        width: 100%;
+        font-size: 1.2rem;
+        color: var(--primary);
+      }
+
+      .nav-item {
+        min-width: 100px;
+        padding: 10px;
+      }
+    }
+
+    /* ===== Full itinerary tables (from decision doc) ===== */
+    .full-itinerary {
+      margin-top: 14px;
+    }
+
+    .day-details {
+      margin-top: 12px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .day-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(78, 205, 196, 0.10), rgba(255, 255, 255, 0));
+    }
+
+    .day-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .plan-details {
+      margin-top: 14px;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+    }
+
+    .plan-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(255, 107, 107, 0.12), rgba(255, 255, 255, 0));
+    }
+
+    .plan-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .day-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .day-label {
+      font-weight: 800;
+    }
+
+    .day-hint {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .itinerary-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    .itinerary-table th,
+    .itinerary-table td {
+      text-align: left;
+      padding: 12px 12px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .itinerary-table th {
+      background: rgba(255, 255, 255, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .itinerary-table td code {
+      background: rgba(0, 0, 0, 0.06);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .itinerary-table td b {
+      font-weight: 800;
+    }
+
+    /* Mobile: bigger reading area + text */
+    @media (max-width: 768px) {
+      .day-details summary {
+        padding: 14px 14px;
+      }
+
+      .itinerary-table {
+        min-width: 640px;
+      }
+
+      .itinerary-table th,
+      .itinerary-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .day-pill {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="hero-badge">💼 踢批哀員工旅遊手冊</div>
+    <h1>🇭🇰 香港全區解鎖：主線與自由探索</h1>
+    <div class="hero-meta">
+      <div><i data-lucide="calendar"></i> 2026/03/11 (三) - 03/13 (五)</div>
+      <div><i data-lucide="users"></i> 10 人出大團</div>
+      <div><i data-lucide="crosshair"></i> 混合型態 (共同主軸＋小組解散)</div>
+    </div>
+  </header>
+
+  <!-- 原生錨點導覽列，不需要JS也能運作！ -->
+  <nav>
+    <div class="nav-container">
+      <a href="#warnings" class="nav-item">⚠️ 避坑限制<span>出發必看</span></a>
+      <a href="#main-itinerary" class="nav-item">🗓️ 每日行程表<span>主線與分支</span></a>
+      <a href="#lazy-packs" class="nav-item">🎁 Day3 懶人包<span>沒想法看這</span></a>
+      <a href="#food-list" class="nav-item">🍽️ 隨性覓食<span>各區備案點</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ⚠️ 先看限制 -->
+    <section id="warnings">
+      <div class="section-header">
+        <i data-lucide="alert-octagon" color="#E15F41" size="36"></i>
+        <h2>在地情報與避坑指南</h2>
+      </div>
+
+      <div class="warning-grid">
+        <div class="warning-card alert">
+          <div class="warning-title"><i data-lucide="x-circle"></i> 殘酷的歇業與公休</div>
+          <ul class="bullet-list">
+            <li><b>波記大排檔：</b>永久歇業 😭 不能去了</li>
+            <li><b>澳洲牛奶公司：</b>✅ 週四公休 (Day 2 不能去)</li>
+            <li><b>香港藝術館：</b>✅ 週四公休</li>
+            <li><b>蓮香樓：</b>🚨 4月搬址！(3月是最後的朝聖)</li>
+          </ul>
+        </div>
+
+        <div class="warning-card time">
+          <div class="warning-title"><i data-lucide="clock"></i> 魔鬼藏在「營業時間」</div>
+          <ul class="bullet-list">
+            <li><b>瑞記咖啡：</b>週六日公休 / 08:00-15:00</li>
+            <li><b>勝香園：</b>15:30 就早早打烊</li>
+            <li><b>坤記煲仔飯：</b>下午有中休，晚上 17:30 才開<br>　🚨 <b>實戰提醒：建議 17:00~17:15 到排隊！</b>上次 17:50 到排了快 40 分鐘，會來不及趕 19:00 跑馬地
+            </li>
+            <li><b>黃大仙祠：</b>🚨 <b>16:30 關門！</b>要預留交通時間，建議 15:30 前到</li>
+            <li><b>珍妮曲奇小熊：</b>10:00開，但 09:30 就需要去排隊！</li>
+            <li><b>新興食家：</b>開凌晨 03:00 到下午 16:00</li>
+          </ul>
+        </div>
+
+        <div class="warning-card time" style="border-color: #38ADA9; background: #EAF7F6;">
+          <div class="warning-title" style="color: #2A9D8F;"><i data-lucide="lightbulb"></i> 玩樂時間限定</div>
+          <ul class="bullet-list">
+            <li><b>跑馬地馬場：</b>🐎 只有週三晚上！(Day 1 是唯一機會)</li>
+            <li><b>鐵仙子 The Iron Fairies：</b>🎵 晚上 21:30 後才有 Live Band</li>
+            <li><b>星光大道：</b>🌅 黃昏再去，下午 2:00 去會直接在那邊融化</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🗓️ 統一合併行程表 -->
+    <section id="main-itinerary">
+      <div class="section-header">
+        <i data-lucide="map" color="#10B981" size="36"></i>
+        <h2>每日行程表 (主線＋自由分支)</h2>
+      </div>
+      <div class="section-tagline">
+        ⚓ <b>共同主線：</b>放行李、倫敦大酒樓、天星小輪、市區預辦登機。<br>
+        🚶 <b>自由探索：</b>其餘時間將以小組為單位行動，想吃想逛自由決定！
+      </div>
+
+      <!-- =========== DAY 1 =========== -->
+      <div class="day-block">
+        <div class="day-header">Day 1（03/11 週三）</div>
+
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>12:00</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">⚓ <b>香港國際機場 → 合和酒店 (灣仔)</b></div>
+            <div class="card-meta">⏳ 交通約 1.5hr ｜ 全團集合</div>
+            <div class="rec-desc">• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：4人團體票 $70/人</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">12:00<br>13:00</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">⚓ <b>合和酒店 Check-in 放行李</b></div>
+            <div class="card-meta">⏳ 停留約 1hr ｜ 全團集合</div>
+            <div class="rec-desc">• 辦理入住、放行李，輕裝再出門玩<br>• 👩Angela提醒：出門走旁邊「合和中心」搭透明電梯下山，別走路！</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">13:00<br>18:30</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">🚶 <b>分組解散！午餐與逛街自由行程</b></div>
+            <div class="card-meta">⏳ 自由活動約 5.5hr ｜ 小組行動</div>
+            <div class="rec-desc"><b>🎯 推薦區域一：中環老街打卡找美食</b><br>• 蘭芳園、沾仔記、勝香園(留意15:30打烊)、大館建築群、半山手扶梯<br><br><b>🎯
+                推薦區域二：銅鑼灣/灣仔就近吃爆</b><br>• 甘牌燒鵝(飯店旁)、榮記粉麵、時代廣場附近逛街</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：此段時間不綁定，大家打開手機「地圖小工具」挑想吃的區域走！</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>21:30</div>
+          <div class="content-card" style="border-left: 6px solid #FCA311;">
+            <div class="card-title">🏇 <b>跑馬地馬場 (自由參加但強烈推薦)</b></div>
+            <div class="card-meta">⏳ 停留約 2.5hr ｜ 建議共同參與</div>
+            <div class="rec-desc">• <b>跑馬地馬場</b> (👩Angela 強推！)<br>• ⭐ <b>3/11 恰好是週三 Happy Wednesday，本趟唯一看賽馬的機會！</b>
+              19:15 開賽<br>• 一般入場憑護照免費</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：從灣仔搭計程車或叮叮車過去極快。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">21:30<br>00:00</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">🍸🏃 <b>宵夜 / 酒吧 / 夜景 (視天氣)</b></div>
+            <div class="card-meta">⏳ 視體力決定 ｜ 小組行動</div>
+            <div class="rec-desc"><b>🍸 去喝一杯</b>：蘭桂坊、The Iron Fairies (中環，21:30後才有live band)<br><br><b>🏃 夜間步道看夜景
+                (視天氣)</b>：獅子山郊野公園、太平山/盧吉道觀景台<br><br><b>🍽️ 吃宵夜</b>：媽咪雞蛋仔 (銅鑼灣) 等</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：累的人可隨時先搭車回飯店睡覺。</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- =========== DAY 2 =========== -->
+      <div class="day-block">
+        <div class="day-header">Day 2（03/12 週四）</div>
+
+        <div class="timeline-item">
+          <div class="time-badge">08:30<br>11:00</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">� <b>早晨分組行程：人氣早餐 / 買伴手禮</b></div>
+            <div class="card-meta">⏳ 自由活動約 2.5hr ｜ 小組行動</div>
+            <div class="rec-desc"><b>🍽️ 早餐備案</b>：瑞記咖啡 (上環)、Bakehouse 或其他網紅茶餐廳<br><br><b>🛍️ 伴手禮掃貨 (09:30去排隊)</b>：珍妮曲奇
+              (圓罐)、檸檬王、兆成行精油</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：這段時間大家依體力起床，想睡晚點的直接 11:30 在酒樓集合。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">11:30<br>13:30</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">⚓ <b>倫敦大酒樓 (旺角站)</b></div>
+            <div class="card-meta">⏳ 用餐約 2hr ｜ 全團集合聚餐</div>
+            <div class="rec-desc">• 體驗香港傳統的「推車仔」點心文化，人多好點菜！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：全團唯一指定的共同午餐聚落，不用訂位直接去排。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">14:00<br>17:30</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">� <b>下午分組行程：看展 / 爆買 / 下午茶</b></div>
+            <div class="card-meta">⏳ 自由活動約 3.5hr ｜ 小組行動</div>
+            <div class="rec-desc"><b>📸 展覽組</b>：香港故宮文化博物館 (約需 1.5-2hr)<br><br><b>🛍️ 逛街組</b>：留在旺角逛波鞋街、或到尖沙咀逛 K11
+              MUSEA<br><br><b>🍽️ 甜點組</b>：旺角紅茶冰室 (銀芽肉絲炒麵)、曲奇四重奏</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：吃完午餐後可以當場解散，各自搭車去想去的地方。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">17:30<br>19:00</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">⚓ <b>天星小輪 ＆ 維港黃昏夜景</b></div>
+            <div class="card-meta">⏳ 約 1.5hr ｜ 全團集合散步</div>
+            <div class="rec-desc">• 尖沙咀海濱長廊會合，看日落與夜景<br>• 全圖一起搭乘 <b>天星小輪</b> 從尖沙咀過海到中環</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：👩Angela 強烈推薦搭船過海，避開地鐵人潮又能看風景。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">19:00<br>22:00</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">🍸🏃 <b>晚餐隨性吃 → 酒吧小酌</b></div>
+            <div class="card-meta">⏳ 視體力決定 ｜ 小組行動</div>
+            <div class="rec-desc"><b>🍽️ 晚餐</b>：下船後在中環/灣仔附近，打開地圖小工具隨意找。<br><br><b>🍸 酒吧</b>：Bar Leone (世界第一酒吧) / The Old
+              Man</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：小組也可以一起搭車回飯店再決定去吃哪家大排檔。</div>
+          </div>
+        </div>
+      </div>
+      <!-- =========== DAY 3 =========== -->
+      <div class="day-block">
+        <div class="day-header">Day 3（03/13 週五）</div>
+
+        <div class="timeline-item">
+          <div class="time-badge">08:00<br>09:30</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">🚶 <b>飯店周邊 最後早餐/蛋塔</b></div>
+            <div class="card-meta">⏳ 約 1.5hr ｜ 小組行動</div>
+            <div class="rec-desc"><b>🍽️ 推薦清單</b>：<br>• 我杯茶 (凍奶茶冠軍)<br>• Bakehouse / Hashtag B (蛋塔可帶回台灣，海關不抓)</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">09:30<br>10:30</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">⚓ <b>退房 ＆ 港鐵香港站 (中環) 預辦登機</b></div>
+            <div class="card-meta">⏳ 約 1hr ｜ 全團集合</div>
+            <div class="rec-desc">• <b>市區預辦登機＋託運行李</b><br>• 之後整天直到下午登機前都能空手逛！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：這個時間點需要全團會合把繁雜程序處理完。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">10:30<br>15:30</div>
+          <div class="content-card" style="border-left: 6px dashed #4ECDC4;">
+            <div class="card-title">� <b>「毫無負擔」的空手自由逛</b></div>
+            <div class="card-meta">⏳ 自由活動約 5hr ｜ 小組行動</div>
+            <div class="rec-desc">• 身上沒行李，可以瘋狂掃蕩超市、藥妝或是逛尚未逛到的區域。<br>• 不知道去哪？請直接下滑看 <b>🎁 Day 3 懶人包</b>！</div>
+            <div class="rec-desc" style="margin-top:10px;"><b>📝 備註</b>：推薦去買午餐便當 (如榕哥燒鵝) 帶著去機場吃。</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-badge">15:35</div>
+          <div class="content-card" style="border-left: 6px solid #FF6B6B;">
+            <div class="card-title">✈️ <b>搭機返台 (18:35 的飛機)</b></div>
+            <div class="card-meta">⏳ 抵達機場 ｜ 全團集合</div>
+            <div class="rec-desc">• 各位最晚必須在 <b>16:35</b> 抵達機場<br>• 從香港站搭<b>機場快線</b>前往機場大約需要 30 分鐘，請抓 15:35 左右從香港站出發表。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🎁 Day 3 沒想法看這 -->
+    <section id="lazy-packs">
+      <div class="section-header">
+        <i data-lucide="gift" color="#8B5CF6" size="36"></i>
+        <h2>🎁 Day 3 自由行避障「懶人包」</h2>
+      </div>
+      <div class="section-tagline">
+        💡 <b>給沒想法的人：</b>第3天早上去香港站把行李托運完，有整整 5 個小時的空手時間！如果你不知道該去哪，請直接選下面兩條路線之一，照著走準沒錯！
+      </div>
+
+      <div class="warning-grid">
+        <div class="warning-card" style="border-color: #8B5CF6;">
+          <div class="warning-title" style="color: #8B5CF6;"><i data-lucide="coffee"></i> 路線 1 沿街文青、古意老店區</div>
+          <h4 style="margin: 0 0 10px 0; color:var(--text-main);">推薦區域：中環 👉 上環</h4>
+          <ul class="bullet-list" style="margin-bottom: 12px;">
+            <li><b>第一站：買伴手禮</b> (檸檬王 Lemon King、香港淳記、大排檔奶茶...) 全部塞進行李袋</li>
+            <li><b>第二站：買網紅甜點</b> (Vission Nine、L'antico Gelato 邊走邊吃)</li>
+            <li><b>第三站：文青咖啡館</b> (Winstons Coffee 或 半路咖啡) 拍美照打卡</li>
+            <li><b>第四站：最後正餐</b> (九記牛腩或英記麵家) 吃一碗暖胃</li>
+          </ul>
+          <div style="font-size:0.85rem; color:var(--text-muted);">優點：離機場快線近，隨時可以走人。</div>
+        </div>
+
+        <div class="warning-card" style="border-color: #EC4899;">
+          <div class="warning-title" style="color: #EC4899;"><i data-lucide="shopping-bag"></i> 路線 2 精品選物、吃爆烤鵝區</div>
+          <h4 style="margin: 0 0 10px 0; color:var(--text-main);">推薦區域：銅鑼灣 👉 灣仔</h4>
+          <ul class="bullet-list" style="margin-bottom: 12px;">
+            <li><b>第一站：選香氛買妹子物</b> (去中環買觀夏、RAZE，再去銅鑼灣希慎廣場 Sephora)</li>
+            <li><b>第二站：瘋搶蛋塔大軍</b> (Hashtag B 開心果蛋塔，排隊帶回台灣)</li>
+            <li><b>第三站：重口味朝聖</b> (吃一碗榮記粉麵)</li>
+            <li><b>第四站：外帶午餐上飛機</b> (榕哥陳皮燒鵝，切一盒超級脆皮豬帶去機場配！)</li>
+          </ul>
+          <div style="font-size:0.85rem; color:var(--text-muted);">優點：適合體力旺盛想把港幣花光的人。</div>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+
+
+    <!-- 🍽️ 在地隨性覓食清單 -->
+    <section id="food-list">
+      <div class="section-header">
+        <i data-lucide="map-pin" color="#E67E22" size="36"></i>
+        <h2>口袋名單大公開（Julia 嚴選＆各地區分類）</h2>
+      </div>
+      <div class="section-tagline">
+        💡 <b>主打：</b>所有 Google Map 上的願望清單都已經幫你依照地鐵站與區域分類好！走到哪、吃到哪，不被行程綁死！
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">📍 港島區 (中環 / 上環 / 灣仔 / 銅鑼灣 / 東區)</div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">🏢 <b>中環 / 金鐘 / 半山</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>觀夏、RAZE Central、Buly 1803、王榮記菓子廠</p>
+              <p><b>☕ 咖啡與甜點：</b>Vission Nine、L'antico Gelato、Messina、Bagels Alley、生昌焙豆、Chocolate Avenue</p>
+              <p><b>🍽️ 餐廳與正餐：</b>大班樓 (極難訂位)、鏞記酒家、陸羽茶室、九記牛腩、士丹利街大排檔、沾仔記 (皇后大道中店)、麥奀記 (忠記) 麵家、麥奀雲吞麵世家、蓮香樓、樂茶軒
+                (中環/金鐘)、Blend & Grind Mid-Levels、Shake Shack (太古廣場)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">🚋 <b>上環 / 西營盤 / 堅尼地城</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>檸檬王 Lemon King、香港淳記、萬順昌大廈、啟發食品、鄧海滿記 (西營盤)</p>
+              <p><b>☕ 咖啡與甜點：</b>Winstons Coffee (西營盤)、半路咖啡、THE STATION、酥妃皇后 (上環)、The Hub Coffee Roaster</p>
+              <p><b>🍽️ 餐廳與正餐：</b>興記咖啡室、龍邦燒味小廚、許榮記飲食專家、英記麵家、坤記煲仔小菜、嚐囍煲仔小菜 (堅尼地城)、周記醬料+燒賣、六安居、聯華茶餐廳、郁鍵快餐、新興食家</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">🛍️ <b>灣仔 / 銅鑼灣 / 天后 / 大坑</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>利工民 (灣仔)、HER (銅鑼灣)、希慎廣場 Sephora</p>
+              <p><b>☕ 咖啡與甜點：</b>Bakehouse (灣仔/銅鑼灣)、Hashtag B (銅鑼灣)、GANTO GELATO (銅鑼灣)、研香 (銅鑼灣)、18 Grams、Hypebeans、THE
+                MATCHA TOKYO、Proof. (跑馬地)、Cookie Vission (大坑)</p>
+              <p><b>🍽️ 餐廳與正餐：</b>竺扶大班燒味、豪華咖啡茶廳、甘棠燒鵝、榕哥陳皮燒鵝、喜記避風塘炒辣蟹、明閣 (灣仔)、祥興記上海生煎包 (灣仔)、再興燒臘飯店、新景園咖喱小廚、利苑酒家
+                (灣仔)、明記飯店、葉公館、富臨飯店、何洪記粥麵專家、八寶清湯腩 (天后)、傳承清湯腩</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">🐙 <b>港島東 (北角 / 筲箕灣 / 柴灣 等)</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>德成號 (北角)</p>
+              <p><b>🍽️ 餐廳與正餐：</b>東寶小館 (北角)、安利魚蛋粉麵 (筲箕灣)、紹華小廚 (筲箕灣)、祥囍煲仔小廚 (筲箕灣)、太安樓牛雜 (西灣河)、新桂香燒臘 (柴灣)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">📍 九龍區 (尖沙咀 / 旺角 / 九龍城 / 啟德)</div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">✨ <b>尖沙咀 / 佐敦 / 油麻地</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>K11 購物藝術館、萊德拉 香港K11 MUSEA店、帝苑餅店 FINE.FOODS、曲奇四重奏、英皇拖鞋公司</p>
+              <p><b>☕ 咖啡與甜點：</b>Owl's Choux Pastry、Boutique By The Grand、研香 Grindie、Manen Bakery、牛奶冰室、Hashtag B
+                (尖沙咀)、Page Common、佳佳甜品 (佐敦)</p>
+              <p><b>🍽️ 餐廳與正餐：</b>沾仔記麵食 (廟街)、祥興記上海生煎包、Shake Shack (海港城)、金飯館 2.0、澳洲牛奶公司 (佐敦)、逸東軒 (佐敦)、麥文記麵家 (佐敦)、興記菜館
+                (油麻地)、一點心 (佐敦)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">👟 <b>旺角 / 太子 / 深水埗 / 長沙灣</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>波鞋街 (旺角)</p>
+              <p><b>☕ 咖啡與甜點：</b>GANTO GELATO (旺角)、酥妃皇后 (旺角)、DOZY (深水埗)</p>
+              <p><b>🍽️ 餐廳與正餐：</b>金華美食 (旺角)、明閣 (旺角店)、愛文生 (深水埗)、萬發海鮮菜館 (深水埗)、中央飯店 (深水埗)、劉森記麵家 (深水埗)、坤記竹昇麵 (長沙灣)、永合隆飯店
+                (太子)、強記大排檔 (深水埗)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="card-title">✈️ <b>九龍城 / 啟德 / 觀塘 / 土瓜灣</b></div>
+            <div class="rec-desc">
+              <p><b>🛍️ 逛街與選物：</b>AIRSIDE (啟德)</p>
+              <p><b>☕ 咖啡與甜點：</b>GANTO GELATO (觀塘)、Lungo (九龍灣)</p>
+              <p><b>🍽️ 餐廳與正餐：</b>方榮記沙爹牛肉火鍋 (九龍城)、聯發茶餐廳 (九龍城)、金城茶餐廳 (土瓜灣)、金飯館 (牛頭角)、Shake Shack Elements</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">📍 其他 / 分店多 / 待探索清單</div>
+
+        <div class="timeline-item" style="padding-left:0; margin-bottom: 5px;">
+          <div class="content-card" style="width:100%;">
+            <div class="rec-desc" style="font-size: 0.9em; line-height: 1.6;">
+              <p><b>🛍️ 選物與特色店：</b>Imageplayground、Geo Guide、Burger Mate、Archi、KHROMIS、工夫茶舍、Frederic Blondeel HK、Petite
+                Petite、威尼斯皮褸、雜不lang1、Bathe to Basics</p>
+              <p><b>☕ 寶藏咖啡與甜點：</b>Milkfill、Milligram Coffee、Doughman Bakery、Valérie Pastry、Minamoto
+                Coffee、Introvert.Coffee、Bread Secret、MOROPAIN、CACAOLAB、GOOCA、Grind & Brew、Lento、Blossom、YOI
+                Coffee、Two-and-a-Half Street、Aokomi、ztoryhome、Hemma、The Missing Piece Cafe、Liz & Tori、Hogan
+                Coffee、Social Goods Modern Bakery、THE BAKERISM、O! Donut、Relive Patisserie、Venner、Yuan Yuan Tang
+                緣緣堂、Indigo Coffee、Soul fresh、Gwee Coffee、睡飽冰店、The Ice Cream & Cookie Co.、first crack
+                coffee、Vision、PURNA、Moonary Coffee、Tokachi Milky、All Day Parfait、Elephant Grounds、Arte by Padaria、壺
+                Potion House、Zero One Coffee、Grandma's Scones、香り Kaōri、甜家、Soft Thunder Bakery、BRISA、sensory
+                ZERO、Ramie、巧克力之家、攝時間、Sugar Brothers、flow float、Goose’ Chocolate、正宗長洲糯米糍</p>
+              <p><b>🍽️ 餐廳/火鍋：</b>斗滾 (火鍋)、一品雞煲火鍋、C Dessert、腸粉皇、中記小廚、江湖小棧、鴻圖樓、襟江酒家、FABLE、Five Guys</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 📝 To-Do List -->
+    <section id="todo">
+      <div class="section-header">
+        <i data-lucide="check-square" color="#E67E22" size="36"></i>
+        <h2>開會前：出發待辦事項清單</h2>
+      </div>
+
+      <div style="background: #FFF; border: 2px solid var(--border-color); border-radius: 16px;">
+        <div class="todo-item">
+          <div class="todo-label">各小團決定晚膳地與接駁方案</div>
+          <div class="badge b-red">🔴 出發前群組確認</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">確認是否有團員要去夜間步道 (獅子山/太平山)</div>
+          <div class="badge b-red">🔴 視天氣決定</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">蓮香樓營業狀態確認 (3/12 週四)</div>
+          <div class="badge b-yel">🟡 出發前再確認</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">先買好「機場快線 4人團體票」</div>
+          <div class="badge b-yel">🟡 出發前線上買</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">跑馬地是否訂位 / The Iron Fairies 是否預約</div>
+          <div class="badge b-yel">🟡 視群組開會意願</div>
+        </div>
+        <div class="todo-item">
+          <div class="todo-label">Bakehouse 蛋塔是否要 WhatsApp 先預訂 (>24個)</div>
+          <div class="badge b-grn">🟢 可看狀況決定</div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="appendix">
+      <div class="section-header">
+        <i data-lucide="file-text" color="#636E72" size="36"></i>
+        <h2>補充資料：完整版表格（想細看再打開）</h2>
+      </div>
+      <div class="section-tagline">這裡的表格內容與上方「每日行程表」一致，只是用表格方便快速掃描與對照。</div>
+
+      <details class="plan-details">
+        <summary><span class="day-pill">⭐ 完整行程表</span><span class="day-hint">點開看完整版表格</span></summary>
+
+        <details class="day-details">
+          <summary><span class="day-pill">Day 1（03/11 週三）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>10:30-12:00</td>
+                  <td>⚓ <b>香港國際機場 → 合和酒店</b></td>
+                  <td>• 搭乘<b>機場快線</b>至香港站，轉港鐵到灣仔</td>
+                  <td>4人團體票 $70/人</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>12:00-13:00</td>
+                  <td>⚓ <b>合和酒店 Check-in 放行李</b></td>
+                  <td>• 辦理入住、放行李，輕裝再出門玩</td>
+                  <td>出門走合和中心透明電梯</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>13:00-18:30</td>
+                  <td>🚶 <b>分組解散！午餐與逛街</b></td>
+                  <td><b>區域一：中環老街</b> (蘭芳園、勝利園、大館)<br><b>區域二：銅鑼灣/灣仔</b> (甘牌燒鵝、榮記粉麵、時代廣場)</td>
+                  <td>小組自行決定去哪</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-21:30</td>
+                  <td>🏇 <b>跑馬地馬場</b></td>
+                  <td>• 本趟唯一看賽馬的機會！ (19:15 開賽)<br>• 體驗香港道地賽馬文化</td>
+                  <td>從灣仔搭車過去極快</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>21:30-00:00</td>
+                  <td>🍸🏃 <b>宵夜 / 酒吧 / 夜景</b></td>
+                  <td><b>酒吧：</b>蘭桂坊、The Iron Fairies<br><b>夜景：</b>獅子山、太平山<br><b>宵夜：</b>媽咪雞蛋仔</td>
+                  <td>視體力與天氣，隨意參加</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>00:00</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從中環搭車回灣仔</td>
+                  <td>結束第一天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details class="day-details">
+          <summary><span class="day-pill">Day 2（03/12 週四）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:30-11:00</td>
+                  <td>� <b>早晨分組行程：早餐/伴手禮</b></td>
+                  <td><b>早餐：</b>瑞記咖啡、Bakehouse<br><b>伴手禮：</b>珍妮曲奇(09:30排隊)、檸檬王、兆成行</td>
+                  <td>想睡晚點的直接去酒樓</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>11:30-13:30</td>
+                  <td>⚓ <b>倫敦大酒樓 (旺角站)</b></td>
+                  <td>• 體驗香港傳統的「推車仔」點心文化<br>• 全圖集合聚餐</td>
+                  <td>不用訂位直接去排</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>14:00-17:30</td>
+                  <td>� <b>下午分組行程：展覽/逛街</b></td>
+                  <td><b>展覽：</b>香港故宮文化博物館<br><b>逛街：</b>旺角波鞋街、尖沙咀 K11 MUSEA<br><b>下午茶：</b>旺角紅茶冰室</td>
+                  <td>吃完午餐後當場解散行動</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>17:30-19:00</td>
+                  <td>⚓ <b>天星小輪 ＆ 維港黃昏夜景</b></td>
+                  <td>• 尖沙咀海濱長廊會合<br>• 全團搭乘<b>天星小輪</b>從尖沙咀過海到中環</td>
+                  <td>避開地鐵人潮又能看風景</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>19:00-22:00</td>
+                  <td>�� <b>晚餐隨性吃 → 酒吧小酌</b></td>
+                  <td><b>晚餐：</b>中環/灣仔附近隨意找<br><b>酒吧：</b>Bar Leone / The Old Man</td>
+                  <td>小組自行決定</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>22:30</td>
+                  <td>🏨 <b>回合和酒店休息</b></td>
+                  <td>• 從中環搭車回灣仔</td>
+                  <td>結束第二天</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details class="day-details">
+          <summary><span class="day-pill">Day 3（03/13 週五）</span><span class="day-hint">點開/收合</span></summary>
+          <div class="table-wrap">
+            <table class="itinerary-table">
+              <thead>
+                <tr>
+                  <th style="width:120px;">時段</th>
+                  <th>定位大點 / 停留時間</th>
+                  <th>推薦踩點清單</th>
+                  <th style="width:180px;">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='col-time'>08:00-09:30</td>
+                  <td>🚶 <b>飯店周邊 最後早餐/蛋塔</b></td>
+                  <td><b>早餐：</b>我杯茶<br><b>蛋塔：</b>Bakehouse、Hashtag B</td>
+                  <td>蛋塔可帶回台灣</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>09:30-10:30</td>
+                  <td>⚓ <b>退房 ＆ 預辦登機</b></td>
+                  <td>• 港鐵香港站 (中環)<br>• 市區預辦登機＋託運行李</td>
+                  <td>全團集合處理行李</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>10:30-15:30</td>
+                  <td>� <b>「毫無負擔」的空手自由逛</b></td>
+                  <td>• 沒想法的人請走<b>� Day 3 懶人包</b>的指定路線<br>• 推薦買榕哥燒鵝當午餐便當</td>
+                  <td>買好午餐帶去機場吃</td>
+                </tr>
+                <tr>
+                  <td class='col-time'>15:35</td>
+                  <td>✈️ <b>搭機返台</b></td>
+                  <td>• 從香港站搭<b>機場快線</b>前往機場</td>
+                  <td>18:35 的飛機，16:35 必須抵達機場</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+      </details>
+    </section>
+
+  </main>
+
+  <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+  <script>
+    // Init Lucide Icons (with Safari fallback)
+    try {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    } catch (e) {
+      console.warn('Lucide icons failed to load:', e);
+    }
+  </script>
+</body>
+
+</html>
